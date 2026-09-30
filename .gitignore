@@ -1,0 +1,13 @@
+# Eclipse y metadatos
+.metadata/
+*/.metadata/
+bin/
+*/bin/
+
+# SonarLint y librerías temporales
+.sonarlint/
+*/.sonarlint/
+
+# Sistema operativo
+Thumbs.db
+Desktop.ini
