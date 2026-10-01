@@ -11,3 +11,6 @@ bin/
 # Sistema operativo
 Thumbs.db
 Desktop.ini
+
+target/
+*/target/
