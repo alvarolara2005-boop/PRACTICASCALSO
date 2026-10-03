@@ -65,3 +65,16 @@ Se crea un nuevo objeto `Random` en cada llamada al método `aleatoria()`.
 **Solución adoptada**
 
 Extraer el objeto `Random` como constante estática de la clase
+
+### Disconformidad 2 — `java:S1197`
+
+**Localización:** `Direccion.java`, línea 21
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+Los corchetes del array están después del nombre de la variable en lugar del tipo.
+
+**Solución adoptada**
+
+Mover los corchetes [] al tipo de la variable.
