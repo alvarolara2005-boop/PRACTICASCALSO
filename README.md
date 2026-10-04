@@ -117,3 +117,16 @@ Los corchetes del array están después del nombre de la variable.
 **Solución adoptada**
 
 Mover los corchetes [] al tipo de la variable.
+
+### Disconformidad 6 — `java:S4973`
+
+**Localización:** `Programa.java`, línea 17
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+Comparación de cadenas usando == en lugar de .equals().
+
+**Solución adoptada**
+
+Usar .equals() o .isEmpty() para comparar cadenas.
