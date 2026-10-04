@@ -91,3 +91,16 @@ Uso de System.out.println en lugar de un logger.
 **Solución adoptada**
 
 Sustituir System.out.println por un Logger.
+
+### Disconformidad 4 — `java:S1481`
+
+**Localización:** `Programa.java`, línea 15
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+El valor devuelto por String.concat() no se asigna a ninguna variable.
+
+**Solución adoptada**
+
+Asignar el resultado del concat a la variable info.

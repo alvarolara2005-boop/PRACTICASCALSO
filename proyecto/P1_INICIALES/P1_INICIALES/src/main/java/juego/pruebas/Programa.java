@@ -16,7 +16,7 @@ public class Programa {
       final Logger LOGGER = Logger.getLogger(Programa.class.getName());
 
       for (Punto punto : puntos)
-          info.concat(punto.toString());
+          info = info.concat(punto.toString());
 
      String mensaje = (info == "") ? "no hay puntos" : info; 
 
