@@ -78,3 +78,16 @@ Los corchetes del array están después del nombre de la variable en lugar del t
 **Solución adoptada**
 
 Mover los corchetes [] al tipo de la variable.
+
+### Disconformidad 3 — `java:S106`
+
+**Localización:** `Programa.java`, línea 19
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+Uso de System.out.println en lugar de un logger.
+
+**Solución adoptada**
+
+Sustituir System.out.println por un Logger.

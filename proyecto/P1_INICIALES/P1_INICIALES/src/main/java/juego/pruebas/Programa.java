@@ -1,6 +1,7 @@
 package juego.pruebas;
 
 import juego.geometria.Punto;
+import java.util.logging.Logger;
 
 public class Programa {
 
@@ -11,12 +12,14 @@ public class Programa {
       puntos[0] = punto1;
       
       String info = ""; 
+      
+      final Logger LOGGER = Logger.getLogger(Programa.class.getName());
 
       for (Punto punto : puntos)
           info.concat(punto.toString());
 
      String mensaje = (info == "") ? "no hay puntos" : info; 
 
-     System.out.println(mensaje);
+     LOGGER.info(mensaje);
     }
 }
