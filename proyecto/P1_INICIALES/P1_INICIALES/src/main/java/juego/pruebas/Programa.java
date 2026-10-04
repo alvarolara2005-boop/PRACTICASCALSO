@@ -8,7 +8,7 @@ public class Programa {
     public static void main(String args[]) {
       Punto punto1 = new Punto();
 
-      Punto puntos[] = new Punto[2]; 
+      Punto[] puntos = new Punto[2]; 
       puntos[0] = punto1;
       
       String info = ""; 

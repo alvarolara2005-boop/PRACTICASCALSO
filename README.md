@@ -104,3 +104,16 @@ El valor devuelto por String.concat() no se asigna a ninguna variable.
 **Solución adoptada**
 
 Asignar el resultado del concat a la variable info.
+
+### Disconformidad 5 — `java:S1197`
+
+**Localización:** `Programa.java`, línea 8
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+Los corchetes del array están después del nombre de la variable.
+
+**Solución adoptada**
+
+Mover los corchetes [] al tipo de la variable.
