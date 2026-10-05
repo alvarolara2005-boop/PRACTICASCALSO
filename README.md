@@ -156,3 +156,42 @@ El método desplazar(Direccion) devuelve null en el default del switch.
 **Solución adoptada**
 
 Lanzar una excepción en lugar de devolver null.
+
+### Disconformidad 8 — `java:S1168`
+
+**Localización:** `Punto.java`, línea 91
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+El método desplazar(Direccion) devuelve null en el default del switch.
+
+**Solución adoptada**
+
+Lanzar una excepción en lugar de devolver null.
+
+### Disconformidad 9 — `java:S108`
+
+**Localización:** `Punto.java`, línea 142
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+Bloque catch vacío en el método clone().
+
+**Solución adoptada**
+
+Rellenar el bloque catch con una excepción o un comentario justificativo.
+
+### Disconformidad 10 — `java:S1206`
+
+**Localización:** `Punto.java`, línea 125
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+El método equals(Punto) no sobrescribe Object.equals(Object).
+
+**Solución adoptada**
+
+Rellenar el bloque catch con una excepción o un comentario justificativo.Cambiar la firma a equals(Object obj) y añadir @Override.

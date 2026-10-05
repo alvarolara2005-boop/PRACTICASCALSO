@@ -59,8 +59,8 @@ public class Punto {
 		case ABAJO:
 		    return new Punto(x, y - 1); 
 		}
-
-		throw new IllegalArgumentException("Direccion no valida: " + direccion);
+		
+		return null;
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class Punto {
 	    case DERECHA: return desplazar(1, 0);
 	    case IZQUIERDA: return desplazar(-1,0);
 	    default:
-	        return null;
+	    	throw new IllegalArgumentException("Direccion no valida: " + direccion);
 	    }
 	}
 
@@ -122,13 +122,20 @@ public class Punto {
 	}
 
 	
-	public boolean equals(Punto obj) {
-		if (this == obj)
-			return true;
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj)
+	        return true;
+	    if (obj == null || getClass() != obj.getClass())
+	        return false;
 
-		Punto other = (Punto) obj;
-		
-		return  (x == other.x && y == other.y);
+	    Punto other = (Punto) obj;
+	    return x == other.x && y == other.y;
+	}
+	
+	@Override
+	public int hashCode() {
+	    return 31 * x + y;
 	}
 
 	@Override
@@ -139,9 +146,11 @@ public class Punto {
 			copia = (Punto)super.clone();
 			return copia;
 		}
-		catch(CloneNotSupportedException e){ }
+		catch(CloneNotSupportedException e){ 
+			throw new AssertionError("No deberia ocurrir", e);
+		}
 
-		return null;
+		//return null;
 	}
 
 }
