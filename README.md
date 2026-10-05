@@ -208,3 +208,16 @@ Los modificadores public final static están en orden incorrecto.
 **Solución adoptada**
 
 Reordenar los modificadores a public static final.
+
+### Disconformidad 12 — `java:S1124`
+
+**Localización:** `Punto.java`, línea 10
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+El nombre de la constante defaultValue no sigue la convención (debe ser mayúsculas).
+
+**Solución adoptada**
+
+Renombrar a DEFAULT_VALUE.
