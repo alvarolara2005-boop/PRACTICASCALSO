@@ -60,7 +60,7 @@ public class Punto {
 		    return new Punto(x, y - 1); 
 		}
 
-		return null;
+		throw new IllegalArgumentException("Direccion no valida: " + direccion);
 	}
 
 	/**

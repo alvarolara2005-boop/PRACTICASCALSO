@@ -143,3 +143,16 @@ Import java.util.Random no utilizado.
 **Solución adoptada**
 
 Eliminar la línea de import innecesaria.
+
+### Disconformidad 8 — `java:S1168`
+
+**Localización:** `Punto.java`, línea 91
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+El método desplazar(Direccion) devuelve null en el default del switch.
+
+**Solución adoptada**
+
+Lanzar una excepción en lugar de devolver null.
