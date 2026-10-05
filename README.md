@@ -195,3 +195,16 @@ El método equals(Punto) no sobrescribe Object.equals(Object).
 **Solución adoptada**
 
 Rellenar el bloque catch con una excepción o un comentario justificativo.Cambiar la firma a equals(Object obj) y añadir @Override.
+
+### Disconformidad 11 — `java:S1124`
+
+**Localización:** `Punto.java`, línea 10
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+Los modificadores public final static están en orden incorrecto.
+
+**Solución adoptada**
+
+Reordenar los modificadores a public static final.
