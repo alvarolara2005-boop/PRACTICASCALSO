@@ -130,3 +130,16 @@ Comparación de cadenas usando == en lugar de .equals().
 **Solución adoptada**
 
 Usar .equals() o .isEmpty() para comparar cadenas.
+
+### Disconformidad 7 — `java:S1128`
+
+**Localización:** `Punto.java`, línea 4
+**Responsable:** ÁLVARO LARA LARA
+
+**Problema detectado**
+
+Import java.util.Random no utilizado.
+
+**Solución adoptada**
+
+Eliminar la línea de import innecesaria.
