@@ -18,7 +18,7 @@
 | Alumno/a 1 | ÁLVARO LARA LARA |
 | Alumno/a 2 | PABLO GARCÍA PÉREZ |
 
-**Nombre del proyecto Eclipse:** `P1_ALL_PGP`
+**Nombre del proyecto Eclipse:** `P1_ALLPGP`
 
 ---
 
@@ -267,7 +267,7 @@ La captura final permite comprobar que se está analizando el mismo proyecto uti
 La versión final del proyecto Eclipse se encuentra en:
 
 ```text
-P1/proyecto/P1_ALL_PGP/
+P1/proyecto/P1_ALLPGP/
 ```
 
 El proyecto incluido en esta carpeta contiene las modificaciones correspondientes a las soluciones documentadas anteriormente y coincide con la versión sobre la que se ha realizado la captura final.
@@ -276,7 +276,7 @@ El proyecto incluido en esta carpeta contiene las modificaciones correspondiente
 
 ## 8. Comprobación de la entrega
 
-- [ ] El nombre del proyecto sigue el formato establecido: `P1_ALL_PGP`.
+- [ ] El nombre del proyecto sigue el formato establecido: `P1_ALLPGP`.
 - [ ] Se identifican los dos miembros del grupo.
 - [ ] Se incluye la captura del análisis inicial.
 - [ ] Se han documentado todas las disconformidades inicialmente detectadas.
