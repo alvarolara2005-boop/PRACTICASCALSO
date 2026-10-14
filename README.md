@@ -10,3 +10,4 @@ En el presente repositorio se presentan las prácticas realizadas para la asigna
 ## Enlaces
 
 - [Documentación de la Práctica 1 — Revisiones estáticas de código con SonarQube for Eclipse](./P1/README_P1.md)
+- [Documentación de la Práctica 2 - Pruebas unitarias y análisis de calidad](./P2/README_P2.md)
