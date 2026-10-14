@@ -71,7 +71,8 @@ En el análisis inicial se han identificado las siguientes disconformidades:
 
 ### Disconformidad 1 — `java:S2119`
 
-**Localización:** `Direccion.java`, línea 22
+**Localización:** `src/main/java/juego/geometria/Direccion.java`, línea 22
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -80,11 +81,12 @@ Se crea un nuevo objeto `Random` en cada llamada al método `aleatoria()`.
 
 **Solución adoptada**
 
-Extraer el objeto `Random` como constante estática de la clase
+Extraer el objeto `Random` como constante estática de la clase.
 
 ### Disconformidad 2 — `java:S1197`
 
-**Localización:** `Direccion.java`, línea 21
+**Localización:** `src/main/java/juego/geometria/Direccion.java`, línea 21
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -97,7 +99,8 @@ Mover los corchetes [] al tipo de la variable.
 
 ### Disconformidad 3 — `java:S106`
 
-**Localización:** `Programa.java`, línea 19
+**Localización:** `src/main/java/juego/pruebas/Programa.java`, línea 19
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -110,7 +113,8 @@ Sustituir System.out.println por un Logger.
 
 ### Disconformidad 4 — `java:S1481`
 
-**Localización:** `Programa.java`, línea 15
+**Localización:** `src/main/java/juego/pruebas/Programa.java`, línea 15
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -123,7 +127,8 @@ Asignar el resultado del concat a la variable info.
 
 ### Disconformidad 5 — `java:S1197`
 
-**Localización:** `Programa.java`, línea 8
+**Localización:** `src/main/java/juego/pruebas/Programa.java`, línea 8
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -136,7 +141,8 @@ Mover los corchetes [] al tipo de la variable.
 
 ### Disconformidad 6 — `java:S4973`
 
-**Localización:** `Programa.java`, línea 17
+**Localización:** `src/main/java/juego/pruebas/Programa.java`, línea 17
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -149,7 +155,8 @@ Usar .equals() o .isEmpty() para comparar cadenas.
 
 ### Disconformidad 7 — `java:S1128`
 
-**Localización:** `Punto.java`, línea 4
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 4
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -162,7 +169,8 @@ Eliminar la línea de import innecesaria.
 
 ### Disconformidad 8 — `java:S1168`
 
-**Localización:** `Punto.java`, línea 91
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 91
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -175,7 +183,8 @@ Lanzar una excepción en lugar de devolver null.
 
 ### Disconformidad 8 — `java:S1168`
 
-**Localización:** `Punto.java`, línea 91
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 91
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -188,7 +197,8 @@ Lanzar una excepción en lugar de devolver null.
 
 ### Disconformidad 9 — `java:S108`
 
-**Localización:** `Punto.java`, línea 142
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 142
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -201,7 +211,8 @@ Rellenar el bloque catch con una excepción o un comentario justificativo.
 
 ### Disconformidad 10 — `java:S1206`
 
-**Localización:** `Punto.java`, línea 125
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 125
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -214,7 +225,8 @@ Rellenar el bloque catch con una excepción o un comentario justificativo.Cambia
 
 ### Disconformidad 11 — `java:S1124`
 
-**Localización:** `Punto.java`, línea 10
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 10
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
@@ -227,7 +239,8 @@ Reordenar los modificadores a public static final.
 
 ### Disconformidad 12 — `java:S1124`
 
-**Localización:** `Punto.java`, línea 10
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 10
+
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
