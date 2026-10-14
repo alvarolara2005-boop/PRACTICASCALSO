@@ -251,6 +251,20 @@ El nombre de la constante defaultValue no sigue la convención (debe ser mayúsc
 
 Renombrar a DEFAULT_VALUE.
 
+### Disconformidad 13 — `java:S1197`
+
+**Localización:** `src/main/java/juego/pruebas/Programa.java`, línea 8
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+Los corchetes `[]` del array están a la derecha del nombre de la variable.
+
+**Solución adoptada**
+
+Se ponen los corchetes `[]` a la derecha del nombre del tipo para seguir la convención.
+
 ---
 
 ## 5. Resumen de las correcciones
@@ -269,7 +283,7 @@ Renombrar a DEFAULT_VALUE.
 | 10 | `java:S1206` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 11 | `java:S1124` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
 | 12 | `java:S1124` | ÁLVARO LARA LARA | `ac53a03` | Resuelta |
-| 13 | `java:xxxx` | x | `` | Resuelta |
+| 13 | `java:S1197` | PABLO GARCÍA PÉREZ | `` | Resuelta |
 | 14 | `java:xxxx` | x | `` | Resuelta |
 | 15 | `java:xxxx` | x | `` | Resuelta |
 | 16 | `java:xxxx` | x | `` | Resuelta |
