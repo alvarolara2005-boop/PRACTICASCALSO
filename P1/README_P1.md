@@ -244,9 +244,32 @@ Renombrar a DEFAULT_VALUE.
 
 | Nº | Regla Sonar | Responsable | Commit | Resultado |
 |---:|---|---|---|---|
-| 1 | `java:SXXXX` | Nombre y apellidos | `abcdef1` | Resuelta |
-| 2 | `java:SXXXX` | Nombre y apellidos | `abcdef2` | Resuelta |
-| 3 | `java:SXXXX` | Nombre y apellidos | `abcdef3` | Resuelta |
+| 1 | `java:S2119` | ÁLVARO LARA LARA | `b7a1d59` | Resuelta |
+| 2 | `java:S1197` | ÁLVARO LARA LARA | `dc37cdf` y `fd0ce62` | Resuelta |
+| 3 | `java:S106` | ÁLVARO LARA LARA | `69112c3` | Resuelta |
+| 4 | `java:S1481` | ÁLVARO LARA LARA | `5cd59d5` | Resuelta |
+| 5 | `java:S1197` | ÁLVARO LARA LARA | `e9f55e1` | Resuelta |
+| 6 | `java:S4973` | ÁLVARO LARA LARA | `71795d9` | Resuelta |
+| 7 | `java:S1128` | ÁLVARO LARA LARA | `58088d4` | Resuelta |
+| 8 | `java:S1168` | ÁLVARO LARA LARA | `044cf0e` | Resuelta |
+| 9 | `java:S108` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
+| 10 | `java:S1206` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
+| 11 | `java:S1124` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
+| 12 | `java:S1124` | ÁLVARO LARA LARA | `ac53a03` | Resuelta |
+| 13 | `java:xxxx` | x | `` | Resuelta |
+| 14 | `java:xxxx` | x | `` | Resuelta |
+| 15 | `java:xxxx` | x | `` | Resuelta |
+| 16 | `java:xxxx` | x | `` | Resuelta |
+| 17 | `java:xxxx` | x | `` | Resuelta |
+| 18 | `java:xxxx` | x | `` | Resuelta |
+| 19 | `java:xxxx` | x | `` | Resuelta |
+| 20 | `java:xxxx` | x | `` | Resuelta |
+| 21 | `java:xxxx` | x | `` | Resuelta |
+| 22 | `java:xxxx` | x | `` | Resuelta |
+| 23 | `java:xxxx` | x | `` | Resuelta |
+| 24 | `java:xxxx` | x | `` | Resuelta |
+| 25 | `java:xxxx` | x | `` | Resuelta |
+| 26 | `java:xxxx` | x | `` | Resuelta |
 
 ---
 
@@ -276,10 +299,10 @@ El proyecto incluido en esta carpeta contiene las modificaciones correspondiente
 
 ## 8. Comprobación de la entrega
 
-- [ ] El nombre del proyecto sigue el formato establecido: `P1_ALLPGP`.
-- [ ] Se identifican los dos miembros del grupo.
-- [ ] Se incluye la captura del análisis inicial.
-- [ ] Se han documentado todas las disconformidades inicialmente detectadas.
+- [x] El nombre del proyecto sigue el formato establecido: `P1_ALLPGP`.
+- [x] Se identifican los dos miembros del grupo.
+- [x] Se incluye la captura del análisis inicial.
+- [x] Se han documentado todas las disconformidades inicialmente detectadas.
 - [ ] Cada solución está asociada a un commit identificable en `main`.
 - [ ] Se identifica qué miembro del grupo realizó cada corrección.
 - [ ] Los dos miembros han participado mediante commits propios.
