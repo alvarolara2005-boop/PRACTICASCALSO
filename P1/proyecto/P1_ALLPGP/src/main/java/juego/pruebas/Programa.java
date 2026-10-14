@@ -13,13 +13,13 @@ public class Programa {
 
 		String info = "";
 
-		final Logger LOGGER = Logger.getLogger(Programa.class.getName());
+		final Logger log = Logger.getLogger(Programa.class.getName());
 
 		for (Punto punto : puntos)
 			info = info.concat(punto.toString());
 
 		String mensaje = info.isEmpty() ? "no hay puntos" : info;
 
-		LOGGER.info(mensaje);
+		log.info(mensaje);
 	}
 }
