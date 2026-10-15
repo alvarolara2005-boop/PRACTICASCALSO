@@ -149,8 +149,6 @@ public class Punto {
 		catch(CloneNotSupportedException e){ 
 			throw new AssertionError("No deberia ocurrir", e);
 		}
-
-		//return null;
 	}
 
 }
