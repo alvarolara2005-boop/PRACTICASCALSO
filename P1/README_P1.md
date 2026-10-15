@@ -229,6 +229,24 @@ Se añade contenido para que se lance una excepción.
 
 ---
 
+### Disconformidad 11 — `java:S2975`
+
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 140
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+- NOTA: Hay un constructor de copia en la clase Punto, quiza es que hay que usar eso en lugar de implementar el metodo clone
+
+El uso del método `clone` de la interfaz `Cloneable` se considera una mala práctica en Java y no debería de ser usado.
+
+**Solución adoptada**
+
+Se modifica el métido para cambialo de `clone()` a `copy()`, se retira la anotación `@Override` y se hace uso del constructor de copia ya implementado para retornar la nueva copia. Además, se cambia el tipo de la exceptión.
+
+---
+
 ### Disconformidad 12 — `java:S1905`
 
 **Localización:** `src/main/java/juego/geometria/Punto.java`, línea 125
@@ -483,7 +501,7 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 8 | `java:S1128` | ÁLVARO LARA LARA | `58088d4` | Resuelta |
 | 9 | `java:S2225` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 10 | `java:S108` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
-| 11 | `java:xxxx` | x | `xxxxx` | x |
+| 11 | `java:S2975` | PABLO GARCÍA PÉREZ | `` | Resuelta |
 | 12 | `java:S1905` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 13 | `java:S1201` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 14 | `java:S100` | PABLO GARCÍA PÉREZ | `ab236c6` | Resuelta |

@@ -136,15 +136,14 @@ public class Punto {
 	    return 31 * x + y;
 	}
 
-	@Override
-	public Punto clone(){
+	public Punto copy() {
 		Punto copia;
 
 		try{
-			copia = (Punto)super.clone();
+			copia = new Punto(this.x, this.y);
 			return copia;
 		}
-		catch(CloneNotSupportedException e){ 
+		catch(Exception e){ 
 			throw new AssertionError("No deberia ocurrir", e);
 		}
 	}
