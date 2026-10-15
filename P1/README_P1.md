@@ -341,6 +341,22 @@ Se añade el modificador `final` a la variable.
 
 ---
 
+### Disconformidad 25 — `java:S1104`
+
+**Localización:** `src/main/java/juego/geometria/circulo.java`, línea 5
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+La variable `DEFAULT_RADIO` debería de tener los modificadores propios de una variable global.
+
+**Solución adoptada**
+
+Al añadir los modificadores correspondientes en la disconformidad 24 esta disconformidad se soluciona automáticamente.
+
+---
+
 ### Disconformidad 26 — `java:S101`
 
 **Localización:** `src/main/java/juego/geometria/circulo.java`, línea 3
@@ -385,8 +401,8 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 22 | `java:S1172` | PABLO GARCÍA PÉREZ | `338a129` | Resuelta |
 | 23 | `java:S116` | PABLO GARCÍA PÉREZ | `bf081b2` | Resuelta |
 | 24 | `java:S1444` | PABLO GARCÍA PÉREZ | `259b249` | Resuelta |
-| 25 | `java:xxxx` | x | `xxxxx` | x |
-| 26 | `java:S101` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
+| 25 | `java:S1104` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
+| 26 | `java:S101` | PABLO GARCÍA PÉREZ | `aca98ba` | Resuelta |
 
 ---
 
