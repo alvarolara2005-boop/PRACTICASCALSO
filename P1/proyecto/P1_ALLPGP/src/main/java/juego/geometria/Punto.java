@@ -113,7 +113,7 @@ public class Punto {
 	 *
 	 */
 	private double distancia (Punto posicion) {
-		return Math.sqrt(Math.pow(this.x - (double) posicion.x, 2)+Math.pow(this.y-posicion.y, 2));
+		return Math.sqrt(Math.pow(this.x - (double) posicion.x, 2)+Math.pow(this.y - (double) posicion.y, 2));
 	}
 
 	@Override
