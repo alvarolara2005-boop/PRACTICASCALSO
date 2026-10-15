@@ -343,7 +343,7 @@ Se asigna el valor de la variable de entrada de la función a la variable `centr
 
 ### Disconformidad 23 — `java:S116`
 
-**Localización:** `src/main/java/juego/geometria/circulo.java`, línea 5
+**Localización:** `src/main/java/juego/geometria/Circulo.java`, línea 5
 
 **Responsable:** PABLO GARCÍA PÉREZ
 
@@ -359,7 +359,7 @@ Al añadir el modificador `final` en la disconformidad 24 esta disconformidad se
 
 ### Disconformidad 24 — `java:S1444`
 
-**Localización:** `src/main/java/juego/geometria/circulo.java`, línea 5
+**Localización:** `src/main/java/juego/geometria/Circulo.java`, línea 5
 
 **Responsable:** PABLO GARCÍA PÉREZ
 
@@ -375,7 +375,7 @@ Se añade el modificador `final` a la variable.
 
 ### Disconformidad 25 — `java:S1104`
 
-**Localización:** `src/main/java/juego/geometria/circulo.java`, línea 5
+**Localización:** `src/main/java/juego/geometria/Circulo.java`, línea 5
 
 **Responsable:** PABLO GARCÍA PÉREZ
 
@@ -391,7 +391,7 @@ Al añadir los modificadores correspondientes en la disconformidad 24 esta disco
 
 ### Disconformidad 26 — `java:S101`
 
-**Localización:** `src/main/java/juego/geometria/circulo.java`, línea 3
+**Localización:** `src/main/java/juego/geometria/Circulo.java`, línea 3
 
 **Responsable:** PABLO GARCÍA PÉREZ
 
@@ -429,7 +429,7 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 18 | `java:xxxx` | x | `xxxxx` | x |
 | 19 | `java:xxxx` | x | `xxxxx` | x |
 | 20 | `java:S1640` | PABLO GARCÍA PÉREZ | `21868d2` | Resuelta |
-| 21 | `java:S1640` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
+| 21 | `java:S1640` | PABLO GARCÍA PÉREZ | `9c023f3` | Resuelta |
 | 22 | `java:S1172` | PABLO GARCÍA PÉREZ | `338a129` | Resuelta |
 | 23 | `java:S116` | PABLO GARCÍA PÉREZ | `bf081b2` | Resuelta |
 | 24 | `java:S1444` | PABLO GARCÍA PÉREZ | `259b249` | Resuelta |
