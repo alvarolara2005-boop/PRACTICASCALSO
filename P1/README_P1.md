@@ -277,6 +277,22 @@ Se cambia el nombre de la función a `situacionRelativa()`.
 
 ---
 
+### Disconformidad 15 — `java:S100`
+
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 50
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+El nombre de la función `Adyacente()` no se ajusta a la convención de nombres de funciones de Java.
+
+**Solución adoptada**
+
+Se cambia el nombre de la función a `adyacente()`, tanto en su definición como en sus invocaciones.
+
+---
+
 ### Disconformidad 16 — `java:S1124`
 
 **Localización:** `src/main/java/juego/geometria/Punto.java`, línea 10
@@ -438,8 +454,8 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 11 | `java:S2975` | ÁLVARO LARA LARA | `aadbbc0` | Pendiente... |
 | 12 | `java:xxxx` | x | `xxxxx` | x |
 | 13 | `java:S1201` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
-| 14 | `java:S100` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
-| 15 | `java:xxxx` | x | `xxxxx` | x |
+| 14 | `java:S100` | PABLO GARCÍA PÉREZ | `ab236c6` | Resuelta |
+| 15 | `java:S100` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
 | 16 | `java:S1124` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
 | 17 | `java:S115` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
 | 18 | `java:xxxx` | x | `xxxxx` | x |
