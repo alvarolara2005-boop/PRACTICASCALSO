@@ -501,7 +501,7 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 8 | `java:S1128` | ÁLVARO LARA LARA | `58088d4` | Resuelta |
 | 9 | `java:S2225` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 10 | `java:S108` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
-| 11 | `java:S2975` | PABLO GARCÍA PÉREZ | `` | Resuelta |
+| 11 | `java:S2975` | PABLO GARCÍA PÉREZ | `799dca3` | Resuelta |
 | 12 | `java:S1905` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 13 | `java:S1201` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 14 | `java:S100` | PABLO GARCÍA PÉREZ | `ab236c6` | Resuelta |
@@ -550,10 +550,10 @@ El proyecto incluido en esta carpeta contiene las modificaciones correspondiente
 - [x] Se identifican los dos miembros del grupo.
 - [x] Se incluye la captura del análisis inicial.
 - [x] Se han documentado todas las disconformidades inicialmente detectadas.
-- [ ] Cada solución está asociada a un commit identificable en `main`.
-- [ ] Se identifica qué miembro del grupo realizó cada corrección.
+- [x] Cada solución está asociada a un commit identificable en `main`.
+- [x] Se identifica qué miembro del grupo realizó cada corrección.
 - [x] Los dos miembros han participado mediante commits propios.
-- [ ] Se incluye la captura del análisis final.
-- [ ] La captura final permite comprobar que no quedan disconformidades.
+- [x] Se incluye la captura del análisis final.
+- [x] La captura final permite comprobar que no quedan disconformidades.
 - [x] Se ha incorporado el proyecto Eclipse final dentro de `P1/proyecto/`.
-- [ ] El proyecto final corresponde al código analizado en la captura final.
+- [x] El proyecto final corresponde al código analizado en la captura final.
