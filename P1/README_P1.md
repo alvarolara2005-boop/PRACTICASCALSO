@@ -293,6 +293,22 @@ Renombrar a `DEFAULT_VALUE`.
 
 ---
 
+### Disconformidad 20 — `java:S1640`
+
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 116
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+El operando de la operación no está siendo transformado al tipo double antes de ser asignado (el tipo que retorna la función `distancia()`).
+
+**Solución adoptada**
+
+Se le hace un cast al operando `posicion.x` para pasarlo de int a double.
+
+---
+
 ### Disconformidad 22 — `java:S1172`
 
 **Localización:** `src/main/java/juego/geometria/circulo.java`, línea 10
@@ -396,7 +412,7 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 17 | `java:S115` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
 | 18 | `java:xxxx` | x | `xxxxx` | x |
 | 19 | `java:xxxx` | x | `xxxxx` | x |
-| 20 | `java:xxxx` | x | `xxxxx` | x |
+| 20 | `java:S1640` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
 | 21 | `java:xxxx` | x | `xxxxx` | x |
 | 22 | `java:S1172` | PABLO GARCÍA PÉREZ | `338a129` | Resuelta |
 | 23 | `java:S116` | PABLO GARCÍA PÉREZ | `bf081b2` | Resuelta |
