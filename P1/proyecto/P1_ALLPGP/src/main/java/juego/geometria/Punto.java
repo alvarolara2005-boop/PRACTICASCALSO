@@ -112,7 +112,7 @@ public class Punto {
 	/** Calcula la distancia entre dos posiciones.
 	 *
 	 */
-	private double distancia (Punto posicion) {
+	public double distancia(Punto posicion) {
 		return Math.sqrt(Math.pow(this.x - (double) posicion.x, 2)+Math.pow(this.y - (double) posicion.y, 2));
 	}
 

@@ -325,6 +325,22 @@ Renombrar a `DEFAULT_VALUE`.
 
 ---
 
+### Disconformidad 19 — `java:S1068`
+
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 115
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+El método `distancia()` está declarado como privado y no se está usando.
+
+**Solución adoptada**
+
+Se modifica el método para pasarlo de privado a público, ya que puede que sea necesario su uso en un futuro.
+
+---
+
 ### Disconformidad 20 — `java:S1640`
 
 **Localización:** `src/main/java/juego/geometria/Punto.java`, línea 116
@@ -459,7 +475,7 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 16 | `java:S1124` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
 | 17 | `java:S115` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
 | 18 | `java:xxxx` | x | `xxxxx` | x |
-| 19 | `java:xxxx` | x | `xxxxx` | x |
+| 19 | `java:S1068` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
 | 20 | `java:S1640` | PABLO GARCÍA PÉREZ | `21868d2` | Resuelta |
 | 21 | `java:S1640` | PABLO GARCÍA PÉREZ | `9c023f3` | Resuelta |
 | 22 | `java:S1172` | PABLO GARCÍA PÉREZ | `338a129` | Resuelta |
