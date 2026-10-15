@@ -490,7 +490,7 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 15 | `java:S100` | PABLO GARCÍA PÉREZ | `e8b921f` | Resuelta |
 | 16 | `java:S1124` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
 | 17 | `java:S115` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
-| 18 | `java:S1128` | PABLO GARCÍA PÉREZ | `` | Resuelta |
+| 18 | `java:S1128` | PABLO GARCÍA PÉREZ | `583b3dd` | Resuelta |
 | 19 | `java:S1068` | PABLO GARCÍA PÉREZ | `d0d1694` | Resuelta |
 | 20 | `java:S1640` | PABLO GARCÍA PÉREZ | `21868d2` | Resuelta |
 | 21 | `java:S1640` | PABLO GARCÍA PÉREZ | `9c023f3` | Resuelta |
