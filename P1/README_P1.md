@@ -309,6 +309,22 @@ Se asigna el valor de la variable de entrada de la función a la variable `centr
 
 ---
 
+### Disconformidad 24 — `java:S1444`
+
+**Localización:** `src/main/java/juego/geometria/circulo.java`, línea 5
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+La variable global `DEFAULT_RADIO` no cuenta con el modificador `final`.
+
+**Solución adoptada**
+
+Se añade el modificador `final` a la variable.
+
+---
+
 ## 5. Resumen de las correcciones
 
 | Nº | Regla Sonar | Responsable | Commit | Resultado |
@@ -323,7 +339,7 @@ Se asigna el valor de la variable de entrada de la función a la variable `centr
 | 8 | `java:S1128` | ÁLVARO LARA LARA | `58088d4` | Resuelta |
 | 9 | `java:S2225` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 10 | `java:S108` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
-| 11 | `java:S2975` | ÁLVARO LARA LARA | `aadbbc0` | Pendiente |
+| 11 | `java:S2975` | ÁLVARO LARA LARA | `aadbbc0` | Pendiente... |
 | 12 | `java:xxxx` | x | `xxxxx` | x |
 | 13 | `java:S1201` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 14 | `java:xxxx` | x | `xxxxx` | x |
@@ -334,9 +350,9 @@ Se asigna el valor de la variable de entrada de la función a la variable `centr
 | 19 | `java:xxxx` | x | `xxxxx` | x |
 | 20 | `java:xxxx` | x | `xxxxx` | x |
 | 21 | `java:xxxx` | x | `xxxxx` | x |
-| 22 | `java:xxxx` | x | `xxxxx` | x |
+| 22 | `java:S1172` | PABLO GARCÍA PÉREZ | `338a129` | Resuelta |
 | 23 | `java:xxxx` | x | `xxxxx` | x |
-| 24 | `java:xxxx` | x | `xxxxx` | x |
+| 24 | `java:S1444` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
 | 25 | `java:xxxx` | x | `xxxxx` | x |
 | 26 | `java:xxxx` | x | `xxxxx` | x |
 
