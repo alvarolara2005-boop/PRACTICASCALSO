@@ -367,7 +367,7 @@ Se añade el modificador `final` a la variable.
 | 20 | `java:xxxx` | x | `xxxxx` | x |
 | 21 | `java:xxxx` | x | `xxxxx` | x |
 | 22 | `java:S1172` | PABLO GARCÍA PÉREZ | `338a129` | Resuelta |
-| 23 | `java:S116` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
+| 23 | `java:S116` | PABLO GARCÍA PÉREZ | `bf081b2` | Resuelta |
 | 24 | `java:S1444` | PABLO GARCÍA PÉREZ | `259b249` | Resuelta |
 | 25 | `java:xxxx` | x | `xxxxx` | x |
 | 26 | `java:xxxx` | x | `xxxxx` | x |
