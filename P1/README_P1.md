@@ -309,6 +309,22 @@ Se asigna el valor de la variable de entrada de la función a la variable `centr
 
 ---
 
+### Disconformidad 23 — `java:S116`
+
+**Localización:** `src/main/java/juego/geometria/circulo.java`, línea 5
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+La variable no encaja con la convención de nombres de Java.
+
+**Solución adoptada**
+
+Al añadir el modificador `final` en la disconformidad 24 esta disconformidad se soluciona automáticamente, ya que ahora el nombre de la variable sigue la convención de nombres de variables globales.
+
+---
+
 ### Disconformidad 24 — `java:S1444`
 
 **Localización:** `src/main/java/juego/geometria/circulo.java`, línea 5
@@ -351,8 +367,8 @@ Se añade el modificador `final` a la variable.
 | 20 | `java:xxxx` | x | `xxxxx` | x |
 | 21 | `java:xxxx` | x | `xxxxx` | x |
 | 22 | `java:S1172` | PABLO GARCÍA PÉREZ | `338a129` | Resuelta |
-| 23 | `java:xxxx` | x | `xxxxx` | x |
-| 24 | `java:S1444` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
+| 23 | `java:S116` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
+| 24 | `java:S1444` | PABLO GARCÍA PÉREZ | `259b249` | Resuelta |
 | 25 | `java:xxxx` | x | `xxxxx` | x |
 | 26 | `java:xxxx` | x | `xxxxx` | x |
 
