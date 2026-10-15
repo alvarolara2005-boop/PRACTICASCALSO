@@ -325,6 +325,22 @@ Renombrar a `DEFAULT_VALUE`.
 
 ---
 
+### Disconformidad 18 — `java:S1128`
+
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 3
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+Hay un import innecesario en la clase `Punto.java` para `java.lang.Math`. Las clases java.lang siempre son importadas implícitamente.
+
+**Solución adoptada**
+
+Se elimina este import para mejorar la legibilidad.
+
+---
+
 ### Disconformidad 19 — `java:S1068`
 
 **Localización:** `src/main/java/juego/geometria/Punto.java`, línea 115
@@ -474,8 +490,8 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 15 | `java:S100` | PABLO GARCÍA PÉREZ | `e8b921f` | Resuelta |
 | 16 | `java:S1124` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
 | 17 | `java:S115` | ÁLVARO LARA LARA | `9af31af` | Resuelta |
-| 18 | `java:xxxx` | x | `xxxxx` | x |
-| 19 | `java:S1068` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
+| 18 | `java:S1128` | PABLO GARCÍA PÉREZ | `` | Resuelta |
+| 19 | `java:S1068` | PABLO GARCÍA PÉREZ | `d0d1694` | Resuelta |
 | 20 | `java:S1640` | PABLO GARCÍA PÉREZ | `21868d2` | Resuelta |
 | 21 | `java:S1640` | PABLO GARCÍA PÉREZ | `9c023f3` | Resuelta |
 | 22 | `java:S1172` | PABLO GARCÍA PÉREZ | `338a129` | Resuelta |
