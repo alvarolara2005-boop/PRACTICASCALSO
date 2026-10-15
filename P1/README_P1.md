@@ -293,6 +293,22 @@ Renombrar a `DEFAULT_VALUE`.
 
 ---
 
+### Disconformidad 22 — `java:S1172`
+
+**Localización:** `src/main/java/juego/geometria/circulo.java`, línea 10
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+El parámetro `centroIni` no se está usando en el constructor `circulo()`.
+
+**Solución adoptada**
+
+Se asigna el valor de la variable de entrada de la función a la variable `centro` de la clase.
+
+---
+
 ## 5. Resumen de las correcciones
 
 | Nº | Regla Sonar | Responsable | Commit | Resultado |
@@ -307,7 +323,7 @@ Renombrar a `DEFAULT_VALUE`.
 | 8 | `java:S1128` | ÁLVARO LARA LARA | `58088d4` | Resuelta |
 | 9 | `java:S2225` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 10 | `java:S108` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
-| 11 | `java:S2975` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
+| 11 | `java:S2975` | ÁLVARO LARA LARA | `aadbbc0` | Pendiente |
 | 12 | `java:xxxx` | x | `xxxxx` | x |
 | 13 | `java:S1201` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 14 | `java:xxxx` | x | `xxxxx` | x |
