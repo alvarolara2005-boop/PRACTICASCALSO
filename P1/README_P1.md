@@ -401,7 +401,7 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 22 | `java:S1172` | PABLO GARCÍA PÉREZ | `338a129` | Resuelta |
 | 23 | `java:S116` | PABLO GARCÍA PÉREZ | `bf081b2` | Resuelta |
 | 24 | `java:S1444` | PABLO GARCÍA PÉREZ | `259b249` | Resuelta |
-| 25 | `java:S1104` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
+| 25 | `java:S1104` | PABLO GARCÍA PÉREZ | `0ea59e0` | Resuelta |
 | 26 | `java:S101` | PABLO GARCÍA PÉREZ | `aca98ba` | Resuelta |
 
 ---
