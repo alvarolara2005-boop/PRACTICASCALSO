@@ -63,7 +63,7 @@ En el análisis inicial se han identificado las siguientes disconformidades:
 | 23 | `java:S116` | `circulo.java` | 5 | Rename this field "DEFAULT_RADIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$' |
 | 24 | `java:S1444` | `circulo.java` | 5 | Make this "public static DEFAULT_RADIO" field final |
 | 25 | `java:S1104` | `circulo.java` | 5 | Make DEFAULT_RADIO a static final constant or non-public and provide accessors if needed |
-| 26 | `java:S100` | `circulo.java` | 3 | Rename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$' |
+| 26 | `java:S101` | `circulo.java` | 3 | Rename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$' |
 
 ---
 
@@ -341,6 +341,22 @@ Se añade el modificador `final` a la variable.
 
 ---
 
+### Disconformidad 26 — `java:S101`
+
+**Localización:** `src/main/java/juego/geometria/circulo.java`, línea 3
+
+**Responsable:** PABLO GARCÍA PÉREZ
+
+**Problema detectado**
+
+El nombre de la clase y del fichero no sigue la convención de nombres de Java.
+
+**Solución adoptada**
+
+Se modifica el nombre del fichero y de constructores de la clase de `circulo` a `Circulo`.
+
+---
+
 ## 5. Resumen de las correcciones
 
 | Nº | Regla Sonar | Responsable | Commit | Resultado |
@@ -370,7 +386,7 @@ Se añade el modificador `final` a la variable.
 | 23 | `java:S116` | PABLO GARCÍA PÉREZ | `bf081b2` | Resuelta |
 | 24 | `java:S1444` | PABLO GARCÍA PÉREZ | `259b249` | Resuelta |
 | 25 | `java:xxxx` | x | `xxxxx` | x |
-| 26 | `java:xxxx` | x | `xxxxx` | x |
+| 26 | `java:S101` | PABLO GARCÍA PÉREZ | `xxxxx` | Resuelta |
 
 ---
 
