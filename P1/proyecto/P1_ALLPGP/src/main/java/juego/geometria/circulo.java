@@ -2,7 +2,7 @@ package juego.geometria;
 
 public class circulo {
     
-	public final static int DEFAULT_RADIO = 5;
+	public static final int DEFAULT_RADIO = 5;
     
     private Punto centro;
     private int radio;
