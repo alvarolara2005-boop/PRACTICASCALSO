@@ -4,7 +4,7 @@ En el presente repositorio se presentan las prácticas realizadas para la asigna
 
 ## Miembros del grupo:
 
-- Álvaro Lara Lara | email: x@um.es | GitHub: [@alvarolara2005-boop](https://github.com/alvarolara2005-boop)
+- Álvaro Lara Lara | email: alvaro.laral@um.es | GitHub: [@alvarolara2005-boop](https://github.com/alvarolara2005-boop)
 - Pablo García Pérez | email: pablo.g.p@um.es | GitHub: [@pablogp28](https://github.com/pablogp28)
 
 ## Enlaces
