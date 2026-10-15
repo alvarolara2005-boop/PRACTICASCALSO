@@ -229,19 +229,19 @@ Se añade contenido para que se lance una excepción.
 
 ---
 
-### Disconformidad 11 — `java:S2975`
+### Disconformidad 12 — `java:S1905`
 
-**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 142
+**Localización:** `src/main/java/juego/geometria/Punto.java`, línea 125
 
 **Responsable:** ÁLVARO LARA LARA
 
 **Problema detectado**
 
-Bloque catch vacío en el método `clone()`.
+Se hace un cating innecesario a la variable `obj` que ya es de tipo `Punto`.
 
 **Solución adoptada**
 
-Rellenar el bloque catch con una excepción o un comentario justificativo.
+Se cambia el tipo de la variable de entrada `obj` de tipo `Punto` a tipo `Object`.
 
 ---
 
@@ -333,7 +333,7 @@ Renombrar a `DEFAULT_VALUE`.
 
 **Problema detectado**
 
-Hay un import innecesario en la clase `Punto.java` para `java.lang.Math`. Las clases java.lang siempre son importadas implícitamente.
+Hay un import innecesario en la clase `Punto.java` para `java.lang.Math`. Las clases `java.lang` siempre son importadas implícitamente.
 
 **Solución adoptada**
 
@@ -483,8 +483,8 @@ Se modifica el nombre del fichero y de constructores de la clase de `circulo` a 
 | 8 | `java:S1128` | ÁLVARO LARA LARA | `58088d4` | Resuelta |
 | 9 | `java:S2225` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 10 | `java:S108` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
-| 11 | `java:S2975` | ÁLVARO LARA LARA | `aadbbc0` | Pendiente... |
-| 12 | `java:xxxx` | x | `xxxxx` | x |
+| 11 | `java:xxxx` | x | `xxxxx` | x |
+| 12 | `java:S1905` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 13 | `java:S1201` | ÁLVARO LARA LARA | `aadbbc0` | Resuelta |
 | 14 | `java:S100` | PABLO GARCÍA PÉREZ | `ab236c6` | Resuelta |
 | 15 | `java:S100` | PABLO GARCÍA PÉREZ | `e8b921f` | Resuelta |
