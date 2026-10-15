@@ -78,7 +78,7 @@ public class Punto {
 	 * Devuelve la situación relativa de la instancia actual respecto a la posición que se pasa como parámetro.
 	 * En el caso de no ser posiciones adyacentes el valor de retorno es null. 
 	 */
-	public Direccion situacion_relativa(Punto otra){
+	public Direccion situacionRelativa(Punto otra){
 	    int difX = Math.abs(x - otra.x);
 	    int difY = Math.abs(y - otra.y);
 
