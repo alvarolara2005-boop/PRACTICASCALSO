@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'P2/P2_ALLGP/**'
+      - 'P2/P2_ALLPGP/**'
       - '.github/workflows/p2-quality.yml'
   workflow_dispatch:
 
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: P2/P2_ALLGP
+        working-directory: P2/P2_ALLPGP
     steps:
       - name: Checkout
         uses: actions/checkout@v4
