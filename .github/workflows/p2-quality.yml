@@ -28,7 +28,7 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-          cache-dependency-path: P2/P2_ALLGP/pom.xml
+          cache-dependency-path: P2/P2_ALLPGP/pom.xml
 
       - name: Pruebas JUnit e informe JaCoCo
         run: mvn -B clean verify
