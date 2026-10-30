@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FindAvailableDojoUseCase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dojo-reservation</a> &gt; <a href="index.source.html" class="el_package">es.um.calso.dojoreservation.application.usecase</a> &gt; <span class="el_source">FindAvailableDojoUseCase.java</span></div><h1>FindAvailableDojoUseCase.java</h1><pre class="source lang-java linenums">package es.um.calso.dojoreservation.application.usecase;
+
+import java.time.Clock;
+import java.time.LocalDate;
+import java.util.Objects;
+import java.util.Optional;
+import es.um.calso.dojoreservation.application.port.FindAvailableDojoInputPort;
+import es.um.calso.dojoreservation.domain.model.Dojo;
+import es.um.calso.dojoreservation.domain.model.Team;
+import es.um.calso.dojoreservation.domain.port.DojoRepository;
+import es.um.calso.dojoreservation.domain.port.ReservationRepository;
+import es.um.calso.dojoreservation.domain.port.TeamRepository;
+import es.um.calso.dojoreservation.domain.service.DojoSearchService;
+
+public final class FindAvailableDojoUseCase implements FindAvailableDojoInputPort {
+    private final TeamRepository teams;
+    private final DojoRepository dojos;
+    private final ReservationRepository reservations;
+    private final DojoSearchService search;
+    private final Clock clock;
+
+    public FindAvailableDojoUseCase(
+            TeamRepository teams,
+            DojoRepository dojos,
+            ReservationRepository reservations,
+            DojoSearchService search,
+<span class="nc" id="L27">            Clock clock) {</span>
+<span class="nc" id="L28">        this.teams = Objects.requireNonNull(teams);</span>
+<span class="nc" id="L29">        this.dojos = Objects.requireNonNull(dojos);</span>
+<span class="nc" id="L30">        this.reservations = Objects.requireNonNull(reservations);</span>
+<span class="nc" id="L31">        this.search = Objects.requireNonNull(search);</span>
+<span class="nc" id="L32">        this.clock = Objects.requireNonNull(clock);</span>
+<span class="nc" id="L33">    }</span>
+
+    @Override
+    public Optional&lt;Dojo&gt; find(String teamId, LocalDate trainingDate) {
+<span class="nc bnc" id="L37" title="All 4 branches missed.">        if (teamId == null || teamId.isBlank()) {</span>
+<span class="nc" id="L38">            throw new IllegalArgumentException(&quot;Team id is required&quot;);</span>
+        }
+<span class="nc bnc" id="L40" title="All 4 branches missed.">        if (trainingDate == null || !trainingDate.isAfter(LocalDate.now(clock))) {</span>
+<span class="nc" id="L41">            throw new IllegalArgumentException(&quot;Training date must be in the future&quot;);</span>
+        }
+<span class="nc" id="L43">        Team team = teams.findById(teamId.trim())</span>
+<span class="nc" id="L44">                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Team does not exist&quot;));</span>
+<span class="nc" id="L45">        return search.findFirstAvailableDojo(</span>
+<span class="nc" id="L46">                dojos.findAllInSelectionOrder(),</span>
+<span class="nc" id="L47">                team.requiredWeapons(),</span>
+<span class="nc" id="L48">                reservations.findAll(),</span>
+                trainingDate);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

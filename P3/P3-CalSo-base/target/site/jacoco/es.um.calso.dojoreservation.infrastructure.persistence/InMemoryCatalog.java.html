@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InMemoryCatalog.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dojo-reservation</a> &gt; <a href="index.source.html" class="el_package">es.um.calso.dojoreservation.infrastructure.persistence</a> &gt; <span class="el_source">InMemoryCatalog.java</span></div><h1>InMemoryCatalog.java</h1><pre class="source lang-java linenums">package es.um.calso.dojoreservation.infrastructure.persistence;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import es.um.calso.dojoreservation.domain.model.Dojo;
+import es.um.calso.dojoreservation.domain.model.Fighter;
+import es.um.calso.dojoreservation.domain.model.Money;
+import es.um.calso.dojoreservation.domain.model.Reservation;
+import es.um.calso.dojoreservation.domain.model.Team;
+import es.um.calso.dojoreservation.domain.model.UnemploymentPeriod;
+import es.um.calso.dojoreservation.domain.model.Weapon;
+
+public final class InMemoryCatalog {
+    private final List&lt;Team&gt; teams;
+    private final List&lt;Dojo&gt; dojos;
+    private final List&lt;Reservation&gt; reservations;
+
+<span class="fc" id="L21">    public InMemoryCatalog() {</span>
+<span class="fc" id="L22">        Weapon katana = new Weapon(&quot;Katana&quot;);</span>
+<span class="fc" id="L23">        Weapon bokken = new Weapon(&quot;Bokken&quot;);</span>
+<span class="fc" id="L24">        Weapon bo = new Weapon(&quot;Bo&quot;);</span>
+<span class="fc" id="L25">        Fighter young = new Fighter(&quot;Hana&quot;, LocalDate.of(2009, 11, 20), null);</span>
+<span class="fc" id="L26">        Fighter unemployed = new Fighter(&quot;Akira&quot;, LocalDate.of(2000, 1, 1),</span>
+<span class="fc" id="L27">                new UnemploymentPeriod(LocalDate.of(2024, 11, 20)));</span>
+<span class="fc" id="L28">        Fighter adult = new Fighter(&quot;Ren&quot;, LocalDate.of(1998, 6, 1), null);</span>
+<span class="fc" id="L29">        Fighter youthBoundary = new Fighter(&quot;Nora&quot;, LocalDate.of(2009, 11, 20), null);</span>
+<span class="fc" id="L30">        Fighter twoYearBoundary = new Fighter(&quot;Izan&quot;, LocalDate.of(2000, 1, 1),</span>
+<span class="fc" id="L31">                new UnemploymentPeriod(LocalDate.of(2025, 11, 20)));</span>
+<span class="fc" id="L32">        Fighter threeYearBoundary = new Fighter(&quot;Lea&quot;, LocalDate.of(2000, 1, 1),</span>
+<span class="fc" id="L33">                new UnemploymentPeriod(LocalDate.of(2024, 11, 20)));</span>
+<span class="fc" id="L34">        this.teams = List.of(</span>
+<span class="fc" id="L35">                new Team(&quot;EQ-001&quot;, &quot;Equipo Dragón&quot;, LocalDate.of(2026, 9, 1),</span>
+<span class="fc" id="L36">                        List.of(young, unemployed, adult, adult, adult), Set.of(katana, bokken)),</span>
+<span class="fc" id="L37">                new Team(&quot;EQ-002&quot;, &quot;Equipo Tigre&quot;, LocalDate.of(2026, 9, 1),</span>
+<span class="fc" id="L38">                        List.of(adult, adult, adult, adult, adult), Set.of(bo)),</span>
+<span class="fc" id="L39">                new Team(&quot;EQ-003&quot;, &quot;Equipo Frontera Edad&quot;, LocalDate.of(2026, 9, 1),</span>
+<span class="fc" id="L40">                        List.of(youthBoundary, adult, adult, adult, adult), Set.of(bo)),</span>
+<span class="fc" id="L41">                new Team(&quot;EQ-004&quot;, &quot;Equipo Frontera Dos Años&quot;, LocalDate.of(2026, 9, 1),</span>
+<span class="fc" id="L42">                        List.of(twoYearBoundary, adult, adult, adult, adult), Set.of(bo)),</span>
+<span class="fc" id="L43">                new Team(&quot;EQ-005&quot;, &quot;Equipo Frontera Tres Años&quot;, LocalDate.of(2026, 9, 1),</span>
+<span class="fc" id="L44">                        List.of(threeYearBoundary, adult, adult, adult, adult), Set.of(bo)));</span>
+<span class="fc" id="L45">        this.dojos = List.of(</span>
+<span class="fc" id="L46">                new Dojo(&quot;D-001&quot;, &quot;Dojo Norte&quot;, Money.euros(&quot;40&quot;), Set.of(katana, bokken)),</span>
+<span class="fc" id="L47">                new Dojo(&quot;D-002&quot;, &quot;Dojo Centro&quot;, Money.euros(&quot;50&quot;), Set.of(katana, bokken, bo)),</span>
+<span class="fc" id="L48">                new Dojo(&quot;D-003&quot;, &quot;Dojo Sur&quot;, Money.euros(&quot;35&quot;), Set.of(bo)));</span>
+<span class="fc" id="L49">        this.reservations = List.of(</span>
+<span class="fc" id="L50">                new Reservation(&quot;D-001&quot;, LocalDate.of(2026, 11, 20)),</span>
+<span class="fc" id="L51">                new Reservation(&quot;D-001&quot;, LocalDate.of(2027, 11, 20)));</span>
+<span class="fc" id="L52">    }</span>
+
+    public Optional&lt;Team&gt; findTeamById(String teamId) {
+<span class="fc" id="L55">        return teams.stream().filter(team -&gt; team.id().equals(teamId)).findFirst();</span>
+    }
+
+    public List&lt;Dojo&gt; findAllInSelectionOrder() {
+<span class="fc" id="L59">        return dojos;</span>
+    }
+
+    public Optional&lt;Dojo&gt; findDojoById(String dojoId) {
+<span class="fc" id="L63">        return dojos.stream().filter(dojo -&gt; dojo.id().equals(dojoId)).findFirst();</span>
+    }
+
+    public List&lt;Reservation&gt; findAll() {
+<span class="fc" id="L67">        return reservations;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: es.um.calso.dojoreservation.domain.model.DojoTest
+-------------------------------------------------------------------------------
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.191 s -- in es.um.calso.dojoreservation.domain.model.DojoTest

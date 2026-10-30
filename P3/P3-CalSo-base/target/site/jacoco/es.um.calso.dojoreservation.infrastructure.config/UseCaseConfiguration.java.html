@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UseCaseConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dojo-reservation</a> &gt; <a href="index.source.html" class="el_package">es.um.calso.dojoreservation.infrastructure.config</a> &gt; <span class="el_source">UseCaseConfiguration.java</span></div><h1>UseCaseConfiguration.java</h1><pre class="source lang-java linenums">package es.um.calso.dojoreservation.infrastructure.config;
+
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
+import es.um.calso.dojoreservation.application.port.CalculateReservationCostInputPort;
+import es.um.calso.dojoreservation.application.port.FindAvailableDojoInputPort;
+import es.um.calso.dojoreservation.application.usecase.CalculateReservationCostUseCase;
+import es.um.calso.dojoreservation.application.usecase.FindAvailableDojoUseCase;
+import es.um.calso.dojoreservation.domain.model.Dojo;
+import es.um.calso.dojoreservation.domain.port.DojoRepository;
+import es.um.calso.dojoreservation.domain.port.ReservationRepository;
+import es.um.calso.dojoreservation.domain.port.TeamRepository;
+import es.um.calso.dojoreservation.domain.service.DojoSearchService;
+import es.um.calso.dojoreservation.domain.service.ReservationDiscountService;
+import es.um.calso.dojoreservation.domain.service.ReservationPricingService;
+import es.um.calso.dojoreservation.infrastructure.persistence.InMemoryCatalog;
+
+import java.util.List;
+import java.util.Optional;
+
+@Configuration
+<span class="nc" id="L28">public class UseCaseConfiguration {</span>
+    @Bean
+    @Profile(&quot;!e2e&quot;)
+    public Clock productionClock() {
+<span class="nc" id="L32">        return Clock.systemDefaultZone();</span>
+    }
+
+    @Bean
+    @Profile(&quot;e2e&quot;)
+    public Clock e2eClock() {
+<span class="nc" id="L38">        return Clock.fixed(Instant.parse(&quot;2026-10-20T10:00:00Z&quot;), ZoneId.of(&quot;Europe/Madrid&quot;));</span>
+    }
+
+    @Bean
+    public InMemoryCatalog catalog() {
+<span class="nc" id="L43">        return new InMemoryCatalog();</span>
+    }
+
+    @Bean
+    public TeamRepository teamRepository(InMemoryCatalog catalog) {
+<span class="nc" id="L48">        return catalog::findTeamById;</span>
+    }
+
+    @Bean
+    public DojoRepository dojoRepository(InMemoryCatalog catalog) {
+<span class="nc" id="L53">        return new DojoRepository() {</span>
+            @Override
+            public List&lt;Dojo&gt; findAllInSelectionOrder() {
+<span class="nc" id="L56">                return catalog.findAllInSelectionOrder();</span>
+            }
+
+            @Override
+            public Optional&lt;Dojo&gt; findById(String dojoId) {
+<span class="nc" id="L61">                return catalog.findDojoById(dojoId);</span>
+            }
+        };
+    }
+
+    @Bean
+    public ReservationRepository reservationRepository(InMemoryCatalog catalog) {
+<span class="nc" id="L68">        return catalog::findAll;</span>
+    }
+
+    @Bean
+    public FindAvailableDojoInputPort findAvailableDojo(
+            TeamRepository teams, DojoRepository dojos, ReservationRepository reservations, Clock clock) {
+<span class="nc" id="L74">        return new FindAvailableDojoUseCase(teams, dojos, reservations,</span>
+                new DojoSearchService(), clock);
+    }
+
+    @Bean
+    public CalculateReservationCostInputPort calculateReservationCost(
+            TeamRepository teams, DojoRepository dojos, Clock clock) {
+<span class="nc" id="L81">        return new CalculateReservationCostUseCase(teams, dojos,</span>
+                new ReservationDiscountService(), new ReservationPricingService(),
+                clock);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
