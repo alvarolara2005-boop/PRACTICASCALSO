@@ -17,8 +17,8 @@ Si la práctica es realizada por un único alumno deberá implementar el total d
 
 | Integrante | Caja blanca: métodos de dominio | Caja negra: interfaz |
 |---|---|---|
-| **Alumno 1 — Álvaro Lara Lara**| `containsAllRequiredWeapons` y `DojoSearchService.findFirstAvailableDojo`  | Búsqueda de dojos (`/dojos`) |
-| **Alumno 2 — Pablo García Pérez** | `ReservationDiscountService.findYoungestFighter` y `calculateBestDiscount` | Costes y bonificaciones (`/coste`) |
+| **Álvaro Lara Lara**| `containsAllRequiredWeapons` y `DojoSearchService.findFirstAvailableDojo`  | Búsqueda de dojos (`/dojos`) |
+| **Pablo García Pérez** | `ReservationDiscountService.findYoungestFighter` y `calculateBestDiscount` | Costes y bonificaciones (`/coste`) |
 
 ## Actividad 1
 
@@ -48,67 +48,45 @@ public boolean containsAllRequiredWeapons(Set<Weapon> available, Set<Weapon> req
 #### 1.2 Grafo de flujo
 Nodos:
 
-1: entrada
-
-2: available == null (D1)
-
-3: lanzar NPE Available weapons are required
-
-4: required == null (D2)
-
-5: lanzar NPE Required weapons are required
-
-6: inicio bucle for weapon : required (D3) — evaluación
-
-7: cuerpo del bucle, available.isEmpty() (D4)
-
-8: return false
-
-9: fin iteración → vuelve a 6
-
-10: return true
-
-11: fin
+Nodo	Contenido
+1	entrada
+2	D1: available == null
+3	throw NPE "Available weapons are required"
+4	D2: required == null
+5	throw NPE "Required weapons are required"
+6	D3: available.containsAll(required)
+7	return true (D3 verdadero)
+8	return false (D3 falso)
+9	fin
 
 Aristas:
-
 1→2
-
-2→3 (true D1), 2→4 (false D1)
-
-3→11
-
-4→5 (true D2), 4→6 (false D2)
-
-6→7 (hay elemento), 6→10 (no hay más elementos)
-
-7→8 (true D4), 7→9 (false D4)
-
-8→11
-
-9→6
-
-10→11
+2→3 (T), 2→4 (F)
+3→9
+4→5 (T), 4→6 (F)
+5→9
+6→7 (T), 6→8 (F)
+7→9
+8→9
 
 #### 1.3 Complejidad ciclomática
-Predicados: D1, D2, D3 (condición del for), D4 → 4 predicados.
-V(G)=P+1=4+1=5
+| Fórmula | Cálculo | Resultado |
+| --- | --- | --- | --- |
+| Predicados + 1 | 3 + 1 | 4 |
+| Aristas - Nodos + 2 | 11 - 9 + 2 | 4 |
+| Regiones | exterior + 3 internas | 4 |
 
-Comprobación por aristas y nodos: aristas = 14, nodos = 11 → 
-V(G)=14−11+2=5. ✔
-
-Regiones: R1 exterior, R2 (D1 verdadero), R3 (D2 verdadero), R4 (D4 verdadero), R5 (cuerpo del bucle) → 5. ✔
+V(G) = 4. Las tres fórmulas coinciden.
 
 #### 1.4 Base de caminos independientes
 | Camino | Recorrido | ¿Factible? | Justificación |
 | --- | --- | --- | --- |
-| C1 | 1-2-3-11 | Sí | available == null |
-| C2 | 1-2-4-5-11 | Sí | available válido, required == null |
-| C3 | 1-2-4-6-10-11 | Sí | required vacío, no entra al bucle |
-| C4 | 1-2-4-6-7-8-11 | Sí | required con elemento, available vacío → false |
-| C5 | 1-2-4-6-7-9-6-10-11 | Sí | required con elemento, available no vacío → true |
+| C1 | 1-2-3-9 | Sí | available == null |
+| C2 | 1-2-4-5-9 | Sí | required == null con available válido |
+| C3 | 1-2-4-6-7-9 | Sí | todas las requeridas presentes (o required vacío) → true |
+| C4 | 1-2-4-6-8-9 | Sí | falta alguna requerida → false |
 
-No hay caminos inviables. La base cubre las cinco aristas de decisión.
+Los 4 caminos son factibles y cubren las 11 aristas. V(G) = 4 = tamaño de la base.
 
 #### 1.5 Tests JUnit 5
 en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceWeaponsTest.java`
@@ -147,131 +125,88 @@ public Optional<Dojo> findFirstAvailableDojo(
 #### 2.2 Grafo de flujo
 Nodos:
 
-1: entrada
-
-2: D1 (dojos == null)
-
-3: NPE "Dojos are required"
-
-4: D2 (requiredWeapons == null)
-
-5: NPE "Required weapons are required"
-
-6: D3 (reservations == null)
-
-7: NPE "Reservations are required"
-
-8: D4 (trainingDate == null)
-
-9: NPE "Training date is required"
-
-10: inicio bucle externo D5
-
-11: D6 (containsAllRequiredWeapons(...))
-
-12: occupied = false
-
-13: inicio bucle interno D7
-
-14: D8a (reservation.dojoId().equals(dojo.id()))
-
-15: D8b (!reservation.trainingDate().equals(trainingDate))
-
-16: occupied = true
-
-17: break
-
-18: fin iteración interna → vuelve a 13
-
-19: D10 (!occupied)
-
-20: return Optional.of(dojo)
-
-21: fin iteración externa → vuelve a 10
-
-22: return Optional.empty()
-
-23: fin
+1	entrada
+2	D1: dojos == null
+3	throw NPE "Dojos are required"
+4	D2: requiredWeapons == null
+5	throw NPE "Required weapons are required"
+6	D3: reservations == null
+7	throw NPE "Reservations are required"
+8	D4: trainingDate == null
+9	throw NPE "Training date is required"
+10	D5: bucle externo — ¿hay dojo?
+11	D6: containsAllRequiredWeapons(...)
+12	D7: bucle interno — ¿hay reserva?
+13	D8: r.dojoId().equals(dojo.id()) && !r.trainingDate().equals(trainingDate)
+14	D10: !occupied
+15	return Optional.of(dojo)
+16	return Optional.empty()
+17	fin
 
 Aristas:
 
 1→2
-
-2→3 (true D1), 2→4 (false D1)
-
-3→23
-
-4→5 (true D2), 4→6 (false D2)
-
-5→23
-
-6→7 (true D3), 6→8 (false D3)
-
-7→23
-
-8→9 (true D4), 8→10 (false D4)
-
-9→23
-
-10→11 (hay dojo), 10→22 (no hay más dojos)
-
-11→12 (true D6), 11→21 (false D6)
-
-12→13
-
-13→14 (hay reserva), 13→19 (no hay más reservas)
-
-14→15 (true D8a), 14→18 (false D8a)
-
-15→16 (true D8b), 15→18 (false D8b)
-
+2→3 (T), 2→4 (F)
+3→17
+4→5 (T), 4→6 (F)
+5→17
+6→7 (T), 6→8 (F)
+7→17
+8→9 (T), 8→10 (F)
+9→17
+10→11 (T, hay dojo), 10→16 (F, no hay más dojos)
+11→12 (T, compatible), 11→10 (F, incompatible → siguiente dojo)
+12→13 (T, hay reserva), 12→14 (F, no hay más reservas)
+13→14 (T, ocupado → break sale del bucle interno), 13→12 (F, no ocupado → siguiente reserva)
+14→15 (T, !occupied), 14→10 (F, occupied → siguiente dojo)
+15→17
 16→17
 
-17→19
-
-18→13
-
-19→20 (true D10), 19→21 (false D10)
-
-20→23
-
-21→10
-
-22→23
-
 #### 2.3 Complejidad ciclomática
-Predicados: D1, D2, D3, D4, D5, D6, D7, D8a, D8b, D10 → 10 predicados.
+N = 17 nodos · A = 27 aristas · Predicados = D1, D2, D3, D4, D5, D6, D7, D8, D10 = 9.
 
-V(G)=P+1=10+1=11
+| Fórmula | Cálculo | Resultado
+| --- | --- | --- | --- |
+| Predicados + 1 | 9 + 1 | 10 |
+| Aristas - Nodos + 2 | 27 - 17 +2| 12 |
+| Regiones | exterior + 9 internas | 10 |
 
-Comprobación: nodos = 23, aristas = 34 → 
+Discrepancia: A − N + 2 da 12 porque el break introduce la arista 13→14, que sale del bucle interno sin pasar por su condición de terminación (12→14). Esa arista rompe la estructura propiamente anidada (properly nested) que asume la fórmula A − N + 2; por eso esa fórmula no es aplicable cuando hay break/continue/return internos.
 
-V(G)=34−23+2=13. **Nota:** el recuento por aristas y nodos da 13, mientras que el análisis adopta 11; conviene revisar el grafo o el recuento antes de la entrega. Discrepancia por el break que genera una arista adicional (17→19) y el cortocircuito de && (representamos D8a y D8b como nodos separados, lo que añade el nodo 15 y la arista 14→18 directa). Contando decisiones de control (sin desdoblar cortocircuito): D1..D8 (con D8 como una sola decisión), D10 → 9 predicados → 
-
-V(G)=10. Contando con cortocircuito desdoblado y break: 11. Se adopta 
-V(G)=11 desdoblando cortocircuito y break, coherente con el grafo dibujado.
-
-Riesgo según SEI: 11–20 → programa medianamente complejo, riesgo moderado.
+Valor adoptado: V(G) = 10, que coincide por la definición de McCabe (nodos con ≥2 aristas de salida + 1) y por el recuento de regiones, y es el número de caminos linealmente independientes
 
 #### 2.4 Base de caminos independientes
 | Camino | Recorrido | ¿Factible? | Justificación |
 | --- | --- | --- | --- |
-| C1 | 1-2-3-23 | Sí | dojos == null |
-| C2 | 1-2-4-5-23 | Sí | dojos válido, requiredWeapons == null |
-| C3 | 1-2-4-6-7-23 | Sí | reservations == null |
-| C4 | 1-2-4-6-8-9-23 | Sí | trainingDate == null |
-| C5 | 1-2-4-6-8-10-22-23 | Sí | lista de dojos vacía → Optional.empty() |
-| C6 | 1-2-4-6-8-10-11-21-10-22-23 | Sí | dojo incompatible, siguiente iteración, lista agotada |
-| C7 | 1-2-4-6-8-10-11-12-13-19-20-23 | Sí | dojo compatible, sin reservas → occupied = false → Optional.of |
-| C8 | 1-2-4-6-8-10-11-12-13-14-18-13-19-20-23 | Sí | reserva de otro dojo o otra fecha → no ocupado → Optional.of |
-| C9 | 1-2-4-6-8-10-11-12-13-14-15-16-17-19-21-10-22-23 | Sí | reserva que ocupa el dojo → occupied = true, break, siguiente dojo, agotado |
-| C10 | `1-2-4-6-8-10-11-12-13-14-15-18-13-19-20-23` | Sí | D8a es verdadera y D8b es falsa; el dojo no se marca como ocupado y se devuelve mediante `Optional.of` |
-| C11 | 1-2-4-6-8-10-11-12-13-14-15-16-17-19-21-10-11-21-10-22-23 | Sí | primer dojo ocupado, segundo incompatible, lista agotada |
+| C1 | 1-2-3-17 | Sí | dojos == null |
+| C2 | 1-2-4-5-17 | Sí | dojos válido, requiredWeapons == null |
+| C3 | 1-2-4-6-7-17 | Sí | reservations == null |
+| C4 | 1-2-4-6-8-9-17 | Sí | trainingDate == null |
+| C5 | 1-2-4-6-8-10-16-17 | Sí | lista de dojos vacía |
+| C6 | 1-2-4-6-8-10-11-10-16-17 | Sí | dojo incompatible → siguiente → agotado |
+| C7 | 1-2-4-6-8-10-11-12-14-15-17 | Sí | compatible, sin reservas → devuelve |
+| C8 | 1-2-4-6-8-10-11-12-13-12-14-15-17 | Sí | reserva no ocupante (A=false o B=false) → siguiente reserva → fin → devuelve |
+| C9 | 1-2-4-6-8-10-11-12-13-14-10-16-17 | Sí | reserva ocupante (A=T,B=T) → break → siguiente dojo → agotado |
+| C10 | 1-2-4-6-8-10-11-12-13-14-10-11-12-14-15-17 | Sí | primer dojo ocupado, segundo compatible y libre → devuelve segundo |
 
-                                                                    Los caminos C1–C11 cubren todas las aristas del grafo. La base es de tamaño 11 (= V(G)). Todos son factibles con entradas válidas de dominio.
+Los 10 caminos son factibles y cubren las 27 aristas. V(G) = 10 = tamaño de la base. 
 
-#### 2.5 Cobertura de condiciones seleccionadas
-Decisión asignada: reservation.dojoId().equals(dojo.id()) && !reservation.trainingDate().equals(trainingDate).
+### 2.5 Trazabilidad camino → test
+| Camino | Test JUnit |
+| --- | --- |
+| C1 | testGivenNullDojosWhenFindFirstThenNullPointerWithMessage |
+| C2 | testGivenNullRequiredWeaponsWhenFindFirstThenNullPointerWithMessage |
+| C3 | testGivenNullReservationsWhenFindFirstThenNullPointerWithMessage |
+| C4 | testGivenNullTrainingDateWhenFindFirstThenNullPointerWithMessage |
+| C5 | testGivenEmptyDojosWhenFindFirstThenEmpty |
+| C6 | testGivenIncompatibleDojoWhenFindFirstThenEmpty |
+| C7 | testGivenCompatibleDojoAndNoReservationsWhenFindFirstThenDojoReturned |
+| C8 | testGivenReservationForOtherDojoWhenFindFirstThenDojoReturned, testGivenReservationForSameDojoSameDateWhenFindFirstThenDojoReturned, testGivenReservationForSameDojoOtherDateWhenFindFirstThenDojoReturned |
+| C9 | testGivenFirstDojoOccupiedAndSecondIncompatibleWhenFindFirstThenEmpty |
+| C10 | testGivenFirstDojoOccupiedAndSecondCompatibleAndFreeWhenFindFirstThenSecondReturned | 
+
+#### 2.6 Cobertura de condiciones seleccionadas
+Decisión asignada: reservation.dojoId().equals(dojo.id()) && !reservation.trainingDate().equals(trainingDate) (D8).
 
 Condiciones atómicas:
 
@@ -279,26 +214,19 @@ A = reservation.dojoId().equals(dojo.id())
 
 B = !reservation.trainingDate().equals(trainingDate)
 
-En el test con reserva de otro dojo, B no se evalúa. Debe documentarse como sin evaluación, no como falso.
+| Condición | Caso que evalúa | Caso que evalúa falso | 
+| --- | --- | --- |
+| A | testGivenReservationForSameDojoOtherDateWhenFindFirstThenDojoReturned (A=T, B=T) | testGivenReservationForOtherDojoWhenFindFirstThenDojoReturned (A=F; B no se evalúa por cortocircuito de &&) |
+| B | testGivenReservationForSameDojoOtherDateWhenFindFirstThenDojoReturned (B=T) | testGivenReservationForSameDojoSameDateWhenFindFirstThenDojoReturned (B=F) |
 
-No hay situación en que A=true y B no se evalúe (el && evalúa B si A es true).
-
-#### 2.6 Tests JUnit 5
+#### 2.7 Tests JUnit 5
 en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.java`
 
 ### 3. Tabla resumen de trazabilidad
 | Método | V(G) | Caminos | Tests implementados | Defecto detectado |
 | --- | --- | --- | --- | --- |
-| containsAllRequiredWeapons | 5 | C1–C5 | 6 | available.containsAll(required) no implementado; solo isEmpty() |
-| findFirstAvailableDojo | 11 | C1–C11 | 11 | Condición de ocupación niega la fecha (!equals) |
-
-### 4. Tabla de cobertura de condiciones 
-| Condición atómica | Caso que evalúa verdadero | Caso que evalúa falso | Casos adicionales | Justificación si no es factible |
-| --- | --- | --- | --- | --- |
-| A = reservation.dojoId().equals(dojo.id()) | testGivenReservationForSameDojoOtherDate... (A=true, B=true) | testGivenReservationForOtherDojo... (A=false, B no evaluada por cortocircuito) | — | — |
-| B = !reservation.trainingDate().equals(trainingDate) | testGivenReservationForSameDojoOtherDate... (B=true) | testGivenReservationForSameDojoSameDate... (B=false) | — | — |
-
-En el caso A=false, B no se evalúa (cortocircuito de &&); no se contabiliza como falso. No existen evaluaciones no factibles dentro de esta decisión: todas las combinaciones alcanzables (A=false; A=true,B=true; A=true,B=false) tienen al menos un test.
+| containsAllRequiredWeapons | 5 | C1–C4 | 5 | Ninguno (usa containsAll correctamente) |
+| findFirstAvailableDojo | 11 | C1–C10 | 12 | D-1: condición de ocupación usa !equals en la fecha |
 
 ## Actividad 2
 ### 1. Identificación de clases de equivalencia
@@ -398,3 +326,40 @@ if (reservation.dojoId().equals(dojo.id())
 ```
 
 Regresión: tras la corrección, CN3 pasa a GREEN; CN1, CN2, CN4–CN7, CN9, CN10 permanecen GREEN. Se repite mvn -Pe2e clean verify y se verifica también la suite unitaria (mvn clean verify).
+
+## Actividad 3. Calidad, defectos y regresión
+### 1. Defectos y correcciones 
+
+D-1 · findFirstAvailableDojo marca ocupado un dojo con reserva en otra fecha
+Síntoma: al buscar EQ-001 con 2026-11-21, la fila de D-001 aparece "Ocupado" y se selecciona D-002, cuando la reserva de D-001 es de 2026-11-20 y 2027-11-20 (fechas distintas).
+
+Prueba que lo detecta:
+
+Unitaria: testGivenReservationForSameDojoOtherDateWhenFindFirstThenDojoReturned (RED antes de corregir).
+
+E2E: testGivenReservationForDifferentDateWhenSearchThenNorthDojoIsFree (CN3, RED antes de corregir).
+
+Causa: en DojoSearchService.findFirstAvailableDojo la condición de ocupación es
+reservation.dojoId().equals(dojo.id()) && !reservation.trainingDate().equals(trainingDate).
+La negación ! hace que cualquier reserva del mismo dojo en otra fecha marque el dojo como ocupado. La especificación (§1) exige comparar identificador y fecha: solo bloquea cuando coinciden ambos.
+
+Corrección aplicada:
+
+```java
+if (reservation.dojoId().equals(dojo.id())
+        && reservation.trainingDate().equals(trainingDate)) {
+    occupied = true;
+    break;
+}
+```
+Regresión posterior:
+
+mvn clean verify: 12/12 tests de DojoSearchServiceFindFirstTest GREEN (antes 11/12).
+
+mvn -Pe2e clean verify: CN3 GREEN; CN1, CN2, CN4–CN7, CN9, CN10 siguen GREEN.
+
+mvn -Pmutation test pitest:mutationCoverage: el mutante !equals→equals en la fecha pasa de superviviente a detectado.
+
+Impacto: ninguno sobre otras clases; DojoEvaluationService ya comparaba con equals (correcto), por lo que la tabla de presentación y el servicio de dominio quedan ahora coherentes.
+
+D-2 · Revisión de containsAllRequiredWeapons
