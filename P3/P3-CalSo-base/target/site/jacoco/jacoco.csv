@@ -15,7 +15,7 @@ dojo-reservation,es.um.calso.dojoreservation.application.usecase,FindAvailableDo
 dojo-reservation,es.um.calso.dojoreservation.application.usecase,CalculateReservationCostUseCase,128,0,12,0,22,0,10,0,4,0
 dojo-reservation,es.um.calso.dojoreservation.domain.service,ReservationDiscountService,147,0,34,0,40,0,20,0,3,0
 dojo-reservation,es.um.calso.dojoreservation.domain.service,ReservationPricingService,0,44,0,0,0,10,0,4,0,4
-dojo-reservation,es.um.calso.dojoreservation.domain.service,DojoSearchService,114,0,28,0,31,0,17,0,3,0
+dojo-reservation,es.um.calso.dojoreservation.domain.service,DojoSearchService,0,100,0,24,0,26,0,15,0,3
 dojo-reservation,es.um.calso.dojoreservation.infrastructure.persistence,InMemoryCatalog,0,269,0,0,0,36,0,7,0,7
 dojo-reservation,es.um.calso.dojoreservation.infrastructure.config,DojoReservationApplication,8,0,0,0,3,0,2,0,2,0
 dojo-reservation,es.um.calso.dojoreservation.infrastructure.config,UseCaseConfiguration.new DojoRepository() {...},18,0,0,0,3,0,3,0,3,0
