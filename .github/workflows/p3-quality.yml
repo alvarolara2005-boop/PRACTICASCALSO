@@ -73,5 +73,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: p3-pit
-          path: <<RUTA_MODULO_MAVEN>>/target/pit-reports/
+          path: P3/P3-Calso-Base/target/pit-reports/
           if-no-files-found: warn
