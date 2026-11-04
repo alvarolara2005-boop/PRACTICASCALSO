@@ -71,7 +71,7 @@ Aristas:
 
 #### 1.3 Complejidad ciclomática
 | Fórmula | Cálculo | Resultado |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | Predicados + 1 | 3 + 1 | 4 |
 | Aristas - Nodos + 2 | 11 - 9 + 2 | 4 |
 | Regiones | exterior + 3 internas | 4 |
@@ -166,7 +166,7 @@ Aristas:
 N = 17 nodos · A = 27 aristas · Predicados = D1, D2, D3, D4, D5, D6, D7, D8, D10 = 9.
 
 | Fórmula | Cálculo | Resultado
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | Predicados + 1 | 9 + 1 | 10 |
 | Aristas - Nodos + 2 | 27 - 17 +2| 12 |
 | Regiones | exterior + 9 internas | 10 |
