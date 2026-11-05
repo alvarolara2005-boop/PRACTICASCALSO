@@ -30,7 +30,7 @@ import es.um.calso.dojoreservation.domain.model.Weapon;
 <span class="fc bfc" id="L30" title="All 2 branches covered.">			if (containsAllRequiredWeapons(dojo.weapons(), requiredWeapons)) {</span>
 <span class="fc" id="L31">				boolean occupied = false;</span>
 <span class="fc bfc" id="L32" title="All 2 branches covered.">				for (Reservation reservation : reservations) {</span>
-<span class="fc bfc" id="L33" title="All 4 branches covered.">					if (reservation.dojoId().equals(dojo.id()) &amp;&amp; !reservation.trainingDate().equals(trainingDate)) {</span>
+<span class="fc bfc" id="L33" title="All 4 branches covered.">					if (reservation.dojoId().equals(dojo.id()) &amp;&amp; reservation.trainingDate().equals(trainingDate)) {</span>
 <span class="fc" id="L34">						occupied = true;</span>
 <span class="fc" id="L35">						break;</span>
 					}

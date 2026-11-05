@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.um.calso.dojoreservation.domain.model.DiscountTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.322 s -- in es.um.calso.dojoreservation.domain.model.DiscountTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.299 s -- in es.um.calso.dojoreservation.domain.model.DiscountTest

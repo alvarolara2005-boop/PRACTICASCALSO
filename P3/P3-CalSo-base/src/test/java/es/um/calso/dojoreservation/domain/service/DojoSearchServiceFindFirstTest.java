@@ -60,7 +60,7 @@ class DojoSearchServiceFindFirstTest {
 	}
 
 	// Cobertura de condiciones: A=false (reserva de otro dojo). B NO se evalúa
-	// (cortocircuito).
+	// (cortocircuito). Bucle interno termina y el dojo se devuelve.
 	@Test
 	void testGivenReservationForOtherDojoWhenFindFirstThenDojoReturned() {
 		Reservation other = new Reservation("D-999", DATE);
@@ -68,27 +68,37 @@ class DojoSearchServiceFindFirstTest {
 				service.findFirstAvailableDojo(List.of(D1), Set.of(KATANA), List.of(other), DATE).orElseThrow());
 	}
 
-	// Cobertura de condiciones: A=true y B=true (misma dojo, distinta fecha) →
-	// ocupado, se descarta.
+	// Cobertura de condiciones: A=true y B=false (misma dojo, distinta fecha) →
+	// NO ocupado, se devuelve el dojo. Una reserva de otro día no bloquea.
 	@Test
-	void testGivenReservationForSameDojoOtherDateWhenFindFirstThenDojoSkipped() {
+	void testGivenReservationForSameDojoOtherDateWhenFindFirstThenDojoReturned() {
 		Reservation otherDate = new Reservation("D-001", LocalDate.of(2027, 11, 20));
-		assertTrue(service.findFirstAvailableDojo(List.of(D1), Set.of(KATANA), List.of(otherDate), DATE).isEmpty());
-	}
-
-	// Cobertura de condiciones: A=true y B=false (misma dojo, misma fecha) → NO
-	// ocupado.
-	@Test
-	void testGivenReservationForSameDojoSameDateWhenFindFirstThenDojoReturned() {
-		Reservation sameDate = new Reservation("D-001", DATE);
 		assertEquals(D1,
-				service.findFirstAvailableDojo(List.of(D1), Set.of(KATANA), List.of(sameDate), DATE).orElseThrow());
+				service.findFirstAvailableDojo(List.of(D1), Set.of(KATANA), List.of(otherDate), DATE).orElseThrow());
 	}
 
-	// Camino C11: primer dojo ocupado, segundo incompatible → vacío.
+	// Cobertura de condiciones: A=true y B=true (misma dojo, misma fecha) →
+	// ocupado, se descarta el dojo.
+	@Test
+	void testGivenReservationForSameDojoSameDateWhenFindFirstThenDojoSkipped() {
+		Reservation sameDate = new Reservation("D-001", DATE);
+		assertTrue(service.findFirstAvailableDojo(List.of(D1), Set.of(KATANA), List.of(sameDate), DATE).isEmpty());
+	}
+
+	// Camino C9: primer dojo ocupado (misma fecha), segundo incompatible → vacío.
 	@Test
 	void testGivenFirstDojoOccupiedAndSecondIncompatibleWhenFindFirstThenEmpty() {
-		Reservation occupied = new Reservation("D-001", LocalDate.of(2027, 1, 1));
+		Reservation occupied = new Reservation("D-001", DATE);
 		assertTrue(service.findFirstAvailableDojo(List.of(D1, D2), Set.of(BOKKEN), List.of(occupied), DATE).isEmpty());
+	}
+
+	// Camino C10: primer dojo ocupado (misma fecha), segundo compatible y libre →
+	// se devuelve el segundo.
+	@Test
+	void testGivenFirstDojoOccupiedAndSecondCompatibleAndFreeWhenFindFirstThenSecondReturned() {
+		Reservation occupied = new Reservation("D-001", DATE);
+		Dojo d3 = new Dojo("D-003", "Sur", Money.euros("35"), Set.of(KATANA));
+		assertEquals(d3,
+				service.findFirstAvailableDojo(List.of(D1, d3), Set.of(KATANA), List.of(occupied), DATE).orElseThrow());
 	}
 }

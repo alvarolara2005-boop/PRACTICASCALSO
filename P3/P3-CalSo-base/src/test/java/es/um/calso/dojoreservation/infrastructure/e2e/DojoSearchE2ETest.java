@@ -26,7 +26,7 @@ class DojoSearchE2ETest extends BrowserE2ESupport {
 		assertTrue(rowD001.contains("Ocupado"));
 	}
 
-	// CN3: reserva de D-001 en otra fecha → D-001 libre y seleccionado (detecta
+	// CN3: reserva de D-001 en otra fecha → D-001 libre y seleccionado (detecta el
 	// defecto de !equals)
 	@Test
 	void testGivenReservationForDifferentDateWhenSearchThenNorthDojoIsFree() {
@@ -44,6 +44,7 @@ class DojoSearchE2ETest extends BrowserE2ESupport {
 	}
 
 	// CN5: equipo vacío vía URL → error "Team id is required"
+	// NOTA: actualmente RED por defecto de vista/controlador con teamId="".
 	@Test
 	void testGivenEmptyTeamWhenSearchThenErrorShown() {
 		open("/dojos?teamId=&trainingDate=2026-11-21");
@@ -64,11 +65,12 @@ class DojoSearchE2ETest extends BrowserE2ESupport {
 		assertEquals("Training date must be in the future", textOf("error"));
 	}
 
-	// CN9: EQ-002 (Bo) → D-001 incompatible, D-003 compatible y seleccionado
+	// CN9: EQ-002 (Bo) → D-001 incompatible; D-002 y D-003 compatibles; el primero
+	// libre es D-002
 	@Test
-	void testGivenTigerTeamWhenSearchThenSouthDojoSelected() {
+	void testGivenTigerTeamWhenSearchThenCenterDojoSelected() {
 		searchDojos("EQ-002", "2026-11-21");
-		assertEquals("D-003", textOf("dojo-id"));
+		assertEquals("D-002", textOf("dojo-id"));
 		String rowD001 = textAt(By.cssSelector("tr[data-dojo-id='D-001']"));
 		assertTrue(rowD001.contains("Incompatible"));
 	}
@@ -77,8 +79,6 @@ class DojoSearchE2ETest extends BrowserE2ESupport {
 	@Test
 	void testGivenMalformedDateWhenSearchThenFormRejectsRequest() {
 		open("/dojos?teamId=EQ-001&trainingDate=20/11/2026");
-		// Spring devuelve 400: no se muestra la tabla de resultados ni el mensaje de
-		// fecha futura
 		assertTrue(browser.findElements(By.id("dojo-table")).isEmpty());
 		assertTrue(browser.findElements(By.id("error")).isEmpty());
 	}

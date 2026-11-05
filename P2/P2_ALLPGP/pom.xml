@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.calso</groupId>
   <artifactId>P2_ALLPGP</artifactId>
@@ -73,6 +73,9 @@
     			</dependency>
     		</dependencies>
     		<configuration>
+    			 <jvmArgs>
+           			 <param>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=${project.build.directory}/jacoco.exec</param>
+        		</jvmArgs>
     			<targetClasses>
     				<param>com.calso.robot.domain.*</param>
     				<param>com.calso.robot.application.*</param>

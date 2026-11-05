@@ -1,0 +1,21 @@
+-------------------------------------------------------------------------------
+Test set: es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 40.43 s <<< FAILURE! -- in es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest
+es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.testGivenEmptyTeamWhenSearchThenErrorShown -- Time elapsed: 17.46 s <<< ERROR!
+org.openqa.selenium.TimeoutException: 
+Expected condition failed: waiting for condition (visibility of element found by By.id: error, but... org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"#error"}.) to be refreshed
+(tried for 15 seconds with 500 milliseconds interval)
+Build info: version: '4.51.0', revision: '35c5fab 35c5fab4a58fa5878edb255eb7747b04ca51a015'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 156.0.8078.80, chrome: {chromedriverVersion: 156.0.8078.80 (fb096c0011f9..., userDataDir: C:\Users\Usuario\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58994}, goog:processID: 7088, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58994/devtoo..., se:cdpVersion: 156.0.8078.80, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 4d6c0adb1a52267839f4821146c888d3
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:85)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:234)
+	at es.um.calso.dojoreservation.infrastructure.e2e.BrowserE2ESupport.textOf(BrowserE2ESupport.java:70)
+	at es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.testGivenEmptyTeamWhenSearchThenErrorShown(DojoSearchE2ETest.java:51)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

@@ -30,7 +30,7 @@ public final class DojoSearchService {
 			if (containsAllRequiredWeapons(dojo.weapons(), requiredWeapons)) {
 				boolean occupied = false;
 				for (Reservation reservation : reservations) {
-					if (reservation.dojoId().equals(dojo.id()) && !reservation.trainingDate().equals(trainingDate)) {
+					if (reservation.dojoId().equals(dojo.id()) && reservation.trainingDate().equals(trainingDate)) {
 						occupied = true;
 						break;
 					}
