@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.um.calso.dojoreservation.infrastructure.e2e.BrowserSmokeE2ETest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.426 s -- in es.um.calso.dojoreservation.infrastructure.e2e.BrowserSmokeE2ETest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.15 s -- in es.um.calso.dojoreservation.infrastructure.e2e.BrowserSmokeE2ETest
