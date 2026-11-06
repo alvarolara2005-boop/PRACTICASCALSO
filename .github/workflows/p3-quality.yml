@@ -7,7 +7,7 @@ on:
       - <<RAMA_P3_ALUMNO_1>>
       - <<RAMA_P3_ALUMNO_2>>
     paths:
-      - 'P3/P3-Calso-Base/*/**'
+      - 'P3/P3-Calso-Base/**'
       - '.github/workflows/p3-quality.yml'
   pull_request:
     branches:
