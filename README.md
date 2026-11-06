@@ -14,5 +14,5 @@ En el presente repositorio se presentan las prácticas realizadas para la asigna
 ## Enlaces de la documentación
 
 - [Documentación de la Práctica 1 — Revisiones estáticas de código con SonarQube for Eclipse](./P1/README_P1.md)
-- [Documentación de la Práctica 2 - Pruebas unitarias y análisis de calidad](./P2/README_P2.md)
-- [Documentación de la Práctica 3 - Diseño y ejecución de pruebas de software de caja blanca y de caja negra](./P3/README_P3.md)
+- [Documentación de la Práctica 2 — Pruebas unitarias y análisis de calidad](./P2/README_P2.md)
+- [Documentación de la Práctica 3 — Diseño y ejecución de pruebas de software de caja blanca y de caja negra](./P3/README_P3.md)

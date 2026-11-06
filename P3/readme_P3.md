@@ -1,4 +1,4 @@
-# Práctica 3. Diseño y ejecución de pruebas de software de caja blanca y de caja negra
+# Práctica 3 — Diseño y ejecución de pruebas de software de caja blanca y de caja negra
 
 **Asignatura:** Calidad del Software · Curso 2026–2027  
 **Caso de estudio:** Dojo Reservation
@@ -46,6 +46,7 @@ public boolean containsAllRequiredWeapons(Set<Weapon> available, Set<Weapon> req
 ```
 
 #### 1.2 Grafo de flujo
+
 Nodos:
 
 Nodo	Contenido
@@ -70,6 +71,7 @@ Aristas:
 8→9
 
 #### 1.3 Complejidad ciclomática
+
 | Fórmula | Cálculo | Resultado |
 | --- | --- | --- |
 | Predicados + 1 | 3 + 1 | 4 |
@@ -79,6 +81,7 @@ Aristas:
 V(G) = 4. Las tres fórmulas coinciden.
 
 #### 1.4 Base de caminos independientes
+
 | Camino | Recorrido | ¿Factible? | Justificación |
 | --- | --- | --- | --- |
 | C1 | 1-2-3-9 | Sí | available == null |
@@ -89,9 +92,11 @@ V(G) = 4. Las tres fórmulas coinciden.
 Los 4 caminos son factibles y cubren las 11 aristas. V(G) = 4 = tamaño de la base.
 
 #### 1.5 Tests JUnit 5
+
 en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceWeaponsTest.java`
 
 ### 2. Método `DojoSearchService.findFirstAvailableDojo`
+
 #### 2.1 Código analizado
 
 ```java
@@ -123,6 +128,7 @@ public Optional<Dojo> findFirstAvailableDojo(
 ```
 
 #### 2.2 Grafo de flujo
+
 Nodos:
 
 1	entrada
@@ -163,6 +169,7 @@ Aristas:
 16→17
 
 #### 2.3 Complejidad ciclomática
+
 N = 17 nodos · A = 27 aristas · Predicados = D1, D2, D3, D4, D5, D6, D7, D8, D10 = 9.
 
 | Fórmula | Cálculo | Resultado
@@ -176,6 +183,7 @@ Discrepancia: A − N + 2 da 12 porque el break introduce la arista 13→14, que
 Valor adoptado: V(G) = 10, que coincide por la definición de McCabe (nodos con ≥2 aristas de salida + 1) y por el recuento de regiones, y es el número de caminos linealmente independientes
 
 #### 2.4 Base de caminos independientes
+
 | Camino | Recorrido | ¿Factible? | Justificación |
 | --- | --- | --- | --- |
 | C1 | 1-2-3-17 | Sí | dojos == null |
@@ -192,6 +200,7 @@ Valor adoptado: V(G) = 10, que coincide por la definición de McCabe (nodos con 
 Los 10 caminos son factibles y cubren las 27 aristas. V(G) = 10 = tamaño de la base. 
 
 ### 2.5 Trazabilidad camino → test
+
 | Camino | Test JUnit |
 | --- | --- |
 | C1 | testGivenNullDojosWhenFindFirstThenNullPointerWithMessage |
@@ -206,6 +215,7 @@ Los 10 caminos son factibles y cubren las 27 aristas. V(G) = 10 = tamaño de la 
 | C10 | testGivenFirstDojoOccupiedAndSecondCompatibleAndFreeWhenFindFirstThenSecondReturned | 
 
 #### 2.6 Cobertura de condiciones seleccionadas
+
 Decisión asignada: reservation.dojoId().equals(dojo.id()) && !reservation.trainingDate().equals(trainingDate) (D8).
 
 Condiciones atómicas:
@@ -220,17 +230,22 @@ B = !reservation.trainingDate().equals(trainingDate)
 | B | testGivenReservationForSameDojoOtherDateWhenFindFirstThenDojoReturned (B=T) | testGivenReservationForSameDojoSameDateWhenFindFirstThenDojoReturned (B=F) |
 
 #### 2.7 Tests JUnit 5
+
 en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.java`
 
 ### 3. Tabla resumen de trazabilidad
+
 | Método | V(G) | Caminos | Tests implementados | Defecto detectado |
 | --- | --- | --- | --- | --- |
 | containsAllRequiredWeapons | 5 | C1–C4 | 5 | Ninguno (usa containsAll correctamente) |
 | findFirstAvailableDojo | 11 | C1–C10 | 12 | D-1: condición de ocupación usa !equals en la fecha |
 
 ## Actividad 2
+
 ### 1. Identificación de clases de equivalencia
+
 #### 1.1 Factores de entrada
+
 | Factor | Descripción | Dominio |
 | --- | --- | --- |
 | F1 | teamId | Identificadores conocidos {EQ-001..EQ-005} o cualquier otra cadena |
@@ -239,6 +254,7 @@ en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.ja
 | F4 | Compatibilidad de armas | Dojo contiene todas las armas requeridas del equipo |
 
 #### 1.2 Tabla de clases de equivalencia
+
 | Código | Factor / estado | Condición de pertenencia | Válida / inválida | Comportamiento exigido |
 | --- | --- | --- | --- | --- |
 | CE1 | F1 teamId | Identificador existente en catálogo (EQ-001..EQ-005) | Válida | Se evalúan los dojos para ese equipo |
@@ -256,6 +272,7 @@ en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.ja
 | CE13 | F3 Ocupación | Reserva con mismo dojoId pero distinta fecha | Válida | Fila |
 
 #### 1.3 Análisis de valores límite
+
 | Factor | Valor inmediatamente inferior | Valor del límite | Valor inmediatamente superior | Casos elegidos y expectativas |
 | --- | --- | --- | --- | --- |
 | F2 fecha vs. reloj (2026-10-20) | 2026-10-19 (CE6) | 2026-10-20 (CE5, "hoy") | 2026-10-21 (CE4, "mañana") | 2026-10-19 → error fecha; 2026-10-20 → error fecha; 2026-10-21 → tabla normal |
@@ -265,9 +282,11 @@ en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.ja
 | F4 compatibilidad | EQ-002 (Bo) contra D-001 (Katana+Bokken, CE11) | EQ-001 (Katana+Bokken) contra D-001 (CE10) |  |  |
 
 #### 1.5 Implementación Selenium
+
 en `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 
 #### 1.6 Cobertura de clases de equivalencia
+
 | Clase | Caso(s) | Estado |
 | --- | --- | --- |
 | CE1 | CN1, CN2, CN3, CN9 | Cubierta |
@@ -285,6 +304,7 @@ en `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 | CE13 | CN3 | Cubierta (detecta defecto) |
 
 #### 1.7 Trazabilidad clase → test
+
 | Clase | Test |
 | --- | --- |
 | CE1, CE4, CE9, CE10 | testGivenDragonTeamTomorrow... |
@@ -298,6 +318,7 @@ en `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 | CE7 | testGivenMalformedDate... |
 
 #### 1.8 Ejecución y resultados
+
 | Test | Resultado | Motivo |
 | --- | --- | --- |
 | CN1 testGivenDragonTeamTomorrow... | GREEN | D-001 libre y compatible → seleccionado |
@@ -311,6 +332,7 @@ en `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 | CN10 testGivenMalformedDate... | GREEN | Spring MVC devuelve 400; no hay tabla ni error de dominio |
 
 #### 1.9 Defecto detectado (CN3)
+
 Síntoma: al buscar con EQ-001 y 2026-11-21, la fila de D-001 aparece como "Ocupado" y se selecciona D-002, cuando la reserva de D-001 es para 2026-11-20 y 2027-11-20 (fechas distintas).
 
 Causa: en DojoSearchService.findFirstAvailableDojo, la condición !reservation.trainingDate().equals(trainingDate) marca como ocupado cualquier dojo que tenga alguna reserva en otra fecha. La especificación exige bloquear solo cuando coinciden identificador y fecha.
@@ -328,6 +350,7 @@ if (reservation.dojoId().equals(dojo.id())
 Regresión: tras la corrección, CN3 pasa a GREEN; CN1, CN2, CN4–CN7, CN9, CN10 permanecen GREEN. Se repite mvn -Pe2e clean verify y se verifica también la suite unitaria (mvn clean verify).
 
 ## Actividad 3. Calidad, defectos y regresión
+
 ### 1. Defectos y correcciones 
 
 D-1 · findFirstAvailableDojo marca ocupado un dojo con reserva en otra fecha
