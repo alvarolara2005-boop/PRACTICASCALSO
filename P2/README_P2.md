@@ -1,119 +1,26 @@
-# Práctica 2. Pruebas unitarias y análisis de calidad
-
-**Calidad del Software · Curso 2026-2027**
-
-## Descripción del caso práctico
-
-Una empresa está desarrollando el software de un robot que ejecuta distintos programas de limpieza. Cada programa requiere una cantidad fija de energía y puede necesitar agua, jabón, cera o limpiacristales. El robot consulta las existencias antes de empezar: si falta algún producto, informa de las unidades necesarias y no consume nada; si hay suficiente de todos, realiza los descuentos. En esta práctica la energía identifica el consumo del programa, pero no se gestiona una batería.
-
-Recibiréis un proyecto Java que compila y contiene defectos de comportamiento. Vuestro trabajo consiste en **descubrirlos mediante pruebas JUnit 5 diseñadas a partir de la especificación**, corregirlos y analizar los resultados de calidad obtenidos al terminar. No se facilita la cantidad ni la ubicación de los defectos.
-
-Trabajaréis principalmente en **Eclipse**. El proyecto utiliza Maven y una organización basada en dominio, aplicación y adaptadores. La especificación que determina el comportamiento correcto está en ``docs/specification.md``. **El código entregado no es la especificación**: precisamente puede contener errores.
-
-### Bounded context y alcance del slice
-
-El siguiente diagrama presenta los conceptos principales de **Robot Cleaning**, sus relaciones y su distribución entre las capas **Adapters**, **Application** y **Domain**. Permite distinguir el código comprendido en el slice de esta práctica de la funcionalidad que queda fuera de su desarrollo.
-
-```mermaid
-flowchart TB
-    subgraph AD["ADAPTERS"]
-        direction LR
-        SERVICE["CleaningRobotService<br/>Adaptador de entrada"]
-        STUB["StubCleaningInventory<br/>Suplantador para pruebas"]
-        REAL["Inventario real<br/>Infraestructura no implementada"]
-    end
-
-    subgraph AP["APPLICATION"]
-        direction LR
-        PORT["IExecuteCleaningProgram<br/>Puerto de entrada"]
-        UC["ExecuteCleaningProgramUseCase<br/>Caso de uso"]
-        COMP["CleaningProgramByEnergyComparator<br/>Comparador"]
-    end
-
-    subgraph DOM["DOMAIN"]
-        direction TB
-        subgraph CORE["Modelo de dominio"]
-            direction LR
-            PROGRAM["CleaningProgram<br/>Entidad: id, name, energy, requirements"]
-            RESULT["ExecutionResult<br/>executed, missingProducts"]
-            INVENTORY["ICleaningInventory<br/>Puerto de salida del dominio"]
-        end
-        subgraph VALUES["Conceptos de valor"]
-            direction LR
-            ENERGY["Energy<br/>Objeto de valor"]
-            PRODUCT["CleaningProduct<br/>WATER · SOAP · WAX · GLASS_CLEANER"]
-        end
-    end
-
-    SERVICE --> PORT
-    PORT --> UC
-    UC --> PROGRAM
-    UC --> RESULT
-    UC --> INVENTORY
-    COMP --> PROGRAM
-    PROGRAM --> ENERGY
-    PROGRAM --> PRODUCT
-    RESULT --> PRODUCT
-    STUB -.-> INVENTORY
-    REAL -.-> INVENTORY
-
-    classDef included fill:#E8F5EC,stroke:#248447,stroke-width:2px,color:#183B29
-    classDef excluded fill:#FDEBEC,stroke:#CE3548,stroke-width:2px,color:#7D1F2C
-    class SERVICE,STUB,PORT,UC,COMP,PROGRAM,RESULT,INVENTORY,ENERGY,PRODUCT included
-    class REAL excluded
-
-    style AD fill:#F7FAFD,stroke:#B8CADB,stroke-width:1px
-    style AP fill:#F7FAFD,stroke:#B8CADB,stroke-width:1px
-    style DOM fill:#F7FAFD,stroke:#B8CADB,stroke-width:1px
-    style CORE fill:#FFFFFF,stroke:#D9E3EB
-    style VALUES fill:#FFFFFF,stroke:#D9E3EB
-```
-
-**Cómo interpretarlo:** los elementos verdes pertenecen al slice y los rojos están fuera de su alcance o no se implementan en esta práctica. La interfaz ICleaningInventory está situada en la capa de dominio, aunque sea utilizada por el caso de uso de aplicación. El inventario real no se implementa: en las pruebas del caso de uso se desarrolla StubCleaningInventory dentro de src/test/java, para controlar las existencias sin depender de infraestructura real.
-
-El diagrama es una visión arquitectónica, no sustituye a la especificación de comportamiento, que es la referencia para diseñar los casos de prueba.
-
-### Estructura del repositorio de GitHub
-Cada grupo dispone de un único repositorio para todas las prácticas. Dentro de él se encuentra el proyecto Maven de la segunda práctica:
-
-```text
-Repositorio-del-grupo/
-├── .github/
-│   └── workflows/
-│       └── p2-quality.yml
-├── P1/
-└── P2/
-    ├── README_P2.md
-    ├── docs/
-    ├── evidencias/
-    └── P2_ALLPGP/
-        ├── pom.xml
-        └── src/
-```
-
-Para conectar las acciones de GitHub con la herramienta externa configuraremos un flujo de trabajo. El workflow se guardará en `.github/workflows/` de la raíz del repositorio, no dentro de la carpeta P2/ ni del proyecto Java. La ruta exacta al proyecto Maven es `P2/P2_ALLPGP/`.
-
-(El resto de las instrucciones originales se mantienen sin cambios).
+# Práctica 2 — Pruebas unitarias y análisis de calidad
 
 ## Resolución del grupo
+
 ### Integrantes, responsabilidades y enlaces de integración
+
 Grupo: **ALLPGP**
 
-**Álvaro Lara Lara — Dominio y comparador**
+#### Álvaro Lara Lara — Dominio y comparador
 
-Clases de producción corregidas: Energy, CleaningProduct, CleaningProgram, CleaningProgramByEnergyComparator.
+**Clases de producción corregidas:** `Energy`, `CleaningProduct`, `CleaningProgram`, `CleaningProgramByEnergyComparator`.
 
-Clases de prueba añadidas: EnergyTest, CleaningProductTest, CleaningProgramTest, CleaningProgramByEnergyComparatorTest.
+**Clases de prueba añadidas:** `EnergyTest`, `CleaningProductTest`, `CleaningProgramTest`, `CleaningProgramByEnergyComparatorTest`.
 
 Rama: `feature/dominio-comparador`
 
 Pull Request: *Enlace pendiente*
 
-**Pablo García Pérez — Suplantador y caso de uso**
+#### Pablo García Pérez — Suplantador y caso de uso
 
-Clases de prueba añadidas: StubCleaningInventory, StubCleaningInventoryTest, ExecuteCleaningProgramUseCaseTest, CleaningRobotServiceTest.
+**Clases de prueba añadidas:** `StubCleaningInventory`, `StubCleaningInventoryTest`, `ExecuteCleaningProgramUseCaseTest`, `CleaningRobotServiceTest`.
 
-Clases de producción corregidas: ExecuteCleaningProgramUseCase.
+**Clases de producción corregidas:** `ExecuteCleaningProgramUseCase`.
 
 Rama: `feature/stub-caso-uso`
 
@@ -121,7 +28,10 @@ Pull Request: *Enlace pendiente*
 
 Ambas ramas se integraron en main tras revisión cruzada. Los commits de cada integrante se realizaron exclusivamente en su propia rama, y el merge a main se hizo a través de las Pull Requests indicadas. El workflow de GitHub Actions sobre main finalizó en verde, publicando el análisis en SonarQube.
 
+---
+
 ### Casos de prueba
+
 Se han diseñado casos a partir de `docs/specification.md`, cubriendo valores normales, límites, entradas inválidas, igualdad y ordenación, además de la ausencia de efectos cuando una ejecución se rechaza.
 
 | ID | Clase | Condición y resultado esperado | Método JUnit |
@@ -178,7 +88,10 @@ Se han diseñado casos a partir de `docs/specification.md`, cubriendo valores no
 | R2 | Service | Agua=0, req=1 ⇒ executed=false, falta agua=1 | testGivenWater0WhenExecutingProgramRequiringWater1ThenReturnsExecutedFalseWithWater1Missing |
 | R3 | Service | Inventario nulo ⇒ NullPointerException | testGivenNullInventoryWhenCreatingServiceThenThrowsNullPointerException |
 
+---
+
 ### Defectos detectados y corregidos
+
 Cada defecto se descubrió primero mediante un test que falló. Los commits de corrección se hicieron después, manteniendo el test revelador en la batería final.
 
 | ID | Prueba que revela el defecto | Esperado / observado | Causa y corrección | Commit |
@@ -195,7 +108,10 @@ Cada defecto se descubrió primero mediante un test que falló. Los commits de c
 | D10 | testGivenWater1WhenExecutingProgramRequiringWater2ThenReportsWater1Missing | Falta 1 / Falta 2 | El caso de uso reportaba required en lugar de required − available. Corregido. | [Hash del commit] |
 | D11 | testGivenWater2AndSoap0WhenExecutingProgramRequiringWater2AndSoap1ThenReportsSoap1MissingAndPreservesStock | Sin consumo / Consume agua | El caso de uso consumía en el mismo bucle en el que detectaba faltantes. Se reescribió en dos pasadas. | [Hash del commit] |
 
+---
+
 ### Suplantador y desarrollo incremental
+
 Se sustituye la dependencia ICleaningInventory, el puerto de salida del dominio que el caso de uso necesita para consultar y consumir productos. El inventario real pertenece a la infraestructura y no se implementa en esta práctica.
 
 El uso de una interfaz como puerto de salida permite que ExecuteCleaningProgramUseCase dependa de la abstracción y no de una implementación concreta. De este modo, podemos inyectar un doble de prueba (StubCleaningInventory) ubicado en src/test/java/com/calso/robot/application/usecases/, sin necesidad de infraestructura real ni de base de datos.
@@ -214,12 +130,22 @@ conserva su propio estado por instancia.
 
 Gracias a ello, ExecuteCleaningProgramUseCaseTest verifica tanto el ExecutionResult devuelto (ejecutado / faltantes) como las existencias finales del inventario, sin depender del módulo real. CleaningRobotServiceTest reutiliza el mismo stub para probar la delegación desde el adaptador de entrada.
 
+---
+
 ### Indicadores de calidad
+
 | Herramienta | Resultado obtenido | Evidencia |
 | --- | --- | --- |
-| Herramienta | Resultado obtenido | Evidencia |
+| JUnit 5 |  |  |
+| JaCoCo (instrucciones y ramas) |  |  |
+| PIT (mutation coverage y test strength) |  |  |
+| SonarQube (Quality Gate e incidencias) |  |  |
 
 JUnit 5	44 tests, 0 fallos (ejecución completa del proyecto)	evidencias/02-junit-verde.png
 JaCoCo (instrucciones y ramas)	Instrucciones: 65.2% (según SonarQube)	target/site/jacoco/index.html 
 PIT (mutation coverage y test strength)	[Poner MC]% / [Poner TS]%	target/pit-reports/ 
 SonarQube (Quality Gate e incidencias)	Quality Gate: Passed. 12 Code Smells.
+
+**Commit de `main` analizado:** *completar.*
+
+**Enlace al vídeo externo (oculto/no listado):** *completar.*
