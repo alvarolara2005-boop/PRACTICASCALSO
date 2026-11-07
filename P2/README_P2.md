@@ -2,29 +2,37 @@
 
 ## Resolución del grupo
 
+---
+
+### Status de P2_ALLPGP en SonarQube:
+
+- [![Quality Gate Status](https://sast.inf.um.es/api/project_badges/measure?project=PRACTICASCALSO_ALL_PGP&metric=alert_status&token=sqb_4e9e2d0861d8bf51e367061a3b9218edb52c1d35)](https://sast.inf.um.es/dashboard?id=PRACTICASCALSO_ALL_PGP)
+
+---
+
 ### Integrantes, responsabilidades y enlaces de integración
 
-Grupo: **ALLPGP**
+- **Grupo:** ALLPGP
 
 #### Álvaro Lara Lara — Dominio y comparador
 
-**Clases de producción corregidas:** `Energy`, `CleaningProduct`, `CleaningProgram`, `CleaningProgramByEnergyComparator`.
+- **Clases de prueba añadidas:** `EnergyTest`, `CleaningProductTest`, `CleaningProgramTest`, `CleaningProgramByEnergyComparatorTest`.
 
-**Clases de prueba añadidas:** `EnergyTest`, `CleaningProductTest`, `CleaningProgramTest`, `CleaningProgramByEnergyComparatorTest`.
+- **Clases de producción corregidas:** `Energy`, `CleaningProduct`, `CleaningProgram`, `CleaningProgramByEnergyComparator`.
 
-Rama: `feature/dominio-comparador`
+- Rama de trabajo: `feature/dominio-comparador`
 
-Pull Request: *Enlace pendiente*
+- Pull Request: *Enlace pendiente*
 
 #### Pablo García Pérez — Suplantador y caso de uso
 
-**Clases de prueba añadidas:** `StubCleaningInventory`, `StubCleaningInventoryTest`, `ExecuteCleaningProgramUseCaseTest`, `CleaningRobotServiceTest`.
+- **Clases de prueba añadidas/editadas:** `StubCleaningInventory`, `StubCleaningInventoryTest`, `ExecuteCleaningProgramUseCaseTest`, `CleaningRobotServiceTest`.
 
-**Clases de producción corregidas:** `ExecuteCleaningProgramUseCase`.
+- **Clases de producción corregidas:** *pendiente*
 
-Rama: `feature/stub-caso-uso`
+- Rama de trabajo: `feature/stub-caso-uso`
 
-Pull Request: *Enlace pendiente*
+- Pull Request: *Enlace pendiente*
 
 Ambas ramas se integraron en main tras revisión cruzada. Los commits de cada integrante se realizaron exclusivamente en su propia rama, y el merge a main se hizo a través de las Pull Requests indicadas. El workflow de GitHub Actions sobre main finalizó en verde, publicando el análisis en SonarQube.
 
@@ -32,7 +40,9 @@ Ambas ramas se integraron en main tras revisión cruzada. Los commits de cada in
 
 ### Casos de prueba
 
-Se han diseñado casos a partir de `docs/specification.md`, cubriendo valores normales, límites, entradas inválidas, igualdad y ordenación, además de la ausencia de efectos cuando una ejecución se rechaza.
+Se han diseñado casos de prueba a partir de `docs/specification.md`, cubriendo valores normales, límite, entradas inválidas, igualdad y ordenación, además de la ausencia de efectos cuando una ejecución se rechaza.
+
+Se muestran a continuación estos casos de prueba diseñados en forma de tabla:
 
 | ID | Clase | Condición y resultado esperado | Método JUnit |
 | --- | --- | --- | --- |
