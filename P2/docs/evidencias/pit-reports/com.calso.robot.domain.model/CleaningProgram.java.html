@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>CleaningProgram.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.calso.robot.domain.model;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Map;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Objects;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.calso.robot.domain.valueobjects.Energy;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public final class CleaningProgram {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private final String id;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private final String name;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private final Energy energy;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private final Map&#60;CleaningProduct, Integer&#62; requirements;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;public CleaningProgram(String id, String name, Energy energy, Map&#60;CleaningProduct, Integer&#62; requirements) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_15'/>
+15
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_15'>4</a>
+<span>
+
+1. &#60;init&#62; : negated conditional &rarr; KILLED<br/>
+
+2. &#60;init&#62; : negated conditional &rarr; KILLED<br/>
+
+3. &#60;init&#62; : negated conditional &rarr; KILLED<br/>
+
+4. &#60;init&#62; : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;if (id == null || id.isBlank() || name == null || name.isBlank()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;throw new IllegalArgumentException(&#34;Invalid name or id&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;this.energy = Objects.requireNonNull(energy, &#34;energy&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;Objects.requireNonNull(requirements, &#34;requirements&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;if (requirements.entrySet().stream()</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_23'/>
+23
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_23'>6</a>
+<span>
+
+1. lambda$0 : changed conditional boundary &rarr; KILLED<br/>
+
+2. lambda$0 : negated conditional &rarr; KILLED<br/>
+
+3. lambda$0 : negated conditional &rarr; KILLED<br/>
+
+4. &#60;init&#62; : negated conditional &rarr; KILLED<br/>
+
+5. lambda$0 : negated conditional &rarr; KILLED<br/>
+
+6. lambda$0 : replaced boolean return with false for com/calso/robot/domain/model/CleaningProgram::lambda$0 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;&#9;&#9;.anyMatch(e -&#62; e.getKey() == null || e.getValue() == null || e.getValue() &#60; 0)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;throw new IllegalArgumentException(&#34;Invalid requirements&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;this.id = id;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;this.name = name;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;this.requirements = Map.copyOf(requirements);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public String getId() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_33'/>
+33
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_33'>1</a>
+<span>
+
+1. getId : replaced return value with &#34;&#34; for com/calso/robot/domain/model/CleaningProgram::getId &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;return id;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public String getName() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_37'/>
+37
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_37'>1</a>
+<span>
+
+1. getName : replaced return value with &#34;&#34; for com/calso/robot/domain/model/CleaningProgram::getName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;return name;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public Energy getEnergy() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_41'/>
+41
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_41'>1</a>
+<span>
+
+1. getEnergy : replaced return value with null for com/calso/robot/domain/model/CleaningProgram::getEnergy &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;return energy;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public Map&#60;CleaningProduct, Integer&#62; getRequirements() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_45'/>
+45
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_45'>1</a>
+<span>
+
+1. getRequirements : replaced return value with Collections.emptyMap for com/calso/robot/domain/model/CleaningProgram::getRequirements &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;return requirements;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public boolean equals(Object other) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_50'/>
+50
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_50'>4</a>
+<span>
+
+1. equals : negated conditional &rarr; KILLED<br/>
+
+2. equals : replaced boolean return with true for com/calso/robot/domain/model/CleaningProgram::equals &rarr; KILLED<br/>
+
+3. equals : replaced boolean return with false for com/calso/robot/domain/model/CleaningProgram::equals &rarr; KILLED<br/>
+
+4. equals : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;return other instanceof CleaningProgram p &#38;&#38; id.equals(p.id);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public int hashCode() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_55'/>
+55
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_55'>1</a>
+<span>
+
+1. hashCode : replaced int return with 0 for com/calso/robot/domain/model/CleaningProgram::hashCode &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>&#9;&#9;return id.hashCode();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@53ba7997_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@53ba7997_15'>15</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_15'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNullEnergyWhenCreatingProgramThenThrowsNullPointerException()]</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNullEnergyWhenCreatingProgramThenThrowsNullPointerException()]</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNullEnergyWhenCreatingProgramThenThrowsNullPointerException()]</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNullEnergyWhenCreatingProgramThenThrowsNullPointerException()]</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@53ba7997_23'>23</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_23'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$0<br/><b>Killed by : </b>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater0AndWax0ThenStockIsPreserved()]</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lambda$0<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenTwoProgramsWithSameIdAndDifferentRequirementsWhenComparingThenTheyAreEqual()]</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>lambda$0<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNegativeQuantityWhenCreatingProgramThenThrowsIllegalArgumentException()]</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenEmptyRequirementsWhenCreatingProgramThenProgramIsCreated()]</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>lambda$0<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenTwoProgramsWithSameIdAndDifferentRequirementsWhenComparingThenTheyAreEqual()]</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>lambda$0<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNegativeQuantityWhenCreatingProgramThenThrowsIllegalArgumentException()]</span></span> replaced boolean return with false for com/calso/robot/domain/model/CleaningProgram::lambda$0 &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@53ba7997_33'>33</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_33'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getId<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenValidDataWhenCreatingProgramThenPropertiesAreStored()]</span></span> replaced return value with &#34;&#34; for com/calso/robot/domain/model/CleaningProgram::getId &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@53ba7997_37'>37</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_37'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getName<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenValidDataWhenCreatingProgramThenPropertiesAreStored()]</span></span> replaced return value with &#34;&#34; for com/calso/robot/domain/model/CleaningProgram::getName &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@53ba7997_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_41'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnergy<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenValidDataWhenCreatingProgramThenPropertiesAreStored()]</span></span> replaced return value with null for com/calso/robot/domain/model/CleaningProgram::getEnergy &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@53ba7997_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_45'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getRequirements<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenProgramWhenModifyingOriginalMapThenProgramRequirementsAreUnchanged()]</span></span> replaced return value with Collections.emptyMap for com/calso/robot/domain/model/CleaningProgram::getRequirements &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@53ba7997_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_50'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenTwoProgramsWithSameIdAndDifferentRequirementsWhenComparingThenTheyAreEqual()]</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenTwoProgramsWithDifferentIdWhenComparingThenTheyAreNotEqual()]</span></span> replaced boolean return with true for com/calso/robot/domain/model/CleaningProgram::equals &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenTwoProgramsWithSameIdAndDifferentRequirementsWhenComparingThenTheyAreEqual()]</span></span> replaced boolean return with false for com/calso/robot/domain/model/CleaningProgram::equals &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenTwoProgramsWithSameIdAndDifferentRequirementsWhenComparingThenTheyAreEqual()]</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@53ba7997_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@53ba7997_55'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>hashCode<br/><b>Killed by : </b>none</span></span> replaced int return with 0 for com/calso/robot/domain/model/CleaningProgram::hashCode &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.calso.robot.domain.model.CleaningProgram,-method=hashCode,-methodDesc=()I],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.calso.robot.domain.model.CleaningProgram,-method=hashCode,-methodDesc=()I],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.calso.robot.domain.model.CleaningProgram,-method=hashCode,-methodDesc=()I],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenTwoProgramsWithSameIdAndDifferentNameWhenComparingThenTheyAreEqual()]</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+
+<li class='mutator'>EMPTY_RETURNS</li>
+
+<li class='mutator'>FALSE_RETURNS</li>
+
+<li class='mutator'>INCREMENTS</li>
+
+<li class='mutator'>INVERT_NEGS</li>
+
+<li class='mutator'>MATH</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+
+<li class='mutator'>NULL_RETURNS</li>
+
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+
+<li class='mutator'>TRUE_RETURNS</li>
+
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenTwoProgramsWithSameIdAndDifferentRequirementsWhenComparingThenTheyAreEqual()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenTwoProgramsWithDifferentIdWhenComparingThenTheyAreNotEqual()] (1 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenTwoProgramsWithSameIdAndDifferentNameWhenComparingThenTheyAreEqual()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNegativeQuantityWhenCreatingProgramThenThrowsIllegalArgumentException()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenProgramWhenGettingRequirementsThenMapIsUnmodifiable()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenProgramWhenModifyingOriginalMapThenProgramRequirementsAreUnchanged()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenValidDataWhenCreatingProgramThenPropertiesAreStored()] (0 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenResultExecutedIsFalse()] (1 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenResultMissingProductGlassCleaner1()] (1 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenPreservesStock()] (0 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenResultMissingProductsIsEmpty()] (0 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenResultExecutedIsTrue()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenExecutedIsFalse()] (0 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenGlassCleanerStockBecomes0()] (1 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenWater0Wax0()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater0AndWax0ThenStockIsPreserved()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater0AndWax0ThenExecutedIsTrue()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenWater1Wax1()] (0 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenGlassCleanerStockRemains1()] (22 ms)</li><li>com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest]/[method:testGivenSameEnergyAndSameIdWhenComparingThenReturnsZero()] (0 ms)</li><li>com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest]/[method:testGivenSameEnergyAndIdAAndIdBWhenComparingThenOrdersByIdAscending()] (0 ms)</li><li>com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest]/[method:testGivenProgramsWithSameEnergyWhenSortingThenOrdersByIdAscending()] (0 ms)</li><li>com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest]/[method:testGivenProgramsWithDifferentEnergyWhenSortingThenOrdersByEnergyAscending()] (0 ms)</li><li>com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest]/[method:testGivenEnergy10AndEnergy20WhenComparingThenReturnsNegative()] (0 ms)</li><li>com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.resources.CleaningProgramByEnergyComparatorTest]/[method:testGivenEnergy20AndEnergy10WhenComparingThenReturnsPositive()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNullEnergyWhenCreatingProgramThenThrowsNullPointerException()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenBlankNameWhenCreatingProgramThenThrowsIllegalArgumentException()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNullRequirementsWhenCreatingProgramThenThrowsNullPointerException()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenEmptyRequirementsWhenCreatingProgramThenProgramIsCreated()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramWithoutProductRequirementsThenExecutedIsTrue()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramWithoutProductRequirementsThenStockIsPreserved()] (1 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNullNameWhenCreatingProgramThenThrowsIllegalArgumentException()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenBlankIdWhenCreatingProgramThenThrowsIllegalArgumentException()] (0 ms)</li><li>com.calso.robot.domain.model.CleaningProgramTest.[engine:junit-jupiter]/[class:com.calso.robot.domain.model.CleaningProgramTest]/[method:testGivenNullIdWhenCreatingProgramThenThrowsIllegalArgumentException()] (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.19.1
+
+</body>
+</html>

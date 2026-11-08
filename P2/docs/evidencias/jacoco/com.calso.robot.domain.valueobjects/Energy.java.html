@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Energy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">P2_ALLPGP</a> &gt; <a href="index.source.html" class="el_package">com.calso.robot.domain.valueobjects</a> &gt; <span class="el_source">Energy.java</span></div><h1>Energy.java</h1><pre class="source lang-java linenums">package com.calso.robot.domain.valueobjects;
+
+public final class Energy {
+	private final int units;
+
+<span class="fc" id="L6">	private Energy(int units) {</span>
+<span class="fc" id="L7">		this.units = units;</span>
+<span class="fc" id="L8">	}</span>
+
+	public static Energy of(int units) {
+<span class="fc bfc" id="L11" title="All 2 branches covered.">		if (units &lt;= 0) {</span>
+<span class="fc" id="L12">			throw new IllegalArgumentException(&quot;Energy must be positive&quot;);</span>
+		}
+<span class="fc" id="L14">		return new Energy(units);</span>
+	}
+
+	public int getValue() {
+<span class="fc" id="L18">		return units;</span>
+	}
+
+	@Override
+	public boolean equals(Object other) {
+<span class="pc bpc" id="L23" title="1 of 4 branches missed.">		return other instanceof Energy e &amp;&amp; units == e.units;</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L28">		return Integer.hashCode(units);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

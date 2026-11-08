@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExecuteCleaningProgramUseCase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">P2_ALLPGP</a> &gt; <a href="index.source.html" class="el_package">com.calso.robot.application.usecases</a> &gt; <span class="el_source">ExecuteCleaningProgramUseCase.java</span></div><h1>ExecuteCleaningProgramUseCase.java</h1><pre class="source lang-java linenums">package com.calso.robot.application.usecases;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Objects;
+import com.calso.robot.application.ports.inbound.IExecuteCleaningProgram;
+import com.calso.robot.domain.model.CleaningProduct;
+import com.calso.robot.domain.model.CleaningProgram;
+import com.calso.robot.domain.model.ExecutionResult;
+import com.calso.robot.domain.repositories.ICleaningInventory;
+
+public final class ExecuteCleaningProgramUseCase implements IExecuteCleaningProgram {
+
+	private final ICleaningInventory inventory;
+
+<span class="fc" id="L16">	public ExecuteCleaningProgramUseCase(ICleaningInventory inventory) {</span>
+<span class="fc" id="L17">		this.inventory = Objects.requireNonNull(inventory, &quot;inventory&quot;);</span>
+<span class="fc" id="L18">	}</span>
+
+	@Override
+	public ExecutionResult execute(CleaningProgram program) {
+<span class="fc" id="L22">		Objects.requireNonNull(program, &quot;El valor de program no puede ser nulo&quot;);</span>
+<span class="fc" id="L23">		Map&lt;CleaningProduct, Integer&gt; missing = new EnumMap&lt;&gt;(CleaningProduct.class);</span>
+
+<span class="fc bfc" id="L25" title="All 2 branches covered.">		for (var requirement : program.getRequirements().entrySet()) {</span>
+<span class="fc" id="L26">			CleaningProduct product = requirement.getKey(); // producto actual</span>
+<span class="fc" id="L27">			int required = requirement.getValue(); // cantidad requerida</span>
+
+<span class="fc" id="L29">			int available = inventory.available(product); // cantidad disponible</span>
+
+<span class="fc bfc" id="L31" title="All 4 branches covered.">			if (required &gt; 0 &amp;&amp; available &lt; required) {</span>
+<span class="fc" id="L32">				missing.put(product, required - available);</span>
+			}
+<span class="fc" id="L34">		}</span>
+
+		// En caso de que no falte ningún producto descontar cantidades del inventario.
+		// En otro caso no descontar ninguna cantidad
+
+<span class="fc bfc" id="L39" title="All 2 branches covered.">		if (missing.isEmpty()) {</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">			for (var requirement : program.getRequirements().entrySet()) {</span>
+<span class="fc" id="L41">				CleaningProduct product = requirement.getKey(); // producto actual</span>
+<span class="fc" id="L42">				int required = requirement.getValue(); // cantidad requerida</span>
+
+<span class="fc" id="L44">				inventory.consume(product, required);</span>
+<span class="fc" id="L45">			}</span>
+		}
+
+		// Devolver el resultado
+
+<span class="fc" id="L50">		return new ExecutionResult(missing.isEmpty(), missing);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

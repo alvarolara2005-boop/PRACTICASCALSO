@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>ExecuteCleaningProgramUseCase.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.calso.robot.application.usecases;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.EnumMap;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Map;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Objects;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.calso.robot.application.ports.inbound.IExecuteCleaningProgram;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.calso.robot.domain.model.CleaningProduct;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.calso.robot.domain.model.CleaningProgram;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.calso.robot.domain.model.ExecutionResult;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.calso.robot.domain.repositories.ICleaningInventory;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public final class ExecuteCleaningProgramUseCase implements IExecuteCleaningProgram {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;private final ICleaningInventory inventory;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;public ExecuteCleaningProgramUseCase(ICleaningInventory inventory) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;this.inventory = Objects.requireNonNull(inventory, &#34;inventory&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;@Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;public ExecutionResult execute(CleaningProgram program) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;Objects.requireNonNull(program, &#34;El valor de program no puede ser nulo&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;Map&#60;CleaningProduct, Integer&#62; missing = new EnumMap&#60;&#62;(CleaningProduct.class);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;for (var requirement : program.getRequirements().entrySet()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;CleaningProduct product = requirement.getKey(); // producto actual</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;int required = requirement.getValue(); // cantidad requerida</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;int available = inventory.available(product); // cantidad disponible</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_31'/>
+31
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_31'>4</a>
+<span>
+
+1. execute : changed conditional boundary &rarr; SURVIVED<br/>
+
+2. execute : negated conditional &rarr; KILLED<br/>
+
+3. execute : changed conditional boundary &rarr; KILLED<br/>
+
+4. execute : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>&#9;&#9;&#9;if (required &#62; 0 &#38;&#38; available &#60; required) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_32'/>
+32
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_32'>1</a>
+<span>
+
+1. execute : Replaced integer subtraction with addition &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;&#9;&#9;missing.put(product, required - available);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;// En caso de que no falte ning&#250;n producto descontar cantidades del inventario.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;// En otro caso no descontar ninguna cantidad</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_39'/>
+39
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_39'>1</a>
+<span>
+
+1. execute : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;if (missing.isEmpty()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;for (var requirement : program.getRequirements().entrySet()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;&#9;CleaningProduct product = requirement.getKey(); // producto actual</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>&#9;&#9;&#9;&#9;int required = requirement.getValue(); // cantidad requerida</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_44'/>
+44
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_44'>1</a>
+<span>
+
+1. execute : removed call to com/calso/robot/domain/repositories/ICleaningInventory::consume &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;&#9;&#9;inventory.consume(product, required);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;&#9;// Devolver el resultado</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_50'/>
+50
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_50'>1</a>
+<span>
+
+1. execute : replaced return value with null for com/calso/robot/application/usecases/ExecuteCleaningProgramUseCase::execute &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>&#9;&#9;return new ExecutionResult(missing.isEmpty(), missing);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>&#9;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@298e002d_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@298e002d_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_31'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2()]</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=com.calso.robot.application.usecases.ExecuteCleaningProgramUseCase,-method=execute,-methodDesc=(Lcom/calso/robot/domain/model/CleaningProgram;)Lcom/calso/robot/domain/model/ExecutionResult;],-indexes=[51],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=com.calso.robot.application.usecases.ExecuteCleaningProgramUseCase,-method=execute,-methodDesc=(Lcom/calso/robot/domain/model/CleaningProgram;)Lcom/calso/robot/domain/model/ExecutionResult;],-indexes=[51],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=com.calso.robot.application.usecases.ExecuteCleaningProgramUseCase,-method=execute,-methodDesc=(Lcom/calso/robot/domain/model/CleaningProgram;)Lcom/calso/robot/domain/model/ExecutionResult;],-indexes=[51],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2()]</li> <li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenPreservesStock()]</li> <li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenExecutedIsFalse()]</li> <li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenWater0Wax0()]</li> <li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater0AndWax0ThenStockIsPreserved()]</li> <li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue()]</li> <li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater0AndWax0ThenExecutedIsTrue()]</li> <li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue()]</li> <li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty()]</li> <li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty()]</li> <li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenWater1Wax1()]</li> <li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenResultExecutedIsFalse()]</li> <li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenResultMissingProductGlassCleaner1()]</li> <li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenResultMissingProductsIsEmpty()]</li> <li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenResultExecutedIsTrue()]</li> <li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenGlassCleanerStockBecomes0()]</li> <li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenGlassCleanerStockRemains1()]</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2()]</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2()]</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@298e002d_32'>32</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_32'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2()]</span></span> Replaced integer subtraction with addition &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@298e002d_39'>39</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_39'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2()]</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@298e002d_44'>44</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_44'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenWater0Wax0()]</span></span> removed call to com/calso/robot/domain/repositories/ICleaningInventory::consume &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@298e002d_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@298e002d_50'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>execute<br/><b>Killed by : </b>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramWithoutProductRequirementsThenExecutedIsTrue()]</span></span> replaced return value with null for com/calso/robot/application/usecases/ExecuteCleaningProgramUseCase::execute &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+
+<li class='mutator'>EMPTY_RETURNS</li>
+
+<li class='mutator'>FALSE_RETURNS</li>
+
+<li class='mutator'>INCREMENTS</li>
+
+<li class='mutator'>INVERT_NEGS</li>
+
+<li class='mutator'>MATH</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+
+<li class='mutator'>NULL_RETURNS</li>
+
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+
+<li class='mutator'>TRUE_RETURNS</li>
+
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramWithoutProductRequirementsThenExecutedIsTrue()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenPreservesStock()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramWithoutProductRequirementsThenStockIsPreserved()] (1 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenExecutedIsFalse()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenWater0Wax0()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater0AndWax0ThenStockIsPreserved()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater0AndWax0ThenExecutedIsTrue()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty()] (0 ms)</li><li>com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest.[engine:junit-jupiter]/[class:com.calso.robot.application.usecases.ExecuteCleaningProgramUseCaseTest]/[method:testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenWater1Wax1()] (0 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenResultExecutedIsFalse()] (1 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenResultMissingProductGlassCleaner1()] (1 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenResultMissingProductsIsEmpty()] (0 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenResultExecutedIsTrue()] (0 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenGlassCleanerStockBecomes0()] (1 ms)</li><li>com.calso.robot.adapters.inbound.CleaningRobotServiceTest.[engine:junit-jupiter]/[class:com.calso.robot.adapters.inbound.CleaningRobotServiceTest]/[method:testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenGlassCleanerStockRemains1()] (22 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.19.1
+
+</body>
+</html>

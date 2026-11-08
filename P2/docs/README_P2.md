@@ -1,20 +1,18 @@
 # Práctica 2 — Pruebas unitarias y análisis de calidad
 
-## Resolución del grupo
-
 ---
 
-### Status de P2_ALLPGP en SonarQube:
+## Status de P2_ALLPGP en SonarQube:
 
 - [![Quality Gate Status](https://sast.inf.um.es/api/project_badges/measure?project=PRACTICASCALSO_ALL_PGP&metric=alert_status&token=sqb_4e9e2d0861d8bf51e367061a3b9218edb52c1d35)](https://sast.inf.um.es/dashboard?id=PRACTICASCALSO_ALL_PGP)
 
 ---
 
-### Integrantes, responsabilidades y enlaces de integración
+## Integrantes, responsabilidades y enlaces de integración
 
 - **Grupo:** ALLPGP
 
-#### Álvaro Lara Lara — Dominio y comparador
+### Álvaro Lara Lara — Dominio y comparador
 
 - **Clases de prueba añadidas:** `EnergyTest`, `CleaningProductTest`, `CleaningProgramTest`, `CleaningProgramByEnergyComparatorTest`.
 
@@ -24,7 +22,7 @@
 
 - Pull Request: *Enlace pendiente*
 
-#### Pablo García Pérez — Suplantador y caso de uso
+### Pablo García Pérez — Suplantador y caso de uso
 
 - **Clases de prueba añadidas/editadas:** `StubCleaningInventory`, `StubCleaningInventoryTest`, `ExecuteCleaningProgramUseCaseTest`, `CleaningRobotServiceTest`, `ExecutionResultTest`.
 
@@ -38,7 +36,7 @@ Ambas ramas se integraron en main tras revisión cruzada. Los commits de cada in
 
 ---
 
-### Casos de prueba
+## Casos de prueba
 
 Se han diseñado casos de prueba a partir de `docs/specification.md`, cubriendo valores normales, límite, entradas inválidas, igualdad y ordenación, además de la ausencia de efectos cuando una ejecución se rechaza.
 
@@ -127,7 +125,7 @@ Se muestran a continuación estos casos de prueba diseñados en forma de tabla:
 
 ---
 
-### Defectos detectados y corregidos
+## Defectos detectados y corregidos
 
 Cada defecto se descubrió primero mediante un test que falló. Los commits de corrección se hicieron tras descubrir cada defecto, manteniendo el test revelador en la batería final.
 
@@ -144,50 +142,39 @@ Cada defecto se descubrió primero mediante un test que falló. Los commits de c
 | D9 | testGivenWater2WhenExecutingProgramRequiringWater2ThenExecutesAndWaterStockBecomes0 | Ejecuta / Marca faltante | La condición era available <= required en lugar de available < required. Corregida. | [Hash del commit] |
 | D10 | testGivenWater1WhenExecutingProgramRequiringWater2ThenReportsWater1Missing | Falta 1 / Falta 2 | El caso de uso reportaba required en lugar de required − available. Corregido. | [Hash del commit] |
 | D11 | testGivenWater2AndSoap0WhenExecutingProgramRequiringWater2AndSoap1ThenReportsSoap1MissingAndPreservesStock | Sin consumo / Consume agua | El caso de uso consumía en el mismo bucle en el que detectaba faltantes. Se reescribió en dos pasadas. | [Hash del commit] |
-| D12 | testGivenExecutedTrueAndMissingProductsWater5Wax3WhenCreatingResultThenMissingProductsIsEmpty | true / false | No se puede devolver un mapa de productos faltantes con contenido si el resultado de ejecución es true. Se añade funcionalidad para lanzar IllegalArgumentException en caso de intentar crear un ExecutionResult de estas características. | 92d1236bb09a402b12143d47d4ce6c0f6a52e5e9 |
-| D13 | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty | true / false | El mapa de productos faltantes devuelto debería de estar vacío, ya que las cantidades de inventario y requeridas son iguales. Se ajusta el código para que sólo se consuman productos del inventario en caso de que no exista ningún producto faltante. | 14acf5061e078751fd0f2e06d3a425805835578e |
-| D14 | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2 | {cera=2} / {cera=5, agua=5} | No se restan correctamente las cantidades de cada producto del inventario. Se ajusta la forma de insertar elementos en el mapa de productos faltantes para que el valor de cada producto sea el de requerido menos disponible. | 14acf5061e078751fd0f2e06d3a425805835578e |
-| D15 | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue | true / false | No se ejecuta correctamente el programa de limpieza aunque las cantidades de cada producto de inventario y requeridas sean las de un programa válido. Se ajusta el condicional para que el caso de que se tenga que añadir un producto al mapa de productos faltantes sea de disponible < requerido, y no disponible <= requerido | 14acf5061e078751fd0f2e06d3a425805835578e |
-| D16 | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenWater0Wax0 | 0 / 5 | No se restan correctamente las cantidades de cada producto del inventario. Se ajusta la forma de insertar elementos en el mapa de productos faltantes para que el valor de cada producto sea el de requerido menos disponible. | 14acf5061e078751fd0f2e06d3a425805835578e |
+| D12 | [testGivenExecutedTrueAndMissingProductsWater5Wax3WhenCreatingResultThenMissingProductsIsEmpty](./evidencias/capturas/ExecutionResultTest1.png) | true / false | No se puede devolver un mapa de productos faltantes con contenido si el resultado de ejecución es true. Se añade funcionalidad para lanzar IllegalArgumentException en caso de intentar crear un ExecutionResult de estas características. | 92d1236bb09a402b12143d47d4ce6c0f6a52e5e9 |
+| D13 | [testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty](./evidencias/capturas/ExecuteCleaningProgramUseCaseTest1.png) | true / false | El mapa de productos faltantes devuelto debería de estar vacío, ya que las cantidades de inventario y requeridas son iguales. Se ajusta el código para que sólo se consuman productos del inventario en caso de que no exista ningún producto faltante. | 14acf5061e078751fd0f2e06d3a425805835578e |
+| D14 | [testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2](./evidencias/capturas/ExecuteCleaningProgramUseCaseTest2.png) | {cera=2} / {cera=5, agua=5} | No se restan correctamente las cantidades de cada producto del inventario. Se ajusta la forma de insertar elementos en el mapa de productos faltantes para que el valor de cada producto sea el de requerido menos disponible. | 14acf5061e078751fd0f2e06d3a425805835578e |
+| D15 | [testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue](./evidencias/capturas/ExecuteCleaningProgramUseCaseTest3.png) | true / false | No se ejecuta correctamente el programa de limpieza aunque las cantidades de cada producto de inventario y requeridas sean las de un programa válido. Se ajusta el condicional para que el caso de que se tenga que añadir un producto al mapa de productos faltantes sea de disponible < requerido, y no disponible <= requerido | 14acf5061e078751fd0f2e06d3a425805835578e |
+| D16 | [testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenWater0Wax0](./evidencias/capturas/ExecuteCleaningProgramUseCaseTest4.png) | 0 / 5 | No se restan correctamente las cantidades de cada producto del inventario. Se ajusta la forma de insertar elementos en el mapa de productos faltantes para que el valor de cada producto sea el de requerido menos disponible. | 14acf5061e078751fd0f2e06d3a425805835578e |
 
 ---
 
-### Suplantador y desarrollo incremental
+## Suplantador y desarrollo incremental
 
-Se sustituye la dependencia ICleaningInventory, el puerto de salida del dominio que el caso de uso necesita para consultar y consumir productos. El inventario real pertenece a la infraestructura y no se implementa en esta práctica.
+**Dependencia sustituida:** `ExecuteCleaningProgramUseCase` necesita consultar y descontar existencias a través de la interfaz `ICleaningInventory`, el puerto de salida definido en la capa de dominio. El inventario real pertenece a la infraestructura y no se implementa en esta práctica, por lo que en su lugar se usa como suplantador `StubCleaningInventory`, lo que permite que ``ExecuteCleaningProgramUseCase`` dependa de la abstracción y no de una implementación concreta con estructura real.
 
-El uso de una interfaz como puerto de salida permite que ExecuteCleaningProgramUseCase dependa de la abstracción y no de una implementación concreta. De este modo, podemos inyectar un doble de prueba (StubCleaningInventory) ubicado en src/test/java/com/calso/robot/application/usecases/, sin necesidad de infraestructura real ni de base de datos.
+**Por qué la interfaz lo permite:** El caso de uso depende de la abstracción (la interfaz `ICleaningInventory`) y no de una clase concreta, y recibe el inventario por constructor. Basta con inyectar otra implementación que cumpla el mismo contrato que propone la interfaz, sin cambiar una línea de producción ni necesitar base de datos o infraestructura real.
 
-El suplantador:
+**Qué hace el suplantador `StubCleaningInventory`:**
+- Acepta unas existencias iniciales y valida que ninguna sea nula ni negativa.
+- Devuelve 0 para los productos no registrados (los completa a 0 en el constructor).
+- El método `consume` descuenta cantidades válidas y lanza la excepción `IllegalArgumentException` si la cantidad es negativa o supera las existencias, sin modificar el estado del inventario proporcionado.
+- Cada instancia mantiene su propio `EnumMap`, por lo que las pruebas no comparten estado.
 
-acepta un mapa de existencias iniciales;
-
-devuelve 0 para productos no registrados;
-
-descuenta cantidades válidas sin dejar valores negativos;
-
-lanza IllegalArgumentException si se intenta consumir una cantidad negativa o superior a la disponible, sin modificar el estado;
-
-conserva su propio estado por instancia.
-
-Gracias a ello, ExecuteCleaningProgramUseCaseTest verifica tanto el ExecutionResult devuelto (ejecutado / faltantes) como las existencias finales del inventario, sin depender del módulo real. CleaningRobotServiceTest reutiliza el mismo stub para probar la delegación desde el adaptador de entrada.
+**Utilidad de este suplantador:** Gracias al stub se ha podido probar y corregir el caso de uso y el servicio de entrada `CleaningRobotService` antes de que se desarrollara el inventario real. Las pruebas verifican tanto el `ExecutionResult` devuelto como las existencias finales (por ejemplo, que no cambian cuando se rechaza la ejecución por productos faltantes). Cuando se implemente el inventario real, bastará con que cumpla con el diseño de la interfaz `ICleaningInventory`, además, se podrá reutilizar los mismos tests para probar su diseño.
 
 ---
 
-### Indicadores de calidad
+## Indicadores de calidad
 
 | Herramienta | Resultado obtenido | Evidencia |
 | --- | --- | --- |
-| JUnit 5 |  |  |
-| JaCoCo (instrucciones y ramas) |  |  |
-| PIT (mutation coverage y test strength) |  |  |
-| SonarQube (Quality Gate e incidencias) |  |  |
+| JUnit 5 | 78 tests ejecutados, 0 fallos, 0 errores | ![Captura Final JUnit](./evidencias/capturas/Captura%20Final%20JUnit.png) |
+| JaCoCo (instrucciones y ramas) | Instrucciones: 100% - Ramas cubiertas: 90% | ![Captura Final JaCoCo](./evidencias/capturas/Captura%20Final%20JaCoCo.png) - [index.html](./evidencias/jacoco/index.html) |
+| PIT (mutation coverage y test strength) | Line coverage: 100% - Mutation coverage: 92% - Test strength: 92% | ![Captura Final PIT](./evidencias/capturas/Captura%20Final%20PIT.png) - [index.html](./evidencias/pit-reports/index.html) |
+| SonarQube (Quality Gate e incidencias) | Quality Gate: Passed - 8 code smells - Coverage: 96.3% | ![Captura Final SonarQube](./evidencias/capturas/Captura%20Final%20SonarQube.png) |
 
-JUnit 5	44 tests, 0 fallos (ejecución completa del proyecto)	evidencias/02-junit-verde.png
-JaCoCo (instrucciones y ramas)	Instrucciones: 65.2% (según SonarQube)	target/site/jacoco/index.html 
-PIT (mutation coverage y test strength)	[Poner MC]% / [Poner TS]%	target/pit-reports/ 
-SonarQube (Quality Gate e incidencias)	Quality Gate: Passed. 12 Code Smells.
+**Commit de `main` analizado:** [Commit 75f9031](https://github.com/alvarolara2005-boop/PRACTICASCALSO/commit/75f9031b1819a70f60b89be523bf6086ce19817e) / [Action de GitHub](https://github.com/alvarolara2005-boop/PRACTICASCALSO/actions/runs/42516579834)
 
-**Commit de `main` analizado:** *completar.*
-
-**Enlace al vídeo externo (oculto/no listado):** *completar.*
+**Enlace al vídeo externo (oculto/no listado):** *completar*

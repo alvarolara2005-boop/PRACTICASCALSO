@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+P2_ALLPGP,com.calso.robot.application.usecases,ExecuteCleaningProgramUseCase,0,95,0,10,0,19,0,7,0,2
+P2_ALLPGP,com.calso.robot.domain.model,ExecutionResult,0,26,0,4,0,6,0,3,0,1
+P2_ALLPGP,com.calso.robot.domain.model,CleaningProduct,0,42,0,0,0,6,0,3,0,3
+P2_ALLPGP,com.calso.robot.domain.model,CleaningProgram,0,96,3,17,0,18,3,15,0,8
+P2_ALLPGP,com.calso.robot.application.usecases.resources,CleaningProgramByEnergyComparator,0,21,0,2,0,3,0,3,0,2
+P2_ALLPGP,com.calso.robot.adapters.inbound,CleaningRobotService,0,16,0,0,0,4,0,2,0,2
+P2_ALLPGP,com.calso.robot.domain.valueobjects,Energy,0,40,1,5,0,9,1,7,0,5
