@@ -28,7 +28,7 @@
 
 - **Clases de prueba añadidas/editadas:** `StubCleaningInventory`, `StubCleaningInventoryTest`, `ExecuteCleaningProgramUseCaseTest`, `CleaningRobotServiceTest`.
 
-- **Clases de producción corregidas:** *pendiente*
+- **Clases de producción corregidas:** `ExecutionResult`, `ExecuteCleaningProgramUseCase`
 
 - Rama de trabajo: `feature/stub-caso-uso`
 
