@@ -26,13 +26,13 @@
 
 #### Pablo García Pérez — Suplantador y caso de uso
 
-- **Clases de prueba añadidas/editadas:** `StubCleaningInventory`, `StubCleaningInventoryTest`, `ExecuteCleaningProgramUseCaseTest`, `CleaningRobotServiceTest`.
+- **Clases de prueba añadidas/editadas:** `StubCleaningInventory`, `StubCleaningInventoryTest`, `ExecuteCleaningProgramUseCaseTest`, `CleaningRobotServiceTest`, `ExecutionResultTest`.
 
 - **Clases de producción corregidas:** `ExecutionResult`, `ExecuteCleaningProgramUseCase`
 
 - Rama de trabajo: `feature/stub-caso-uso`
 
-- Pull Request: *Enlace pendiente*
+- Pull Request: [Commit 75f9031](https://github.com/alvarolara2005-boop/PRACTICASCALSO/commit/75f9031b1819a70f60b89be523bf6086ce19817e)
 
 Ambas ramas se integraron en main tras revisión cruzada. Los commits de cada integrante se realizaron exclusivamente en su propia rama, y el merge a main se hizo a través de las Pull Requests indicadas. El workflow de GitHub Actions sobre main finalizó en verde, publicando el análisis en SonarQube.
 
@@ -46,63 +46,90 @@ Se muestran a continuación estos casos de prueba diseñados en forma de tabla:
 
 | ID | Clase | Condición y resultado esperado | Método JUnit |
 | --- | --- | --- | --- |
-| E1 | Energy | of(10) almacena 10 | testGivenEnergy10WhenCreatingEnergyThenStoresValue10 |
-| E2 | Energy | of(1) almacena 1 (límite mínimo válido) | testGivenEnergy1WhenCreatingEnergyThenStoresValue1 |
-| E3 | Energy | of(0) lanza IllegalArgumentException | testGivenEnergy0WhenCreatingEnergyThenThrowsIllegalArgumentException |
-| E4 | Energy | of(-1) lanza IllegalArgumentException | testGivenEnergyMinus1WhenCreatingEnergyThenThrowsIllegalArgumentException |
-| E5 | Energy | Dos instancias con 10 son iguales | testGivenTwoEnergyValues10WhenComparingThenTheyAreEqual |
-| E6 | Energy | Dos instancias con 10 tienen mismo hashCode | testGivenTwoEnergyValues10WhenComparingThenHashCodesAreEqual |
-| E7 | Energy | Instancias con 10 y 20 no son iguales | testGivenEnergy10AndEnergy20WhenComparingThenTheyAreNotEqual |
-| P1 | CleaningProduct | WATER.toString() = "agua" | testGivenWaterWhenCallingToStringThenReturnsAgua |
-| P2 | CleaningProduct | SOAP.toString() = "jabón" | testGivenSoapWhenCallingToStringThenReturnsJabon |
-| P3 | CleaningProduct | WAX.toString() = "cera" | testGivenWaxWhenCallingToStringThenReturnsCera |
-| P4 | CleaningProduct | GLASS_CLEANER.toString() = "limpiacristales" | testGivenGlassCleanerWhenCallingToStringThenReturnsLimpiacristales |
-| C1 | CleaningProgram | Datos válidos se almacenan en getters | testGivenValidDataWhenCreatingProgramThenPropertiesAreStored |
-| C2 | CleaningProgram | id nulo lanza IllegalArgumentException | testGivenNullIdWhenCreatingProgramThenThrowsIllegalArgumentException |
-| C3 | CleaningProgram | id en blanco lanza IllegalArgumentException | testGivenBlankIdWhenCreatingProgramThenThrowsIllegalArgumentException |
-| C4 | CleaningProgram | name nulo lanza IllegalArgumentException | testGivenNullNameWhenCreatingProgramThenThrowsIllegalArgumentException |
-| C5 | CleaningProgram | name en blanco lanza IllegalArgumentException | testGivenBlankNameWhenCreatingProgramThenThrowsIllegalArgumentException |
-| C6 | CleaningProgram | energy nula lanza NullPointerException | testGivenNullEnergyWhenCreatingProgramThenThrowsNullPointerException |
-| C7 | CleaningProgram | requirements nulo lanza NullPointerException | testGivenNullRequirementsWhenCreatingProgramThenThrowsNullPointerException |
-| C8 | CleaningProgram | Cantidad negativa lanza IllegalArgumentException | testGivenNegativeQuantityWhenCreatingProgramThenThrowsIllegalArgumentException |
-| C9 | CleaningProgram | Mapa vacío permitido | testGivenEmptyRequirementsWhenCreatingProgramThenProgramIsCreated |
-| C10 | CleaningProgram | Igualdad por id aunque cambien nombre y requirements | testGivenTwoProgramsWithSameIdAndDifferentNameWhenComparingThenTheyAreEqual |
-| C11 | CleaningProgram | Igualdad por id con mismos id y requirements distintos | testGivenTwoProgramsWithSameIdAndDifferentRequirementsWhenComparingThenTheyAreEqual |
-| C12 | CleaningProgram | Distinto id ⇒ no iguales | testGivenTwoProgramsWithDifferentIdWhenComparingThenTheyAreNotEqual |
-| C13 | CleaningProgram | Copia defensiva del mapa original | testGivenProgramWhenModifyingOriginalMapThenProgramRequirementsAreUnchanged |
-| C14 | CleaningProgram | Mapa devuelto no modificable | testGivenProgramWhenGettingRequirementsThenMapIsUnmodifiable |
-| K1 | Comparator | Energía 10 < 20 ⇒ negativo | testGivenEnergy10AndEnergy20WhenComparingThenReturnsNegative |
-| K2 | Comparator | Energía 20 > 10 ⇒ positivo | testGivenEnergy20AndEnergy10WhenComparingThenReturnsPositive |
-| K3 | Comparator | Misma energía e id ⇒ 0 | testGivenSameEnergyAndSameIdWhenComparingThenReturnsZero |
-| K4 | Comparator | Misma energía, ids A y B ⇒ orden por id | testGivenSameEnergyAndIdAAndIdBWhenComparingThenOrdersByIdAscending |
-| K5 | Comparator | Orden ascendente por energía al ordenar lista | testGivenProgramsWithDifferentEnergyWhenSortingThenOrdersByEnergyAscending |
-| K6 | Comparator | Desempate por id al ordenar lista | testGivenProgramsWithSameEnergyWhenSortingThenOrdersByIdAscending |
-| S1 | Stub | available(WATER) con stock 2 ⇒ 2 | testGivenStockOfWater2WhenAskingAvailableThenReturns2 |
-| S2 | Stub | Producto no registrado ⇒ 0 | testGivenNoStockRegisteredWhenAskingAvailableThenReturns0 |
-| S3 | Stub | Consumir 1 de 2 ⇒ queda 1 | testGivenStockOfWater2WhenConsuming1ThenAvailableBecomes1 |
-| S4 | Stub | Consumir 2 de 2 ⇒ queda 0 | testGivenStockOfWater2WhenConsuming2ThenAvailableBecomes0 |
-| S5 | Stub | Consumir 3 de 2 ⇒ excepción y stock intacto | testGivenStockOfWater2WhenConsuming3ThenThrowsIllegalArgumentExceptionAndStockUnchanged |
-| S6 | Stub | Consumir −1 ⇒ excepción y stock intacto | testGivenStockOfWater2WhenConsumingMinus1ThenThrowsIllegalArgumentExceptionAndStockUnchanged |
-| S7 | Stub | Dos instancias son independientes | testGivenTwoStubsWithDifferentStockWhenConsumingInOneThenOtherIsUnchanged |
-| U1 | UseCase | Agua=2, req=2 ⇒ ejecuta y queda 0 | testGivenWater2WhenExecutingProgramRequiringWater2ThenExecutesAndWaterStockBecomes0 |
-| U2 | UseCase | Agua=3, req=2 ⇒ ejecuta y queda 1 | testGivenWater3WhenExecutingProgramRequiringWater2ThenExecutesAndWaterStockBecomes1 |
-| U3 | UseCase | Agua=2, Jabón=0, req=2/1 ⇒ falla, falta jabón=1, sin consumo | testGivenWater2AndSoap0WhenExecutingProgramRequiringWater2AndSoap1ThenReportsSoap1MissingAndPreservesStock |
-| U4 | UseCase | Agua=0, Jabón=0, req=2/1 ⇒ faltan agua=2 y jabón=1 | testGivenWater0AndSoap0WhenExecutingProgramRequiringWater2AndSoap1ThenReportsWater2AndSoap1Missing |
-| U5 | UseCase | Agua=1, req=2 ⇒ falta agua=1 (cálculo required−available) | testGivenWater1WhenExecutingProgramRequiringWater2ThenReportsWater1Missing |
-| U6 | UseCase | Programa sin productos ⇒ ejecuta sin consumir | testGivenEmptyRequirementsWhenExecutingThenExecutesWithoutConsuming |
-| U7 | UseCase | Requisito 0 ⇒ no consume | testGivenRequirementZeroWhenExecutingThenDoesNotConsume |
-| U8 | UseCase | Programa nulo ⇒ NullPointerException | testGivenNullProgramWhenExecutingThenThrowsNullPointerException |
-| U9 | UseCase | Ejecución rechazada ⇒ no se consume ningún producto | testGivenRejectedExecutionWhenCheckingThenNoProductIsConsumed |
-| U10 | UseCase | Inventario nulo en constructor ⇒ NullPointerException | testGivenNullInventoryWhenCreatingUseCaseThenThrowsNullPointerException |
-| R1 | Service | Agua=2, req=2 ⇒ executed=true | testGivenWater2WhenExecutingProgramRequiringWater2ThenExecutesAndReturnsExecutedTrue |
-| R2 | Service | Agua=0, req=1 ⇒ executed=false, falta agua=1 | testGivenWater0WhenExecutingProgramRequiringWater1ThenReturnsExecutedFalseWithWater1Missing |
-| R3 | Service | Inventario nulo ⇒ NullPointerException | testGivenNullInventoryWhenCreatingServiceThenThrowsNullPointerException |
+| E1 | EnergyTest | of(10) almacena 10 | testGivenEnergy10WhenCreatingEnergyThenStoresValue10 |
+| E2 | EnergyTest | of(1) almacena 1 (límite mínimo válido) | testGivenEnergy1WhenCreatingEnergyThenStoresValue1 |
+| E3 | EnergyTest | of(0) lanza IllegalArgumentException | testGivenEnergy0WhenCreatingEnergyThenThrowsIllegalArgumentException |
+| E4 | EnergyTest | of(-1) lanza IllegalArgumentException | testGivenEnergyMinus1WhenCreatingEnergyThenThrowsIllegalArgumentException |
+| E5 | EnergyTest | Dos instancias con 10 son iguales | testGivenTwoEnergyValues10WhenComparingThenTheyAreEqual |
+| E6 | EnergyTest | Dos instancias con 10 tienen mismo hashCode | testGivenTwoEnergyValues10WhenComparingThenHashCodesAreEqual |
+| E7 | EnergyTest | Instancias con 10 y 20 no son iguales | testGivenEnergy10AndEnergy20WhenComparingThenTheyAreNotEqual |
+| P1 | CleaningProductTest | WATER.toString() = "agua" | testGivenWaterWhenCallingToStringThenReturnsAgua |
+| P2 | CleaningProductTest | SOAP.toString() = "jabón" | testGivenSoapWhenCallingToStringThenReturnsJabon |
+| P3 | CleaningProductTest | WAX.toString() = "cera" | testGivenWaxWhenCallingToStringThenReturnsCera |
+| P4 | CleaningProductTest | GLASS_CLEANER.toString() = "limpiacristales" | testGivenGlassCleanerWhenCallingToStringThenReturnsLimpiacristales |
+| C1 | CleaningProgramTest | Datos válidos se almacenan en getters | testGivenValidDataWhenCreatingProgramThenPropertiesAreStored |
+| C2 | CleaningProgramTest | id nulo lanza IllegalArgumentException | testGivenNullIdWhenCreatingProgramThenThrowsIllegalArgumentException |
+| C3 | CleaningProgramTest | id en blanco lanza IllegalArgumentException | testGivenBlankIdWhenCreatingProgramThenThrowsIllegalArgumentException |
+| C4 | CleaningProgramTest | name nulo lanza IllegalArgumentException | testGivenNullNameWhenCreatingProgramThenThrowsIllegalArgumentException |
+| C5 | CleaningProgramTest | name en blanco lanza IllegalArgumentException | testGivenBlankNameWhenCreatingProgramThenThrowsIllegalArgumentException |
+| C6 | CleaningProgramTest | energy nula lanza NullPointerException | testGivenNullEnergyWhenCreatingProgramThenThrowsNullPointerException |
+| C7 | CleaningProgramTest | requirements nulo lanza NullPointerException | testGivenNullRequirementsWhenCreatingProgramThenThrowsNullPointerException |
+| C8 | CleaningProgramTest | Cantidad negativa lanza IllegalArgumentException | testGivenNegativeQuantityWhenCreatingProgramThenThrowsIllegalArgumentException |
+| C9 | CleaningProgramTest | Mapa vacío permitido | testGivenEmptyRequirementsWhenCreatingProgramThenProgramIsCreated |
+| C10 | CleaningProgramTest | Igualdad por id aunque cambien nombre y requirements | testGivenTwoProgramsWithSameIdAndDifferentNameWhenComparingThenTheyAreEqual |
+| C11 | CleaningProgramTest | Igualdad por id con mismos id y requirements distintos | testGivenTwoProgramsWithSameIdAndDifferentRequirementsWhenComparingThenTheyAreEqual |
+| C12 | CleaningProgramTest | Distinto id ⇒ no iguales | testGivenTwoProgramsWithDifferentIdWhenComparingThenTheyAreNotEqual |
+| C13 | CleaningProgramTest | Copia defensiva del mapa original | testGivenProgramWhenModifyingOriginalMapThenProgramRequirementsAreUnchanged |
+| C14 | CleaningProgramTest | Mapa devuelto no modificable | testGivenProgramWhenGettingRequirementsThenMapIsUnmodifiable |
+| K1 | CleaningProgramByEnergyComparatorTest | Energía 10 < 20 ⇒ negativo | testGivenEnergy10AndEnergy20WhenComparingThenReturnsNegative |
+| K2 | CleaningProgramByEnergyComparatorTest | Energía 20 > 10 ⇒ positivo | testGivenEnergy20AndEnergy10WhenComparingThenReturnsPositive |
+| K3 | CleaningProgramByEnergyComparatorTest | Misma energía e id ⇒ 0 | testGivenSameEnergyAndSameIdWhenComparingThenReturnsZero |
+| K4 | CleaningProgramByEnergyComparatorTest | Misma energía, ids A y B ⇒ orden por id | testGivenSameEnergyAndIdAAndIdBWhenComparingThenOrdersByIdAscending |
+| K5 | CleaningProgramByEnergyComparatorTest | Orden ascendente por energía al ordenar lista | testGivenProgramsWithDifferentEnergyWhenSortingThenOrdersByEnergyAscending |
+| K6 | CleaningProgramByEnergyComparatorTest | Desempate por id al ordenar lista | testGivenProgramsWithSameEnergyWhenSortingThenOrdersByIdAscending |
+| S1 | StubCleaningInventoryTest | Constructor con mapa nulo lanza NullPointerException | testGivenNullMapWhenCreatingNewStubCleaningInventoryThenThrowsNullPointerException |
+| S2 | StubCleaningInventoryTest | Constructor con existencia -1 lanza IllegalArgumentException | testGivenValueMinus1WhenCreatingNewStubCleaningInventoryThenThrowsIllegalArgumentException |
+| S3 | StubCleaningInventoryTest | Constructor con clave nula en el mapa lanza IllegalArgumentException | testGivenKeyNullWhenCreatingNewStubCleaningInventoryThenThrowsIllegalArgumentException |
+| S4 | StubCleaningInventoryTest | Constructor con valor nulo en el mapa lanza IllegalArgumentException | testGivenValueNullWhenCreatingNewStubCleaningInventoryThenThrowsIllegalArgumentException |
+| S5 | StubCleaningInventoryTest | Constructor con jabón=0 no lanza excepción (límite mínimo válido) | testGivenSoap0WhenCreatingNewStubCleaningInventoryThenDoesNotThrowAnyException |
+| S6 | StubCleaningInventoryTest | Constructor con jabón=1 no lanza excepción | testGivenSoap1WhenCreatingNewStubCleaningInventoryThenDoesNotThrowAnyException |
+| S7 | StubCleaningInventoryTest | available(null) lanza NullPointerException | testGivenNullCleaningProductWhenCheckingAvailableProductThenThrowsNullPointerException |
+| S8 | StubCleaningInventoryTest | Producto no registrado (jabón): available devuelve 0 | testGivenInventoryWithNoSoapAddedAtInventoryCreationWhenCheckingSoapQuantityThenResturns0 |
+| S9 | StubCleaningInventoryTest | Limpiacristales=1 registrado: available devuelve 1 | testGivenInventoryWithGlassCleaner1WhenCheckingGlassCleanerQuantityThenReturns1 |
+| S10 | StubCleaningInventoryTest | consume(null, 1) lanza NullPointerException | testGivenNullCleaningProductWhenConsumingProductThenThrowsNullPointerException |
+| S11 | StubCleaningInventoryTest | consume con cantidad -1 lanza IllegalArgumentException | testGivenQuantityLessThan0WhenConsumingCleaningProductThenThrowsIllegalArgumentException |
+| S12 | StubCleaningInventoryTest | Limpiacristales=1 y consume 2 (supera existencias) lanza IllegalArgumentException | testGivenGlassCleanerQuantity1WhenConsumingGlassCleanerQuantity2ThenThrowsIllegalArgumentException |
+| S13 | StubCleaningInventoryTest | consume de 0 unidades de producto no registrado (jabón) no lanza excepción | testGivenInventoryWithNoSoapAddedAtInventoryCreationWhenConsumingQuantity0ThenDoesNotThrowAnyException |
+| S14 | StubCleaningInventoryTest | consume de 0 unidades de limpiacristales no altera la existencia (sigue en 1) | testGivenInventoryWithNoSoapAddedAtInventoryCreationWhenConsumingQuantity0ThenQuantityStays0 |
+| S15 | StubCleaningInventoryTest | Limpiacristales=1 y consume 1: la existencia pasa a 0 | testGivenGlassCleanerQuantity1WhenConsumingQuantity1ThenQuantity0 |
+| R1 | ExecutionResultTest | Constructor con missingProducts nulo lanza NullPointerException	| testGivenNullMissingProductsWhenCreatingExecutionResultThenThrowsNullPointerException |
+| R2 | ExecutionResultTest | executed=true y mapa vacío: executed() devuelve true	| testGivenExecutedTrueAndEmptyMissingProductsWhenCreatingResultThenExecutedIsTrue |
+| R3 | ExecutionResultTest | executed=true y mapa vacío: missingProducts() está vacío	| testGivenExecutedTrueAndEmptyMissingProductsWhenCreatingResultThenMissingProductsIsEmpty |
+| R4 | ExecutionResultTest | executed=true y missingProducts con agua=5 y cera=3 lanza IllegalArgumentException	| testGivenExecutedTrueAndMissingProductsWater5Wax3WhenCreatingResultThenThrowsIllegalArgumentException |
+| R5 | ExecutionResultTest | executed=false y mapa vacío: executed() devuelve false	| testGivenExecutedFalseAndEmptyMissingProductsWhenCreatingResultThenExecutedIsFalse |
+| R6 | ExecutionResultTest | executed=false y mapa vacío: missingProducts() está vacío	| testGivenExecutedFalseAndEmptyMissingProductsWhenCreatingResultThenMissingProductsIsEmpty |
+| R7 | ExecutionResultTest | executed=false con faltantes agua=2 y jabón=1: executed() devuelve false | testGivenExecutedFalseAndWater2AndSoap1MissingWhenCreatingResultThenExecutedIsFalse |
+| R8 | ExecutionResultTest | executed=false con faltantes agua=2 y jabón=1: missingProducts() conserva agua=2 y jabón=1	| testGivenExecutedFalseAndWater2AndSoap1MissingWhenCreatingResultThenMissingProductsDoesNotChange |
+| R9 | ExecutionResultTest | Mapa devuelto por missingProducts() no modificable: añadir limpiacristales=1 lanza UnsupportedOperationException | testGivenResultWithMissingProductsWater2AndSoap1WhenPuttingGlassCleaner1InReturnedMapThenThrowsUnsupportedOperationException |
+| U1 | ExecuteCleaningProgramUseCaseTest | Constructor con inventario nulo lanza NullPointerException | testGivenNullInventoryWhenCreatingCleaningProgramUseCaseThenThrowsNullPointerException |
+| U2 | ExecuteCleaningProgramUseCaseTest | execute(null) lanza NullPointerException | testGivenNullCleaningProgramWhenExecutingCleaningProgramThenThrowsNullPointerException |
+| U3 | ExecuteCleaningProgramUseCaseTest | Agua=5 y cera=3, programa requiere agua=5 y cera=5: executed() devuelve false | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenExecutedIsFalse |
+| U4 | ExecuteCleaningProgramUseCaseTest | Agua=5 y cera=3, programa requiere agua=5 y cera=5: el inventario se conserva (agua=5, cera=3) | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenPreservesStock |
+| U5 | ExecuteCleaningProgramUseCaseTest | Agua=5 y cera=3, programa requiere agua=5 y cera=5: missingProducts es {cera=2} | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2 |
+| U6 | ExecuteCleaningProgramUseCaseTest | Existencias exactas (agua=5, cera=3) y programa requiere agua=5 y cera=3: executed() devuelve true | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue |
+| U7 | ExecuteCleaningProgramUseCaseTest | Existencias exactas (agua=5, cera=3) y programa requiere agua=5 y cera=3: el inventario queda en agua=0 y cera=0 | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenWater0Wax0 |
+| U8 | ExecuteCleaningProgramUseCaseTest | Existencias exactas (agua=5, cera=3) y programa requiere agua=5 y cera=3: missingProducts está vacío | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty |
+| U9 | ExecuteCleaningProgramUseCaseTest | Existencias superiores (agua=6, cera=4) y programa requiere agua=5 y cera=3: executed() devuelve true | testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue |
+| U10 | ExecuteCleaningProgramUseCaseTest | Existencias superiores (agua=6, cera=4) y programa requiere agua=5 y cera=3: el inventario queda en agua=1 y cera=1 | testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenWater1Wax1 |
+| U11 | ExecuteCleaningProgramUseCaseTest | Existencias superiores (agua=6, cera=4) y programa requiere agua=5 y cera=3: missingProducts está vacío | testGivenWater6AndWax4WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty |
+| U12 | ExecuteCleaningProgramUseCaseTest | Programa sin productos con agua=5 y cera=3: executed() devuelve true | testGivenWater5AndWax3WhenExecutingProgramWithoutProductRequirementsThenExecutedIsTrue |
+| U13 | ExecuteCleaningProgramUseCaseTest | Programa sin productos con agua=5 y cera=3: el inventario no cambia (agua=5, cera=3) | testGivenWater5AndWax3WhenExecutingProgramWithoutProductRequirementsThenStockIsPreserved |
+| U14 | ExecuteCleaningProgramUseCaseTest | Programa con requisitos agua=0 y cera=0 con agua=5 y cera=3: executed() devuelve true | testGivenWater5AndWax3WhenExecutingProgramRequiringWater0AndWax0ThenExecutedIsTrue |
+| U15 | ExecuteCleaningProgramUseCaseTest | Programa con requisitos agua=0 y cera=0 con agua=5 y cera=3: el inventario no cambia (agua=5, cera=3) | testGivenWater5AndWax3WhenExecutingProgramRequiringWater0AndWax0ThenStockIsPreserved |
+| V1 | CleaningRobotServiceTest | Constructor con inventario nulo lanza NullPointerException | testGivenCleaningInventoryNullWhenCreatingCleaningRobotServiceThenThrowsNullPointerException
+| V2 | CleaningRobotServiceTest | executeProgram(null) lanza NullPointerException | testGivenNullCleaningProgramWhenExecutingProgramThenThrowsNullPointerException
+| V3 | CleaningRobotServiceTest | Limpiacristales=1 y programa requiere limpiacristales=1: executed() devuelve true	| testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenResultExecutedIsTrue
+| V4 | CleaningRobotServiceTest | Limpiacristales=1 y programa requiere limpiacristales=1: missingProducts está vacío | testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenResultMissingProductsIsEmpty
+| V5 | CleaningRobotServiceTest | Limpiacristales=1 y programa requiere limpiacristales=2: executed() devuelve false | testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenResultExecutedIsFalse
+| V6 | CleaningRobotServiceTest | Limpiacristales=1 y programa requiere limpiacristales=2: missingProducts es {limpiacristales=1} | testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenResultMissingProductGlassCleaner1
+| V7 | CleaningRobotServiceTest | Limpiacristales=1 y programa requiere limpiacristales=2: la existencia sigue en 1	| testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner2ThenGlassCleanerStockRemains1
+| V8 | CleaningRobotServiceTest | Limpiacristales=1 y programa requiere limpiacristales=1: la existencia pasa a 0 | testGivenGlassCleaner1WhenExecutingProgramRequiringGlassCleaner1ThenGlassCleanerStockBecomes0
 
 ---
 
 ### Defectos detectados y corregidos
 
-Cada defecto se descubrió primero mediante un test que falló. Los commits de corrección se hicieron después, manteniendo el test revelador en la batería final.
+Cada defecto se descubrió primero mediante un test que falló. Los commits de corrección se hicieron tras descubrir cada defecto, manteniendo el test revelador en la batería final.
 
 | ID | Prueba que revela el defecto | Esperado / observado | Causa y corrección | Commit |
 | --- | --- | --- | --- | --- |
@@ -117,6 +144,11 @@ Cada defecto se descubrió primero mediante un test que falló. Los commits de c
 | D9 | testGivenWater2WhenExecutingProgramRequiringWater2ThenExecutesAndWaterStockBecomes0 | Ejecuta / Marca faltante | La condición era available <= required en lugar de available < required. Corregida. | [Hash del commit] |
 | D10 | testGivenWater1WhenExecutingProgramRequiringWater2ThenReportsWater1Missing | Falta 1 / Falta 2 | El caso de uso reportaba required en lugar de required − available. Corregido. | [Hash del commit] |
 | D11 | testGivenWater2AndSoap0WhenExecutingProgramRequiringWater2AndSoap1ThenReportsSoap1MissingAndPreservesStock | Sin consumo / Consume agua | El caso de uso consumía en el mismo bucle en el que detectaba faltantes. Se reescribió en dos pasadas. | [Hash del commit] |
+| D12 | testGivenExecutedTrueAndMissingProductsWater5Wax3WhenCreatingResultThenMissingProductsIsEmpty | true / false | No se puede devolver un mapa de productos faltantes con contenido si el resultado de ejecución es true. Se añade funcionalidad para lanzar IllegalArgumentException en caso de intentar crear un ExecutionResult de estas características. | 92d1236bb09a402b12143d47d4ce6c0f6a52e5e9 |
+| D13 | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenMissingProductsIsEmpty | true / false | El mapa de productos faltantes devuelto debería de estar vacío, ya que las cantidades de inventario y requeridas son iguales. Se ajusta el código para que sólo se consuman productos del inventario en caso de que no exista ningún producto faltante. | 14acf5061e078751fd0f2e06d3a425805835578e |
+| D14 | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax5ThenResultMissingProductsWax2 | {cera=2} / {cera=5, agua=5} | No se restan correctamente las cantidades de cada producto del inventario. Se ajusta la forma de insertar elementos en el mapa de productos faltantes para que el valor de cada producto sea el de requerido menos disponible. | 14acf5061e078751fd0f2e06d3a425805835578e |
+| D15 | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenExecutedIsTrue | true / false | No se ejecuta correctamente el programa de limpieza aunque las cantidades de cada producto de inventario y requeridas sean las de un programa válido. Se ajusta el condicional para que el caso de que se tenga que añadir un producto al mapa de productos faltantes sea de disponible < requerido, y no disponible <= requerido | 14acf5061e078751fd0f2e06d3a425805835578e |
+| D16 | testGivenWater5AndWax3WhenExecutingProgramRequiringWater5AndWax3ThenWater0Wax0 | 0 / 5 | No se restan correctamente las cantidades de cada producto del inventario. Se ajusta la forma de insertar elementos en el mapa de productos faltantes para que el valor de cada producto sea el de requerido menos disponible. | 14acf5061e078751fd0f2e06d3a425805835578e |
 
 ---
 
