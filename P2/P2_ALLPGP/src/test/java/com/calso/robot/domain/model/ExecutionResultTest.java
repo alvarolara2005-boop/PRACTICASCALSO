@@ -48,8 +48,9 @@ class ExecutionResultTest {
 
 	@Test
 	void testGivenExecutedTrueAndMissingProductsWater5Wax3WhenCreatingResultThenThrowsIllegalArgumentException() {
-		assertThrows(IllegalArgumentException.class,
-				() -> new ExecutionResult(true, Map.of(CleaningProduct.WATER, 5, CleaningProduct.WAX, 3)));
+		Map<CleaningProduct, Integer> mapa = Map.of(CleaningProduct.WATER, 5, CleaningProduct.WAX, 3);
+
+		assertThrows(IllegalArgumentException.class, () -> new ExecutionResult(true, mapa));
 	}
 
 	@Test
