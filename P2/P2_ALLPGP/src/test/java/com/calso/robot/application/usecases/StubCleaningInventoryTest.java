@@ -53,10 +53,17 @@ class StubCleaningInventoryTest {
 
 		assertThrows(IllegalArgumentException.class, () -> new StubCleaningInventory(stock));
 	}
+	
+	@Test
+	void testGivenSoap0WhenCreatingNewStubCleaningInventoryThenDoesNotThrowAnyException() {
+		stock.put(CleaningProduct.SOAP, 0);
+
+		assertDoesNotThrow(() -> new StubCleaningInventory(stock));
+	}
 
 	@Test
-	void testGivenCorrectMapWhenCreatingNewStubCleaningInventoryThenDoesNotThrowAnyException() {
-		stock.put(CleaningProduct.SOAP, 12);
+	void testGivenSoap1WhenCreatingNewStubCleaningInventoryThenDoesNotThrowAnyException() {
+		stock.put(CleaningProduct.SOAP, 1);
 
 		assertDoesNotThrow(() -> new StubCleaningInventory(stock));
 	}
