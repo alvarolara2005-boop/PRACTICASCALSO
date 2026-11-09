@@ -1,28 +1,19 @@
 # Práctica 3 — Diseño y ejecución de pruebas de software de caja blanca y de caja negra
 
-**Asignatura:** Calidad del Software · Curso 2026–2027  
-**Caso de estudio:** Dojo Reservation
+---
 
-## 1. Descripción general
-
-El Ayuntamiento de una localidad gestiona la asignación de dojos para entrenamientos de equipos de cinco luchadores y el cálculo de su coste en la gestión de campeonatos de artes marciales. La aplicación está implementada en Java y dispone de dos páginas web: **búsqueda de dojos** y **cálculo del coste**.
-
-El objetivo general es comprobar el comportamiento programado mediante técnicas de **caja blanca** (caminos independientes y cobertura de condiciones seleccionadas) y de **caja negra** (clases de equivalencia y análisis de valores límite), analizar resultados de calidad y justificar las correcciones de los defectos incluidos en las clases de estudio.
-
-El documento [especificación funcional](docs/ESPECIFICACION.md) es la referencia para identificar los resultados esperados en el proceso de prueba; la [guía técnica y de pruebas](docs/GUIA_PRUEBAS.md) describe el uso de JUnit 5, Selenium y Maven.
-
-## 2. Reparto y responsabilidades
-
-Si la práctica es realizada por un único alumno deberá implementar el total de las pruebas de todos los ficheros propuestos para realizar las pruebas y deberá realizar la entrega completa de la práctica. En el caso de grupos formados por dos miembros se deberá seguir el siguiente reparto de responsabilidades:
+# Reparto y responsabilidades
 
 | Integrante | Caja blanca: métodos de dominio | Caja negra: interfaz |
 |---|---|---|
-| **Álvaro Lara Lara**| `containsAllRequiredWeapons` y `DojoSearchService.findFirstAvailableDojo`  | Búsqueda de dojos (`/dojos`) |
-| **Pablo García Pérez** | `ReservationDiscountService.findYoungestFighter` y `calculateBestDiscount` | Costes y bonificaciones (`/coste`) |
+| **Álvaro Lara Lara**| `DojoSearchService.containsAllRequiredWeapons` y `DojoSearchService.findFirstAvailableDojo`  | Búsqueda de dojos (`/dojos`) |
+| **Pablo García Pérez** | `ReservationDiscountService.findYoungestFighter` y `ReservationDiscountService.calculateBestDiscount` | Costes y bonificaciones (`/coste`) |
 
-## Actividad 1
+---
 
-### Alumno 1
+# Actividad 1 - Pruebas de caja blanca
+
+## Álvaro Lara Lara
 
 ### 1. Método `DojoSearchService.containsAllRequiredWeapons`
 
@@ -47,28 +38,32 @@ public boolean containsAllRequiredWeapons(Set<Weapon> available, Set<Weapon> req
 
 #### 1.2 Grafo de flujo
 
-Nodos:
+| Nodo | Contenido |
+| -- | -- |
+| 1 | entrada |
+| 2 | D1: available == null |
+| 3 | throw NPE "Available weapons are required" |
+| 4 | D2: required == null |
+| 5 | throw NPE "Required weapons are required" |
+| 6 | D3: available.containsAll(required) |
+| 7 | return true (D3 verdadero) |
+| 8 | return false (D3 falso) |
+| 9 | fin |
 
-Nodo	Contenido
-1	entrada
-2	D1: available == null
-3	throw NPE "Available weapons are required"
-4	D2: required == null
-5	throw NPE "Required weapons are required"
-6	D3: available.containsAll(required)
-7	return true (D3 verdadero)
-8	return false (D3 falso)
-9	fin
-
-Aristas:
-1→2
-2→3 (T), 2→4 (F)
-3→9
-4→5 (T), 4→6 (F)
-5→9
-6→7 (T), 6→8 (F)
-7→9
-8→9
+```mermaid
+flowchart TB;
+    1(("1")) --> 2(("2"));
+    2 -->|"True"| 3(("3"));
+    2 -->|"False"| 4(("4"));
+    3 --> 9(("9"));
+    4 -->|"True"| 5(("5"));
+    4 -->|"False"| 6(("6"));
+    5 --> 9;
+    6 -->|"True"| 7(("7"));
+    6 -->|"False"| 8(("8"));
+    7 --> 9;
+    8 --> 9;
+```
 
 #### 1.3 Complejidad ciclomática
 
@@ -91,9 +86,11 @@ V(G) = 4. Las tres fórmulas coinciden.
 
 Los 4 caminos son factibles y cubren las 11 aristas. V(G) = 4 = tamaño de la base.
 
-#### 1.5 Tests JUnit 5
+#### 1.5 Tests con JUnit 5
 
-en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceWeaponsTest.java`
+En `es.um.calso.dojoreservation.domain.service.DojoSearchServiceWeaponsTest.java`
+
+---
 
 ### 2. Método `DojoSearchService.findFirstAvailableDojo`
 
@@ -131,42 +128,54 @@ public Optional<Dojo> findFirstAvailableDojo(
 
 Nodos:
 
-1	entrada
-2	D1: dojos == null
-3	throw NPE "Dojos are required"
-4	D2: requiredWeapons == null
-5	throw NPE "Required weapons are required"
-6	D3: reservations == null
-7	throw NPE "Reservations are required"
-8	D4: trainingDate == null
-9	throw NPE "Training date is required"
-10	D5: bucle externo — ¿hay dojo?
-11	D6: containsAllRequiredWeapons(...)
-12	D7: bucle interno — ¿hay reserva?
-13	D8: r.dojoId().equals(dojo.id()) && !r.trainingDate().equals(trainingDate)
-14	D10: !occupied
-15	return Optional.of(dojo)
-16	return Optional.empty()
-17	fin
+| Nodo | Contenido |
+| -- | -- |
+| 1 | entrada
+| 2 | D1: dojos == null
+| 3 | throw NPE "Dojos are required"
+| 4 | D2: requiredWeapons == null
+| 5 | throw NPE "Required weapons are required"
+| 6 | D3: reservations == null
+| 7 | throw NPE "Reservations are required"
+| 8 | D4: trainingDate == null
+| 9 | throw NPE "Training date is required"
+| 10 | D5: bucle externo — ¿hay dojo?
+| 11 | D6: containsAllRequiredWeapons(...)
+| 12 | D7: bucle interno — ¿hay reserva?
+| 13 | D8: r.dojoId().equals(dojo.id()) && !r.trainingDate().| equals(trainingDate)
+| 14 | D10: !occupied
+| 15 | return Optional.of(dojo)
+| 16 | return Optional.empty()
+| 17 | fin
 
-Aristas:
-
-1→2
-2→3 (T), 2→4 (F)
-3→17
-4→5 (T), 4→6 (F)
-5→17
-6→7 (T), 6→8 (F)
-7→17
-8→9 (T), 8→10 (F)
-9→17
-10→11 (T, hay dojo), 10→16 (F, no hay más dojos)
-11→12 (T, compatible), 11→10 (F, incompatible → siguiente dojo)
-12→13 (T, hay reserva), 12→14 (F, no hay más reservas)
-13→14 (T, ocupado → break sale del bucle interno), 13→12 (F, no ocupado → siguiente reserva)
-14→15 (T, !occupied), 14→10 (F, occupied → siguiente dojo)
-15→17
-16→17
+```mermaid
+flowchart TB;
+    1(("1")) --> 2(("2"));
+    2 -->|"True"| 3(("3"));
+    2 -->|"False"| 4(("4"));
+    3 --> 17(("17"));
+    4 -->|"True"| 5(("5"));
+    4 -->|"False"| 6(("6"));
+    5 --> 17;
+    6 -->|"True"| 7(("7"));
+    6 -->|"False"| 8(("8"));
+    7 --> 17;
+    8 -->|"True"| 9(("9"));
+    8 -->|"False"| 10(("10"));
+    9 --> 17;
+    10 -->|"True,<br>hay dojo"| 11(("11"));
+    10 -->|"False,<br>no hay más<br>dojos"| 16(("16"));
+    11 -->|"True,<br>compatible"| 12(("12"));
+    11 -->|"False,<br>incompatible<br>→ siguiente dojo"| 10;
+    12 -->|"True,<br>hay reserva"| 13(("13"));
+    12 -->|"False,<br>no hay más<br>reservas"| 14(("14"));
+    13 -->|"True,<br>ocupado → break<br>sale del bucle<br>interno"| 14;
+    13 -->|"False,<br>no ocupado<br>→ siguiente reserva"| 12;
+    14 -->|"True,<br>no ocupado"| 15(("15"));
+    14 -->|"False,<br>ocupado<br>→ siguiente dojo"| 10;
+    15 --> 17;
+    16 --> 17;
+```
 
 #### 2.3 Complejidad ciclomática
 
@@ -199,7 +208,7 @@ Valor adoptado: V(G) = 10, que coincide por la definición de McCabe (nodos con 
 
 Los 10 caminos son factibles y cubren las 27 aristas. V(G) = 10 = tamaño de la base. 
 
-### 2.5 Trazabilidad camino → test
+#### 2.5 Trazabilidad camino → test
 
 | Camino | Test JUnit |
 | --- | --- |
@@ -229,9 +238,11 @@ B = !reservation.trainingDate().equals(trainingDate)
 | A | testGivenReservationForSameDojoOtherDateWhenFindFirstThenDojoReturned (A=T, B=T) | testGivenReservationForOtherDojoWhenFindFirstThenDojoReturned (A=F; B no se evalúa por cortocircuito de &&) |
 | B | testGivenReservationForSameDojoOtherDateWhenFindFirstThenDojoReturned (B=T) | testGivenReservationForSameDojoSameDateWhenFindFirstThenDojoReturned (B=F) |
 
-#### 2.7 Tests JUnit 5
+#### 2.7 Tests con JUnit 5
 
 en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.java`
+
+---
 
 ### 3. Tabla resumen de trazabilidad
 
@@ -240,11 +251,131 @@ en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.ja
 | containsAllRequiredWeapons | 5 | C1–C4 | 5 | Ninguno (usa containsAll correctamente) |
 | findFirstAvailableDojo | 11 | C1–C10 | 12 | D-1: condición de ocupación usa !equals en la fecha |
 
-## Actividad 2
+---
 
-### 1. Identificación de clases de equivalencia
+## Pablo García Pérez
 
-#### 1.1 Factores de entrada
+### 1. Método `ReservationDiscountService.findYoungestFighter`
+
+#### 1.1 Código analizado
+
+```java
+public Optional<Fighter> findYoungestFighter(
+        List<Fighter> fighters,
+        LocalDate referenceDate) {
+    if (fighters == null) {
+        throw new NullPointerException("Fighters are required");
+    }
+    if (referenceDate == null) {
+        throw new NullPointerException("Reference date is required");
+    }
+    Fighter youngest = null;
+    for (Fighter fighter : fighters) {
+        if (fighter == null) {
+            throw new NullPointerException("Null fighter");
+        }
+        if (youngest == null || fighter.birthDate().isBefore(youngest.birthDate())) {
+            youngest = fighter;
+        }
+    }
+    return Optional.ofNullable(youngest);
+}
+```
+
+#### 1.2 Grafo de flujo
+
+| Nodo | Contenido |
+| -- | -- |
+| 1 |  |
+| 2 |  |
+
+```mermaid
+flowchart TB;
+    1(("1")) --> 2(("2"));
+```
+
+#### 1.3 Complejidad ciclomática
+
+#### 1.4 Base de caminos independientes
+
+#### 1.5 Tests con JUnit 5
+
+---
+
+### 2. Método `ReservationDiscountService.calculateBestDiscount`
+
+#### 2.1 Código analizado
+
+```java
+public Discount calculateBestDiscount(
+        List<Fighter> fighters,
+        LocalDate trainingDate) {
+    if (fighters == null) {
+        throw new NullPointerException("Fighters are required");
+    }
+    if (trainingDate == null) {
+        throw new NullPointerException("Training date is required");
+    }
+    int bestPercentage = 0;
+    Optional<Fighter> youngest = findYoungestFighter(fighters, trainingDate);
+    if (youngest.isPresent()) {
+        int age = youngest.orElseThrow().ageAt(trainingDate);
+        if (age < 18) {
+            bestPercentage = 15;
+        }
+    }
+    for (Fighter fighter : fighters) {
+        if (fighter == null) {
+            throw new NullPointerException("Null fighter");
+        }
+        Optional<UnemploymentPeriod> period = fighter.unemployment();
+        if (period.isPresent()) {
+            long completeYears = period.orElseThrow().completeYearsAt(trainingDate);
+            int unemploymentPercentage = 0;
+            if (completeYears >= 3) {
+                unemploymentPercentage = 30;
+            } else if (completeYears > 2) {
+                unemploymentPercentage = 20;
+            } else if (completeYears >= 1) {
+                unemploymentPercentage = 10;
+            }
+            if (unemploymentPercentage > bestPercentage) {
+                bestPercentage = unemploymentPercentage;
+            }
+        }
+    }
+    return new Discount(bestPercentage);
+}
+```
+
+#### 2.2 Grafo de flujo
+
+#### 2.3 Complejidad ciclomática
+
+#### 2.4 Base de caminos independientes
+
+#### 2.5 Trazabilidad camino → test
+
+#### 2.6 Cobertura de condiciones seleccionadas
+
+#### 2.7 Tests con JUnit 5
+
+---
+
+### 3. Tabla resumen de trazabilidad
+
+| Método | V(G) | Caminos | Tests implementados | Defecto detectado |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+|  |  |  |  |  |
+
+---
+
+# Actividad 2 - Caja negra con Selenium
+
+## 1. Identificación de clases de equivalencia
+
+### 1.1 Factores de entrada
 
 | Factor | Descripción | Dominio |
 | --- | --- | --- |
@@ -253,7 +384,7 @@ en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.ja
 | F3 | Estado de disponibilidad del dojo | Reserva existente con mismo dojoId y misma fecha |
 | F4 | Compatibilidad de armas | Dojo contiene todas las armas requeridas del equipo |
 
-#### 1.2 Tabla de clases de equivalencia
+### 1.2 Tabla de clases de equivalencia
 
 | Código | Factor / estado | Condición de pertenencia | Válida / inválida | Comportamiento exigido |
 | --- | --- | --- | --- | --- |
@@ -271,7 +402,7 @@ en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.ja
 | CE12 | F3 Ocupación | Reserva con mismo dojoId y misma fecha | Válida | Fila con status-no "Ocupado" |
 | CE13 | F3 Ocupación | Reserva con mismo dojoId pero distinta fecha | Válida | Fila |
 
-#### 1.3 Análisis de valores límite
+### 1.3 Análisis de valores límite
 
 | Factor | Valor inmediatamente inferior | Valor del límite | Valor inmediatamente superior | Casos elegidos y expectativas |
 | --- | --- | --- | --- | --- |
@@ -281,11 +412,11 @@ en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.ja
 | F3 ocupación | reserva D-001 @ 2027-11-20 (CE13, distinta fecha) | reserva D-001 @ 2026-11-20 (CE12, misma fecha) | — | Con EQ-001 y 2026-11-20 → D-001 ocupado; con EQ-001 y 2026-11-21 → D-001 libre |
 | F4 compatibilidad | EQ-002 (Bo) contra D-001 (Katana+Bokken, CE11) | EQ-001 (Katana+Bokken) contra D-001 (CE10) |  |  |
 
-#### 1.5 Implementación Selenium
+### 1.5 Implementación Selenium
 
-en `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
+En `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 
-#### 1.6 Cobertura de clases de equivalencia
+### 1.6 Cobertura de clases de equivalencia
 
 | Clase | Caso(s) | Estado |
 | --- | --- | --- |
@@ -303,7 +434,7 @@ en `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 | CE12 | CN2 | Cubierta |
 | CE13 | CN3 | Cubierta (detecta defecto) |
 
-#### 1.7 Trazabilidad clase → test
+### 1.7 Trazabilidad clase → test
 
 | Clase | Test |
 | --- | --- |
@@ -317,7 +448,7 @@ en `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 | CE10, CE11 | testGivenTigerTeam... |
 | CE7 | testGivenMalformedDate... |
 
-#### 1.8 Ejecución y resultados
+### 1.8 Ejecución y resultados
 
 | Test | Resultado | Motivo |
 | --- | --- | --- |
@@ -331,7 +462,7 @@ en `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 | CN9 testGivenTigerTeam... | GREEN | D-001 incompatible, D-003 seleccionado |
 | CN10 testGivenMalformedDate... | GREEN | Spring MVC devuelve 400; no hay tabla ni error de dominio |
 
-#### 1.9 Defecto detectado (CN3)
+### 1.9 Defecto detectado (CN3)
 
 Síntoma: al buscar con EQ-001 y 2026-11-21, la fila de D-001 aparece como "Ocupado" y se selecciona D-002, cuando la reserva de D-001 es para 2026-11-20 y 2027-11-20 (fechas distintas).
 
@@ -349,9 +480,11 @@ if (reservation.dojoId().equals(dojo.id())
 
 Regresión: tras la corrección, CN3 pasa a GREEN; CN1, CN2, CN4–CN7, CN9, CN10 permanecen GREEN. Se repite mvn -Pe2e clean verify y se verifica también la suite unitaria (mvn clean verify).
 
-## Actividad 3. Calidad, defectos y regresión
+---
 
-### 1. Defectos y correcciones 
+# Actividad 3 - Calidad, defectos y regresión
+
+## 1. Defectos y correcciones 
 
 D-1 · findFirstAvailableDojo marca ocupado un dojo con reserva en otra fecha
 Síntoma: al buscar EQ-001 con 2026-11-21, la fila de D-001 aparece "Ocupado" y se selecciona D-002, cuando la reserva de D-001 es de 2026-11-20 y 2027-11-20 (fechas distintas).
