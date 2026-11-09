@@ -71,8 +71,7 @@ class ReservationDiscountServiceFindYoungestFighterTest {
 	@Test
 	void testGivenMultipleFightersWhenFindYoungestThenReturnsYoungest() {
 		Fighter older = new Fighter("Mayor", LocalDate.of(1990, 5, 10), new UnemploymentPeriod(LocalDate.now()));
-		Fighter youngest = new Fighter("Joven", LocalDate.of(2008, 12, 15),
-				new UnemploymentPeriod(LocalDate.now()));
+		Fighter youngest = new Fighter("Joven", LocalDate.of(2008, 12, 15), new UnemploymentPeriod(LocalDate.now()));
 		Fighter middle = new Fighter("Mediano", LocalDate.of(2000, 3, 20),
 				new UnemploymentPeriod(LocalDate.of(2026, 2, 24)));
 
@@ -83,6 +82,20 @@ class ReservationDiscountServiceFindYoungestFighterTest {
 
 		assertTrue(result.isPresent());
 		assertEquals(youngest.name(), result.get().name());
+	}
+
+	@Test
+	void testGivenMultipleFightersSameBirthDateWhenFindYoungestThenReturnsFirst() {
+		Fighter first = new Fighter("Luchador 1", LocalDate.of(2008, 12, 15), new UnemploymentPeriod(LocalDate.now()));
+		Fighter second = new Fighter("Luchador 2", LocalDate.of(2008, 12, 15), new UnemploymentPeriod(LocalDate.now()));
+
+		List<Fighter> fighters = List.of(first, second);
+		LocalDate referenceDate = LocalDate.of(2026, 10, 20);
+
+		Optional<Fighter> result = discountService.findYoungestFighter(fighters, referenceDate);
+
+		assertTrue(result.isPresent());
+		assertEquals(first.name(), result.get().name());
 	}
 
 }
