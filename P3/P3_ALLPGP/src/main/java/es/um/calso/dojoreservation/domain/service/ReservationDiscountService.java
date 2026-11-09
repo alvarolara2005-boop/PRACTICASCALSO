@@ -25,7 +25,7 @@ public final class ReservationDiscountService {
             if (fighter == null) {
                 throw new NullPointerException("Null fighter");
             }
-            if (youngest == null || fighter.birthDate().isBefore(youngest.birthDate())) {
+            if (youngest == null || fighter.birthDate().isAfter(youngest.birthDate())) {
                 youngest = fighter;
             }
         }

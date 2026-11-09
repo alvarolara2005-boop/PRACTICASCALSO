@@ -4,16 +4,16 @@
 
 # Reparto y responsabilidades
 
-| Integrante | Caja blanca: métodos de dominio | Caja negra: interfaz |
-|---|---|---|
-| **Álvaro Lara Lara**| `DojoSearchService.containsAllRequiredWeapons` y `DojoSearchService.findFirstAvailableDojo`  | Búsqueda de dojos (`/dojos`) |
-| **Pablo García Pérez** | `ReservationDiscountService.findYoungestFighter` y `ReservationDiscountService.calculateBestDiscount` | Costes y bonificaciones (`/coste`) |
+| Integrante | Caja blanca: métodos de dominio | Caja negra: interfaz | Rama |
+|---|---|---| --- |
+| **Álvaro Lara Lara (Alumno 1)** | `DojoSearchService.containsAllRequiredWeapons` y `DojoSearchService.findFirstAvailableDojo`  | Búsqueda de dojos (`/dojos`) | main |
+| **Pablo García Pérez (Alumno 2)** | `ReservationDiscountService.findYoungestFighter` y `ReservationDiscountService.calculateBestDiscount` | Costes y bonificaciones (`/coste`) | P3-pablo |
 
 ---
 
 # Actividad 1 - Pruebas de caja blanca
 
-## Álvaro Lara Lara
+## Álvaro Lara Lara (Alumno 1)
 
 ### 1. Método `DojoSearchService.containsAllRequiredWeapons`
 
@@ -88,7 +88,7 @@ Los 4 caminos son factibles y cubren las 11 aristas. V(G) = 4 = tamaño de la ba
 
 #### 1.5 Tests con JUnit 5
 
-En `es.um.calso.dojoreservation.domain.service.DojoSearchServiceWeaponsTest.java`
+En `es.um.calso.dojoreservation.domain.service.DojoSearchServiceWeaponsTest.java`.
 
 ---
 
@@ -179,9 +179,11 @@ flowchart TB;
 
 #### 2.3 Complejidad ciclomática
 
-N = 17 nodos · A = 27 aristas · Predicados = D1, D2, D3, D4, D5, D6, D7, D8, D10 = 9.
+- N = 17 nodos
+- A = 27 aristas
+- Predicados = D1, D2, D3, D4, D5, D6, D7, D8, D10 = 9
 
-| Fórmula | Cálculo | Resultado
+| Fórmula | Cálculo | Resultado |
 | --- | --- | --- |
 | Predicados + 1 | 9 + 1 | 10 |
 | Aristas - Nodos + 2 | 27 - 17 +2| 12 |
@@ -189,7 +191,7 @@ N = 17 nodos · A = 27 aristas · Predicados = D1, D2, D3, D4, D5, D6, D7, D8, D
 
 Discrepancia: A − N + 2 da 12 porque el break introduce la arista 13→14, que sale del bucle interno sin pasar por su condición de terminación (12→14). Esa arista rompe la estructura propiamente anidada (properly nested) que asume la fórmula A − N + 2; por eso esa fórmula no es aplicable cuando hay break/continue/return internos.
 
-Valor adoptado: V(G) = 10, que coincide por la definición de McCabe (nodos con ≥2 aristas de salida + 1) y por el recuento de regiones, y es el número de caminos linealmente independientes
+V(G) = 10, que coincide por la definición de McCabe (nodos con ≥2 aristas de salida + 1) y por el recuento de regiones, y es el número de caminos linealmente independientes.
 
 #### 2.4 Base de caminos independientes
 
@@ -228,10 +230,8 @@ Los 10 caminos son factibles y cubren las 27 aristas. V(G) = 10 = tamaño de la 
 Decisión asignada: reservation.dojoId().equals(dojo.id()) && !reservation.trainingDate().equals(trainingDate) (D8).
 
 Condiciones atómicas:
-
-A = reservation.dojoId().equals(dojo.id())
-
-B = !reservation.trainingDate().equals(trainingDate)
+- A = reservation.dojoId().equals(dojo.id())
+- B = !reservation.trainingDate().equals(trainingDate)
 
 | Condición | Caso que evalúa | Caso que evalúa falso | 
 | --- | --- | --- |
@@ -240,7 +240,7 @@ B = !reservation.trainingDate().equals(trainingDate)
 
 #### 2.7 Tests con JUnit 5
 
-en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.java`
+En `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.java`.
 
 ---
 
@@ -253,7 +253,7 @@ en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.ja
 
 ---
 
-## Pablo García Pérez
+## Pablo García Pérez (Alumno 2)
 
 ### 1. Método `ReservationDiscountService.findYoungestFighter`
 
@@ -263,18 +263,18 @@ en `es.um.calso.dojoreservation.domain.service.DojoSearchServiceFindFirstTest.ja
 public Optional<Fighter> findYoungestFighter(
         List<Fighter> fighters,
         LocalDate referenceDate) {
-    if (fighters == null) {
+    if (fighters == null) {                                             // D1
         throw new NullPointerException("Fighters are required");
     }
-    if (referenceDate == null) {
+    if (referenceDate == null) {                                        // D2
         throw new NullPointerException("Reference date is required");
     }
     Fighter youngest = null;
-    for (Fighter fighter : fighters) {
-        if (fighter == null) {
+    for (Fighter fighter : fighters) {                                  // D3 (bucle for)
+        if (fighter == null) {                                          // D4
             throw new NullPointerException("Null fighter");
         }
-        if (youngest == null || fighter.birthDate().isBefore(youngest.birthDate())) {
+        if (youngest == null || fighter.birthDate().isBefore(youngest.birthDate())) {   // D5
             youngest = fighter;
         }
     }
@@ -286,19 +286,82 @@ public Optional<Fighter> findYoungestFighter(
 
 | Nodo | Contenido |
 | -- | -- |
-| 1 |  |
-| 2 |  |
+| 1 | entrada |
+| 2 | D1: fighters == null |
+| 3 | lanzar NullPointerException "Fighters are required" |
+| 4 | D2: referenceDate == null |
+| 5 | lanzar NullPointerException "Reference date is required" |
+| 6 | Fighter youngest = null |
+| 7 | D3: bucle for, por cada luchador en fighters |
+| 8 | D4: fighter == null |
+| 9 | lanzar NullPointerException "Null fighter" |
+| 10 | D5: youngest == null \|\| fighter.birthDate().isBefore(youngest.birthDate()) |
+| 11 | youngest = fighter |
+| 12 | return Optional.ofNullable(youngest) |
+| 13 | fin |
 
 ```mermaid
 flowchart TB;
     1(("1")) --> 2(("2"));
+    2 -->|"True,<br>fighters = null"| 3(("3"));
+    2 -->|"False,<br>fighters != null"| 4(("4"));
+    3 --> 13(("13"));
+    4 -->|"True,<br>referenceDate = null"| 5(("5"));
+    4 -->|"False,<br>referenceDate != null"| 6(("6"));
+    5 --> 13;
+    6 --> 7(("7"));
+    7 -->|"True,<br>hay otro<br>luchador"| 8(("8"));
+    7 -->|"False,<br>no hay más<br>luchadores"| 12(("12"));
+    8 -->|"True,<br>fighter = null"| 9(("9"));
+    8 -->|"False,<br>fighter != null"| 10(("10"));
+    9 --> 13;
+    10 -->|"False,<br>no es<br>más joven"| 7;
+    10 -->|"True, es<br>más joven"| 11(("11"));
+    11 --> 7;
+    12 --> 13;
 ```
 
 #### 1.3 Complejidad ciclomática
 
+- N = 13 nodos
+- A = 17 aristas
+- Predicados = D1, D2, D3, D4, D5 = 5
+
+| Fórmula | Cálculo | Resultado |
+| -- | -- | -- |
+| Predicados + 1 | 5 + 1 | 6 |
+| Aristas - Nodos + 2 | 17 - 13 + 2 | 6 |
+| Regiones | exterior + 5 internas | 6 |
+
+V(G) = 6. Las tres fórmulas coinciden, teniendo en cuenta que hemos agrupado en D5 `youngest == null` y `fighter.birthDate().isBefore(youngest.birthDate())` en un sólo nodo.
+
 #### 1.4 Base de caminos independientes
 
+| Camino | Recorrido | ¿Factible? | Justificación |
+| -- | -- | -- | -- |
+| C1 | 1-2-3-13 | Sí | fighters == null |
+| C2 | 1-2-4-5-13 | Sí | fighters válido, referenceDate == null |
+| C3 | 1-2-4-6-7-12-13 | Sí | lista vacía → Optional.empty() |
+| C4 | 1-2-4-6-7-8-9-13 | Sí | lista con un luchador null → NPE "Null fighter" |
+| C5 | 1-2-4-6-7-8-10-11-7-12-13 | Sí | un luchador: youngest == null es true → pasa a ser el más | joven |
+| C6 | 1-2-4-6-7-8-10-11-7-8-10-7-12-13 | Sí | dos luchadores; el segundo no es más joven (más viejo o misma fecha) → arista 10→7 |
+
+Los 6 caminos son factibles y cubren las 17 aristas. V(G) = 6 = tamaño de la base.
+
 #### 1.5 Tests con JUnit 5
+
+En `es.um.calso.dojoreservation.domain.service.ReservationDiscountServiceCalculateBestDiscountTest.java`.
+
+| Camino/Escenario | Nombre del test JUnit |
+| -- | -- |
+| C1 | testGivenNullFightersWhenFindYoungestThenThrowsNullPointerException |
+| C2 | testGivenNullReferenceDateWhenFindYoungestThenThrowsNullPointerException |
+| C3 | testGivenEmptyFightersWhenFindYoungestThenResultEmpty |
+| C4 | testGivenNullFighterInListWhenFindYoungestThenThrowsNullPointerException |
+| C5 | testGivenSingleFighterWhenFindYoungestThenReturnsFighter |
+| C6 | testGivenMultipleFightersWhenFindYoungestThenReturnsYoungest |
+
+Se corrige un error en la clase `ReservationDiscountService`. La condición `fighter.birthDate().isBefore(youngest.birthDate())` estaba haciendo que se seleccionara el luchador con más edad de todos y no el más joven, se cambia ``isBefore()`` por `isAfter()` para solucionar esto.
 
 ---
 
@@ -310,36 +373,36 @@ flowchart TB;
 public Discount calculateBestDiscount(
         List<Fighter> fighters,
         LocalDate trainingDate) {
-    if (fighters == null) {
+    if (fighters == null) {                                             // D1
         throw new NullPointerException("Fighters are required");
     }
-    if (trainingDate == null) {
+    if (trainingDate == null) {                                         // D2
         throw new NullPointerException("Training date is required");
     }
     int bestPercentage = 0;
     Optional<Fighter> youngest = findYoungestFighter(fighters, trainingDate);
-    if (youngest.isPresent()) {
+    if (youngest.isPresent()) {                                         // D3
         int age = youngest.orElseThrow().ageAt(trainingDate);
-        if (age < 18) {
+        if (age < 18) {                                                 // D4
             bestPercentage = 15;
         }
     }
-    for (Fighter fighter : fighters) {
-        if (fighter == null) {
+    for (Fighter fighter : fighters) {                                  // D5
+        if (fighter == null) {                                          // D6
             throw new NullPointerException("Null fighter");
         }
         Optional<UnemploymentPeriod> period = fighter.unemployment();
-        if (period.isPresent()) {
+        if (period.isPresent()) {                                       // D7
             long completeYears = period.orElseThrow().completeYearsAt(trainingDate);
             int unemploymentPercentage = 0;
-            if (completeYears >= 3) {
+            if (completeYears >= 3) {                                   // D8
                 unemploymentPercentage = 30;
-            } else if (completeYears > 2) {
+            } else if (completeYears > 2) {                             // D9
                 unemploymentPercentage = 20;
-            } else if (completeYears >= 1) {
+            } else if (completeYears >= 1) {                            // D10
                 unemploymentPercentage = 10;
             }
-            if (unemploymentPercentage > bestPercentage) {
+            if (unemploymentPercentage > bestPercentage) {              // D11
                 bestPercentage = unemploymentPercentage;
             }
         }
@@ -350,15 +413,159 @@ public Discount calculateBestDiscount(
 
 #### 2.2 Grafo de flujo
 
+| Nodo | Contenido |
+| -- | -- |
+| 1 | entrada |
+| 2 | D1: fighters == null |
+| 3 | lanzar NullPointerException "Fighters are required" |
+| 4 | D2: trainingDate == null |
+| 5 | lanzar NullPointerException "Training date is required" |
+| 6 | bestPercentage = 0; youngest = findYoungestFighter(fighters, trainingDate); |
+| 7 | D3: youngest.isPresent() |
+| 8 | age = youngest.orElseThrow().ageAt(trainingDate); D4: age < 18 |
+| 9 | bestPercentage = 15 |
+| 10 | D5: bucle for, mientras queden luchadores |
+| 11 | D6: fighter == null |
+| 12 | lanzar NullPointerException "Null fighter" |
+| 13 | period = fighter.unemployment(); D7: period.isPresent() |
+| 14 | completeYears = period.orElseThrow().completeYearsAt(trainingDate); unemploymentPercentage = 0; D8: completeYears >= 3 |
+| 15 | unemploymentPercentage = 30 |
+| 16 | D9: completeYears > 2 |
+| 17 | unemploymentPercentage = 20 |
+| 18 | D10: completeYears >= 1 |
+| 19 | unemploymentPercentage = 10 |
+| 20 | D11: unemploymentPercentage > bestPercentage |
+| 21 | bestPercentage = unemploymentPercentage |
+| 22 | return new Discount(bestPercentage) |
+| 23 | fin |
+
+```mermaid
+flowchart TB;
+1(("1"));
+    2(("2"));
+    3(("3"));
+    4(("4"));
+    5(("5"));
+    6(("6"));
+    7(("7"));
+    8(("8"));
+    9(("9"));
+    10(("10"));
+    11(("11"));
+    12(("12"));
+    13(("13"));
+    14(("14"));
+    15(("15"));
+    16(("16"));
+    17(("17"));
+    18(("18"));
+    19(("19"));
+    20(("20"));
+    21(("21"));
+    22(("22"));
+    23(("23"));
+
+    1 --> 2;
+    2 -->|"True,<br>fighters = null"| 3;
+    2 -->|"False,<br>fighters != null"| 4;
+    3 --> 23;
+    4 -->|"True,<br>trainingDate = null"| 5;
+    4 -->|"False,<br>trainingDate != null"| 6;
+    5 --> 23;
+    6 --> 7;
+    7 -->|"True,<br>hay más<br>joven"| 8;
+    7 -->|"False,<br>lista vacía"| 10;
+    8 -->|"True,<br><18"| 9;
+    8 -->|"False,<br>>=18"| 10;
+    9 --> 10;
+    10 -->|"True,<br>hay más<br>luchadores"| 11;
+    10 -->|"False, no<br>hay más<br>luchadores"| 22;
+    11 -->|"True,<br>fighter = null"| 12;
+    11 -->|"False,<br>fighter != null"| 13;
+    12 --> 23;
+    13 -->|"False,<br>siguiente<br>luchador"| 10;
+    13 -->|"True,<br>tiene paro"| 14;
+    14 -->|"True,<br>años>=3"| 15;
+    14 -->|"False,<br>años<3"| 16;
+    15 --> 20;
+    16 -->|"True,<br>>2"| 17;
+    16 -->|"False,<br><=2"| 18;
+    17 --> 20;
+    18 -->|"True,<br>años>=1"| 19;
+    18 -->|"False,<br>años<1"| 20;
+    19 --> 20;
+    20 -->|"True,<br>mejora"| 21;
+    20 -->|"False,<br>siguiente<br>luchador"| 10;
+    21 --> 10;
+    22 --> 23;
+```
+
 #### 2.3 Complejidad ciclomática
+
+- N = 23 nodos
+- A = 33 aristas
+- Predicados = D1 a D11 = 11.
+
+| Fórmula | Cálculo | Resultado |
+| -- | -- | -- |
+| Predicados + 1 | 11 + 1 | 12 |
+| Aristas - Nodos + 2 | 33 - 23 + 2 | 12 |
+| Regiones | exterior + 11 internas | 12 |
+
+V(G) = 12. Las tres fórmulas coinciden.
 
 #### 2.4 Base de caminos independientes
 
+| Camino | Recorrido | ¿Factible? | Datos y resultado esperado (según especificación) |
+| -- | -- | -- | -- |
+| C1 | 1-2-3-23 | Sí | fighters = null → NPE “Fighters are required” |
+| C2 | 1-2-4-5-23 | Sí | [Ren 1998-06-01], trainingDate = null → NPE “Training date is required” |
+| C3 | 1-2-4-6-7-10-22-23 | Sí | lista vacía → Discount(0) |
+| C4 | 1-2-4-6-7-8-10-11-13-10-22-23 | Sí | [Ren 1998-06-01] (28 años, sin paro) → 0 % |
+| C5 | 1-2-4-6-7-8-9-10-11-13-10-22-23 | Sí | [Nora 2009-11-20] (17 años) → 15 % |
+| C6 | 1-2-4-6-7-8-10-11-12-23 | No | (Ver justificación abajo) |
+| C7 | 1-2-4-6-7-8-10-11-13-14-16-18-20-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2025-11-21] (0 años completos) → 0 % |
+| C8 | 1-2-4-6-7-8-10-11-13-14-15-20-21-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2023-11-20] (3 años) → 30 % |
+| C9 | 1-2-4-6-7-8-10-11-13-14-16-17-20-21-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2024-11-20] (2 años) → 20 % |
+| C10 | 1-2-4-6-7-8-10-11-13-14-16-18-19-20-21-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2025-11-20] (1 año) → 10 % |
+| C11 | 1-2-4-6-7-8-10-11-13-10-11-13-10-22-23 | Sí | [Ren 1998-06-01, Akira 2000-01-01], sin paro (dos iteraciones) → 0 % |
+| C12 | 1-2-4-6-7-8-9-10-11-13-14-16-18-19-20-10-22-23 | Sí | [Nora 2009-11-20, paro desde 2025-11-20] → juventud 15 %, paro 10 %, solo se aplica el mayor → 15 % |
+
+Los 12 caminos son factibles y cubren las 33 aristas. V(G) = 12 = tamaño de la base.
+
 #### 2.5 Trazabilidad camino → test
+
+| Camino | Test JUnit |
+| -- | -- |
+| C1 | testGivenNullFightersWhenCalculateBestDiscountThenNullPointerWithMessage |
+| C2 | testGivenNullTrainingDateWhenCalculateBestDiscountThenNullPointerWithMessage |
+| C3 | testGivenEmptyFightersWhenCalculateBestDiscountThenZeroPercent |
+| C4 | testGivenAdultWithoutUnemploymentWhenCalculateBestDiscountThenZeroPercent |
+| C5 | testGivenSeventeenYearOldFighterWhenCalculateBestDiscountThenFifteenPercent |
+| C6 | No factible |
+| C7 | testGivenZeroCompleteYearsUnemploymentWhenCalculateBestDiscountThenZeroPercent |
+| C8 | testGivenThreeYearsUnemploymentWhenCalculateBestDiscountThenThirtyPercent |
+| C9 | testGivenTwoYearsUnemploymentWhenCalculateBestDiscountThenTwentyPercent |
+| C10 | testGivenOneYearUnemploymentWhenCalculateBestDiscountThenTenPercent |
+| C11 | testGivenTwoAdultsWithoutUnemploymentWhenCalculateBestDiscountThenZeroPercent |
+| C12 | testGivenSeventeenYearOldWithOneYearUnemploymentWhenCalculateBestDiscountThenFifteenPercent |
 
 #### 2.6 Cobertura de condiciones seleccionadas
 
+Decisión asignada: youngest == null || fighter.birthDate().isBefore(youngest.birthDate()).
+
+Condiciones atómicas:
+- A = youngest == null
+- B = fighter.birthDate().isBefore(youngest.birthDate())
+
+| Condición atómica | Caso que evalúa verdadero | Caso que evalúa falso | Justificación si no es factible |
+| -- | -- | -- | -- |
+| A | testGivenEmptyFightersWhenFindYoungestThenEmpty (o el primer elemento evaluado en una lista válida, donde youngest parte como null) | testGivenTwoFightersWhenFindYoungest (para el segundo elemento de la lista, youngest ya no es null) | - |
+| B | testGivenTwoFightersSecondIsYounger (la fecha del segundo luchador es anterior/más reciente en nacimiento) | testGivenTwoFightersSecondIsOlder (la fecha del segundo luchador es posterior) | - |
+
 #### 2.7 Tests con JUnit 5
+
+En `es.um.calso.dojoreservation.domain.service.ReservationDiscountServiceCalculateBestDiscountTest.java`.
 
 ---
 
@@ -366,8 +573,8 @@ public Discount calculateBestDiscount(
 
 | Método | V(G) | Caminos | Tests implementados | Defecto detectado |
 | --- | --- | --- | --- | --- |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| findYoungestFighter | 6 | C1-C6 | 6 | Ninguno |
+| calculateBestDiscount | 12 | C1-C12 (C6 no factible) | 11 | D-3: completeYears > 2 excluye el límite exacto de 2 años (debería ser >= 2) |
 
 ---
 
