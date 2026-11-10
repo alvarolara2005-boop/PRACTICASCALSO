@@ -56,10 +56,10 @@ class ReservationDiscountServiceCalculateBestDiscountTest {
 		assertEquals(new Discount(0), result);
 	}
 
-	// C5: 1-2-4-6-7-8-9-10-11-13-10-22-23 17 años (Nora, 2009-11-20, cumple 18 en 2027-11-20)
+	// C5: 1-2-4-6-7-8-9-10-11-13-10-22-23 17 años (Nora, 2008-11-20, cumple 18 en 2026-11-20)
 	@Test
 	void testGivenSeventeenYearOldFighterWhenCalculateBestDiscountThenFifteenPercent() {
-		Fighter nora = new Fighter("Nora", LocalDate.of(2009, 11, 20), null);
+		Fighter nora = new Fighter("Nora", LocalDate.of(2008, 11, 20), null);
 		Discount result = service.calculateBestDiscount(List.of(nora), TRAINING_DATE);
 		
 		assertEquals(new Discount(15), result);
