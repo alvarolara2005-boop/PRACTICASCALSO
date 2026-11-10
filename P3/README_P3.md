@@ -2,12 +2,14 @@
 
 ---
 
-# Reparto y responsabilidades
+# Reparto, responsabilidades y enlance video
 
 | Integrante | Caja blanca: métodos de dominio | Caja negra: interfaz | Rama |
 |---|---|---| --- |
 | **Álvaro Lara Lara (Alumno 1)** | `DojoSearchService.containsAllRequiredWeapons` y `DojoSearchService.findFirstAvailableDojo`  | Búsqueda de dojos (`/dojos`) | main |
 | **Pablo García Pérez (Alumno 2)** | `ReservationDiscountService.findYoungestFighter` y `ReservationDiscountService.calculateBestDiscount` | Costes y bonificaciones (`/coste`) | P3-pablo |
+
+**Enlace al vídeo externo (oculto/no listado):** [https://youtu.be/w0ZtG5SBqFw](https://youtu.be/w0ZtG5SBqFw)
 
 ---
 
