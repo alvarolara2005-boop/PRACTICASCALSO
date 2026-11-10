@@ -81,8 +81,8 @@ V(G) = 4. Las tres fórmulas coinciden.
 | --- | --- | --- | --- |
 | C1 | 1-2-3-9 | Sí | available == null |
 | C2 | 1-2-4-5-9 | Sí | required == null con available válido |
-| C3 | 1-2-4-6-7-9 | Sí | todas las requeridas presentes (o required vacío) → true |
-| C4 | 1-2-4-6-8-9 | Sí | falta alguna requerida → false |
+| C3 | 1-2-4-6-7-9 | Sí | todas las requeridas presentes (o required vacío) -> true |
+| C4 | 1-2-4-6-8-9 | Sí | falta alguna requerida -> false |
 
 Los 4 caminos son factibles y cubren las 11 aristas. V(G) = 4 = tamaño de la base.
 
@@ -166,13 +166,13 @@ flowchart TB;
     10 -->|"True,<br>hay dojo"| 11(("11"));
     10 -->|"False,<br>no hay más<br>dojos"| 16(("16"));
     11 -->|"True,<br>compatible"| 12(("12"));
-    11 -->|"False,<br>incompatible<br>→ siguiente dojo"| 10;
+    11 -->|"False,<br>incompatible<br>-> siguiente dojo"| 10;
     12 -->|"True,<br>hay reserva"| 13(("13"));
     12 -->|"False,<br>no hay más<br>reservas"| 14(("14"));
-    13 -->|"True,<br>ocupado → break<br>sale del bucle<br>interno"| 14;
-    13 -->|"False,<br>no ocupado<br>→ siguiente reserva"| 12;
+    13 -->|"True,<br>ocupado -> break<br>sale del bucle<br>interno"| 14;
+    13 -->|"False,<br>no ocupado<br>-> siguiente reserva"| 12;
     14 -->|"True,<br>no ocupado"| 15(("15"));
-    14 -->|"False,<br>ocupado<br>→ siguiente dojo"| 10;
+    14 -->|"False,<br>ocupado<br>-> siguiente dojo"| 10;
     15 --> 17;
     16 --> 17;
 ```
@@ -189,7 +189,7 @@ flowchart TB;
 | Aristas - Nodos + 2 | 27 - 17 +2| 12 |
 | Regiones | exterior + 9 internas | 10 |
 
-Discrepancia: A − N + 2 da 12 porque el break introduce la arista 13→14, que sale del bucle interno sin pasar por su condición de terminación (12→14). Esa arista rompe la estructura propiamente anidada (properly nested) que asume la fórmula A − N + 2; por eso esa fórmula no es aplicable cuando hay break/continue/return internos.
+Discrepancia: A − N + 2 da 12 porque el break introduce la arista 13->14, que sale del bucle interno sin pasar por su condición de terminación (12->14). Esa arista rompe la estructura propiamente anidada (properly nested) que asume la fórmula A − N + 2; por eso esa fórmula no es aplicable cuando hay break/continue/return internos.
 
 V(G) = 10, que coincide por la definición de McCabe (nodos con ≥2 aristas de salida + 1) y por el recuento de regiones, y es el número de caminos linealmente independientes.
 
@@ -202,15 +202,15 @@ V(G) = 10, que coincide por la definición de McCabe (nodos con ≥2 aristas de 
 | C3 | 1-2-4-6-7-17 | Sí | reservations == null |
 | C4 | 1-2-4-6-8-9-17 | Sí | trainingDate == null |
 | C5 | 1-2-4-6-8-10-16-17 | Sí | lista de dojos vacía |
-| C6 | 1-2-4-6-8-10-11-10-16-17 | Sí | dojo incompatible → siguiente → agotado |
-| C7 | 1-2-4-6-8-10-11-12-14-15-17 | Sí | compatible, sin reservas → devuelve |
-| C8 | 1-2-4-6-8-10-11-12-13-12-14-15-17 | Sí | reserva no ocupante (A=false o B=false) → siguiente reserva → fin → devuelve |
-| C9 | 1-2-4-6-8-10-11-12-13-14-10-16-17 | Sí | reserva ocupante (A=T,B=T) → break → siguiente dojo → agotado |
-| C10 | 1-2-4-6-8-10-11-12-13-14-10-11-12-14-15-17 | Sí | primer dojo ocupado, segundo compatible y libre → devuelve segundo |
+| C6 | 1-2-4-6-8-10-11-10-16-17 | Sí | dojo incompatible -> siguiente -> agotado |
+| C7 | 1-2-4-6-8-10-11-12-14-15-17 | Sí | compatible, sin reservas -> devuelve |
+| C8 | 1-2-4-6-8-10-11-12-13-12-14-15-17 | Sí | reserva no ocupante (A=false o B=false) -> siguiente reserva -> fin -> devuelve |
+| C9 | 1-2-4-6-8-10-11-12-13-14-10-16-17 | Sí | reserva ocupante (A=T,B=T) -> break -> siguiente dojo -> agotado |
+| C10 | 1-2-4-6-8-10-11-12-13-14-10-11-12-14-15-17 | Sí | primer dojo ocupado, segundo compatible y libre -> devuelve segundo |
 
 Los 10 caminos son factibles y cubren las 27 aristas. V(G) = 10 = tamaño de la base. 
 
-#### 2.5 Trazabilidad camino → test
+#### 2.5 Trazabilidad camino -> test
 
 | Camino | Test JUnit |
 | --- | --- |
@@ -339,20 +339,20 @@ V(G) = 6. Las tres fórmulas coinciden, teniendo en cuenta que hemos agrupado en
 
 | Camino | Recorrido | ¿Factible? | Justificación |
 | -- | -- | -- | -- |
-| C1 | 1-2-3-13 | Sí | fighters == null |
-| C2 | 1-2-4-5-13 | Sí | fighters válido, referenceDate == null |
-| C3 | 1-2-4-6-7-12-13 | Sí | lista vacía → Optional.empty() |
-| C4 | 1-2-4-6-7-8-9-13 | Sí | lista con un luchador null → NPE "Null fighter" |
-| C5 | 1-2-4-6-7-8-10-11-7-12-13 | Sí | un luchador: youngest == null es true → pasa a ser el más | joven |
-| C6 | 1-2-4-6-7-8-10-11-7-8-10-7-12-13 | Sí | dos luchadores; el segundo no es más joven (más viejo o misma fecha) → arista 10→7 |
+| C1 | 1-2-3-13 | Sí | fighters = null |
+| C2 | 1-2-4-5-13 | Sí | fighters válido, referenceDate = null |
+| C3 | 1-2-4-6-7-12-13 | Sí | lista vacía -> Optional.empty() |
+| C4 | 1-2-4-6-7-8-9-13 | Sí | lista con un luchador null -> NullPointerException "Null fighter" |
+| C5 | 1-2-4-6-7-8-10-11-7-12-13 | Sí | un luchador: youngest = null es true -> el luchador pasa a ser el más joven |
+| C6 | 1-2-4-6-7-8-10-11-7-8-10-7-12-13 | Sí | dos luchadores; el segundo no es más joven (más viejo o misma fecha) -> arista 10->7 |
 
 Los 6 caminos son factibles y cubren las 17 aristas. V(G) = 6 = tamaño de la base.
 
-#### 1.5 Tests con JUnit 5
+#### 1.5 Trazabilidad camino -> test
 
-En `es.um.calso.dojoreservation.domain.service.ReservationDiscountServiceCalculateBestDiscountTest.java`.
+Tests en `es.um.calso.dojoreservation.domain.service.ReservationDiscountServiceFindYoungestFighterTest.java`.
 
-| Camino/Escenario | Nombre del test JUnit |
+| Camino | Test JUnit |
 | -- | -- |
 | C1 | testGivenNullFightersWhenFindYoungestThenThrowsNullPointerException |
 | C2 | testGivenNullReferenceDateWhenFindYoungestThenThrowsNullPointerException |
@@ -360,8 +360,24 @@ En `es.um.calso.dojoreservation.domain.service.ReservationDiscountServiceCalcula
 | C4 | testGivenNullFighterInListWhenFindYoungestThenThrowsNullPointerException |
 | C5 | testGivenSingleFighterWhenFindYoungestThenReturnsFighter |
 | C6 | testGivenMultipleFightersWhenFindYoungestThenReturnsYoungest |
+| Funcional (empate de fecha de macimiento) | testGivenMultipleFightersSameBirthDateWhenFindYoungestThenReturnsFirst |
+
+#### 1.6 Errores corregidos
 
 Se corrige un error en la clase `ReservationDiscountService`. La condición `fighter.birthDate().isBefore(youngest.birthDate())` estaba haciendo que se seleccionara el luchador con más edad de todos y no el más joven, se cambia ``isBefore()`` por `isAfter()` para solucionar esto.
+
+#### 1.7 Cobertura de condiciones seleccionadas
+
+Decisión asignada: `youngest == null || fighter.birthDate().isBefore(youngest.birthDate())`.
+
+Condiciones atómicas:
+- A = ``youngest == null``
+- B = ``fighter.birthDate().isBefore(youngest.birthDate())``
+
+| Condición atómica | Caso que evalúa verdadero | Caso que evalúa falso | Casos adicionales | Justificación si no es factible |
+| -- | -- | -- | -- | -- |
+| A | C5: primera iteración (A=true, B no se evalúa por cortocircuito) | C6: segunda iteración (A=false) | Ninguno | - |
+| B | C7: `fighters[Ren 1998-06-01, Nora 2009-11-20]`, el segundo nació después (A=false, B=true) | C6: `fighters[Nora 2009-11-20, Ren 1998-06-01]`, el segundo nació antes (A=false, B=false) | C7 | - |
 
 ---
 
@@ -518,27 +534,29 @@ V(G) = 12. Las tres fórmulas coinciden.
 
 | Camino | Recorrido | ¿Factible? | Datos y resultado esperado (según especificación) |
 | -- | -- | -- | -- |
-| C1 | 1-2-3-23 | Sí | fighters = null → NPE “Fighters are required” |
-| C2 | 1-2-4-5-23 | Sí | [Ren 1998-06-01], trainingDate = null → NPE “Training date is required” |
-| C3 | 1-2-4-6-7-10-22-23 | Sí | lista vacía → Discount(0) |
-| C4 | 1-2-4-6-7-8-10-11-13-10-22-23 | Sí | [Ren 1998-06-01] (28 años, sin paro) → 0 % |
-| C5 | 1-2-4-6-7-8-9-10-11-13-10-22-23 | Sí | [Nora 2009-11-20] (17 años) → 15 % |
-| C6 | 1-2-4-6-7-8-10-11-12-23 | No | (Ver justificación abajo) |
-| C7 | 1-2-4-6-7-8-10-11-13-14-16-18-20-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2025-11-21] (0 años completos) → 0 % |
-| C8 | 1-2-4-6-7-8-10-11-13-14-15-20-21-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2023-11-20] (3 años) → 30 % |
-| C9 | 1-2-4-6-7-8-10-11-13-14-16-17-20-21-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2024-11-20] (2 años) → 20 % |
-| C10 | 1-2-4-6-7-8-10-11-13-14-16-18-19-20-21-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2025-11-20] (1 año) → 10 % |
-| C11 | 1-2-4-6-7-8-10-11-13-10-11-13-10-22-23 | Sí | [Ren 1998-06-01, Akira 2000-01-01], sin paro (dos iteraciones) → 0 % |
-| C12 | 1-2-4-6-7-8-9-10-11-13-14-16-18-19-20-10-22-23 | Sí | [Nora 2009-11-20, paro desde 2025-11-20] → juventud 15 %, paro 10 %, solo se aplica el mayor → 15 % |
+| C1 | 1-2-3-23 | Sí | fighters = null -> NullPointerException “Fighters are required” |
+| C2 | 1-2-4-5-23 | Sí | [Ren 1998-06-01], trainingDate = null -> NullPointerException “Training date is required” |
+| C3 | 1-2-4-6-7-10-22-23 | Sí | lista vacía -> Discount(0) |
+| C4 | 1-2-4-6-7-8-10-11-13-10-22-23 | Sí | [Ren 1998-06-01] (28 años, sin paro) -> 0 % |
+| C5 | 1-2-4-6-7-8-9-10-11-13-10-22-23 | Sí | [Nora 2009-11-20] (17 años) -> 15 % |
+| C6 | 1-2-4-6-7-8-10-11-12-23 | No | El camino C6 no es factible debido a que el método ``findYoungestFighter`` (nodo 6) recorre la misma lista de luchadores y lanza un NullPointerException antes de llegar al nodo 12 en caso de que exista un luchador con valor nulo en la lista. |
+| C7 | 1-2-4-6-7-8-10-11-13-14-16-18-20-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2025-11-21] (0 años completos) -> 0 % |
+| C8 | 1-2-4-6-7-8-10-11-13-14-15-20-21-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2023-11-20] (3 años) -> 30 % |
+| C9 | 1-2-4-6-7-8-10-11-13-14-16-17-20-21-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2024-11-20] (2 años) -> 20 % |
+| C10 | 1-2-4-6-7-8-10-11-13-14-16-18-19-20-21-10-22-23 | Sí | [Akira 2000-01-01, paro desde 2025-11-20] (1 año) -> 10 % |
+| C11 | 1-2-4-6-7-8-10-11-13-10-11-13-10-22-23 | Sí | [Ren 1998-06-01, Akira 2000-01-01], sin paro (dos iteraciones) -> 0 % |
+| C12 | 1-2-4-6-7-8-9-10-11-13-14-16-18-19-20-10-22-23 | Sí | [Nora 2009-11-20, paro desde 2025-11-20] -> juventud 15 %, paro 10 %, solo se aplica el mayor -> 15 % |
 
 Los 12 caminos son factibles y cubren las 33 aristas. V(G) = 12 = tamaño de la base.
 
-#### 2.5 Trazabilidad camino → test
+#### 2.5 Trazabilidad camino -> test
+
+Tests en `es.um.calso.dojoreservation.domain.service.ReservationDiscountServiceCalculateBestDiscountTest.java`.
 
 | Camino | Test JUnit |
 | -- | -- |
-| C1 | testGivenNullFightersWhenCalculateBestDiscountThenNullPointerWithMessage |
-| C2 | testGivenNullTrainingDateWhenCalculateBestDiscountThenNullPointerWithMessage |
+| C1 | testGivenNullFightersWhenCalculateBestDiscountThenThrowsNullPointerException |
+| C2 | testGivenNullTrainingDateWhenCalculateBestDiscountThenThrowsNullPointerException |
 | C3 | testGivenEmptyFightersWhenCalculateBestDiscountThenZeroPercent |
 | C4 | testGivenAdultWithoutUnemploymentWhenCalculateBestDiscountThenZeroPercent |
 | C5 | testGivenSeventeenYearOldFighterWhenCalculateBestDiscountThenFifteenPercent |
@@ -550,31 +568,20 @@ Los 12 caminos son factibles y cubren las 33 aristas. V(G) = 12 = tamaño de la 
 | C11 | testGivenTwoAdultsWithoutUnemploymentWhenCalculateBestDiscountThenZeroPercent |
 | C12 | testGivenSeventeenYearOldWithOneYearUnemploymentWhenCalculateBestDiscountThenFifteenPercent |
 
-#### 2.6 Cobertura de condiciones seleccionadas
+#### 2.6 Errores corregidos
 
-Decisión asignada: youngest == null || fighter.birthDate().isBefore(youngest.birthDate()).
-
-Condiciones atómicas:
-- A = youngest == null
-- B = fighter.birthDate().isBefore(youngest.birthDate())
-
-| Condición atómica | Caso que evalúa verdadero | Caso que evalúa falso | Justificación si no es factible |
-| -- | -- | -- | -- |
-| A | testGivenEmptyFightersWhenFindYoungestThenEmpty (o el primer elemento evaluado en una lista válida, donde youngest parte como null) | testGivenTwoFightersWhenFindYoungest (para el segundo elemento de la lista, youngest ya no es null) | - |
-| B | testGivenTwoFightersSecondIsYounger (la fecha del segundo luchador es anterior/más reciente en nacimiento) | testGivenTwoFightersSecondIsOlder (la fecha del segundo luchador es posterior) | - |
-
-#### 2.7 Tests con JUnit 5
-
-En `es.um.calso.dojoreservation.domain.service.ReservationDiscountServiceCalculateBestDiscountTest.java`.
+Se corrigen dos errores en el método `calculateBestDiscount` de la clase `ReservationDiscountService`.
+- En el primero la condición `else if (completeYears > 2)` no contempla la opción de que la cantidad de años sea exactamente 2, por lo que ajustamos este condicional a `else if (completeYears >= 2)`.
+- En el segundo la condición al comienzo del bucle for que recorre la colección de luchadores `if (fighter == null)` es código inalcanzable, ya que al usar el método `findYoungestFighter` antes del bucle for en el método actual nunca se va a poder lanzar esta excepción de nuevo en caso de que esta condición sea verdadera, ya que el propio método `findYoungestFighter` implementa esta misma condición al recibir como argumento una colección de luchadores.
 
 ---
 
 ### 3. Tabla resumen de trazabilidad
 
-| Método | V(G) | Caminos | Tests implementados | Defecto detectado |
+| Método | V(G) | Caminos | Tests implementados | Defecto(s) detectado(s) |
 | --- | --- | --- | --- | --- |
-| findYoungestFighter | 6 | C1-C6 | 6 | Ninguno |
-| calculateBestDiscount | 12 | C1-C12 (C6 no factible) | 11 | D-3: completeYears > 2 excluye el límite exacto de 2 años (debería ser >= 2) |
+| findYoungestFighter | 6 | C1-C6 | 6 | `fighter.birthDate().isBefore(youngest.birthDate())` -> `fighter.birthDate().isAfter(youngest.birthDate())` |
+| calculateBestDiscount | 12 | C1-C12 (C6 no factible, no se implementa test) | 11 | ``else if (completeYears > 2)`` -> ``else if (completeYears >= 2)`` / eliminar ``if (fighter == null)`` por código inalcanzable |
 
 ---
 
@@ -613,10 +620,10 @@ En `es.um.calso.dojoreservation.domain.service.ReservationDiscountServiceCalcula
 
 | Factor | Valor inmediatamente inferior | Valor del límite | Valor inmediatamente superior | Casos elegidos y expectativas |
 | --- | --- | --- | --- | --- |
-| F2 fecha vs. reloj (2026-10-20) | 2026-10-19 (CE6) | 2026-10-20 (CE5, "hoy") | 2026-10-21 (CE4, "mañana") | 2026-10-19 → error fecha; 2026-10-20 → error fecha; 2026-10-21 → tabla normal |
-| F1 teamId longitud | "" (vacío, CE3) | — | "EQ-001" (CE1) | ""/" " → error id requerido; EQ-001 → tabla |
-| F1 teamId existencia | — | EQ-001..EQ-005 (CE1) | EQ-999 (CE2) | EQ-001 → tabla; EQ-999 → error inexistente |
-| F3 ocupación | reserva D-001 @ 2027-11-20 (CE13, distinta fecha) | reserva D-001 @ 2026-11-20 (CE12, misma fecha) | — | Con EQ-001 y 2026-11-20 → D-001 ocupado; con EQ-001 y 2026-11-21 → D-001 libre |
+| F2 fecha vs. reloj (2026-10-20) | 2026-10-19 (CE6) | 2026-10-20 (CE5, "hoy") | 2026-10-21 (CE4, "mañana") | 2026-10-19 -> error fecha; 2026-10-20 -> error fecha; 2026-10-21 -> tabla normal |
+| F1 teamId longitud | "" (vacío, CE3) | — | "EQ-001" (CE1) | ""/" " -> error id requerido; EQ-001 -> tabla |
+| F1 teamId existencia | — | EQ-001..EQ-005 (CE1) | EQ-999 (CE2) | EQ-001 -> tabla; EQ-999 -> error inexistente |
+| F3 ocupación | reserva D-001 @ 2027-11-20 (CE13, distinta fecha) | reserva D-001 @ 2026-11-20 (CE12, misma fecha) | — | Con EQ-001 y 2026-11-20 -> D-001 ocupado; con EQ-001 y 2026-11-21 -> D-001 libre |
 | F4 compatibilidad | EQ-002 (Bo) contra D-001 (Katana+Bokken, CE11) | EQ-001 (Katana+Bokken) contra D-001 (CE10) |  |  |
 
 ### 1.5 Implementación Selenium
@@ -641,7 +648,7 @@ En `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 | CE12 | CN2 | Cubierta |
 | CE13 | CN3 | Cubierta (detecta defecto) |
 
-### 1.7 Trazabilidad clase → test
+### 1.7 Trazabilidad clase -> test
 
 | Clase | Test |
 | --- | --- |
@@ -659,8 +666,8 @@ En `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 
 | Test | Resultado | Motivo |
 | --- | --- | --- |
-| CN1 testGivenDragonTeamTomorrow... | GREEN | D-001 libre y compatible → seleccionado |
-| CN2 testGivenNorthDojoBookedForDate... | GREEN | D-001 ocupado → D-002 seleccionado |
+| CN1 testGivenDragonTeamTomorrow... | GREEN | D-001 libre y compatible -> seleccionado |
+| CN2 testGivenNorthDojoBookedForDate... | GREEN | D-001 ocupado -> D-002 seleccionado |
 | CN3 testGivenReservationForDifferentDate... | RED | Defecto: findFirstAvailableDojo trata la reserva de otra fecha como ocupación. #dojo-id = D-002, no D-001; fila D-001 muestra "Ocupado" |
 | CN4 testGivenUnknownTeam... | GREEN | #error = "Team does not exist" |
 | CN5 testGivenEmptyTeam... | GREEN | #error = "Team id is required" |
@@ -721,7 +728,7 @@ mvn clean verify: 12/12 tests de DojoSearchServiceFindFirstTest GREEN (antes 11/
 
 mvn -Pe2e clean verify: CN3 GREEN; CN1, CN2, CN4–CN7, CN9, CN10 siguen GREEN.
 
-mvn -Pmutation test pitest:mutationCoverage: el mutante !equals→equals en la fecha pasa de superviviente a detectado.
+mvn -Pmutation test pitest:mutationCoverage: el mutante !equals->equals en la fecha pasa de superviviente a detectado.
 
 Impacto: ninguno sobre otras clases; DojoEvaluationService ya comparaba con equals (correcto), por lo que la tabla de presentación y el servicio de dominio quedan ahora coherentes.
 
