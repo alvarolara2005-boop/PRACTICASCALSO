@@ -4,16 +4,15 @@ on:
   push:
     branches:
       - main
-      - <<RAMA_P3_ALUMNO_1>>
-      - <<RAMA_P3_ALUMNO_2>>
+      - P3-pablo
     paths:
-      - 'P3/P3-Calso-Base/**'
+      - 'P3/P3_ALLPGP/**'
       - '.github/workflows/p3-quality.yml'
   pull_request:
     branches:
       - main
     paths:
-      - 'P3/P3-Calso-Base/*'
+      - 'P3/P3_ALLPGP/**'
       - '.github/workflows/p3-quality.yml'
   workflow_dispatch:
 
@@ -26,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: P3/P3-Calso-Base
+        working-directory: P3/P3_ALLPGP
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -34,7 +33,7 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-          cache-dependency-path: P3/P3-Calso-Base/pom.xml
+          cache-dependency-path: P3/P3_ALLPGP/pom.xml
       - name: Ejecutar JUnit y JaCoCo
         run: mvn --batch-mode --no-transfer-progress clean verify
       - name: Publicar informes JUnit
@@ -42,14 +41,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: p3-junit
-          path: P3/P3-Calso-Base/target/surefire-reports/
+          path: P3/P3_ALLPGP/target/surefire-reports/
           if-no-files-found: warn
       - name: Publicar JaCoCo
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: p3-jacoco
-          path: P3/P3-Calso-Base/target/site/jacoco/
+          path: P3/P3_ALLPGP/target/site/jacoco/
           if-no-files-found: warn
 
   mutation-testing:
@@ -57,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: P3/P3-Calso-Base
+        working-directory: P3/P3_ALLPGP
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -65,7 +64,7 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-          cache-dependency-path: P3/P3-Calso-Base/pom.xml
+          cache-dependency-path: P3/P3_ALLPGP/pom.xml
       - name: Ejecutar PIT
         run: mvn --batch-mode --no-transfer-progress -Pmutation test pitest:mutationCoverage
       - name: Publicar informe PIT
@@ -73,5 +72,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: p3-pit
-          path: P3/P3-Calso-Base/target/pit-reports/
+          path: P3/P3_ALLPGP/target/pit-reports/
           if-no-files-found: warn
