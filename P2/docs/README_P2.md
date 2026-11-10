@@ -177,4 +177,4 @@ Cada defecto se descubrió primero mediante un test que falló. Los commits de c
 
 **Commit de `main` analizado:** [Commit 75f9031](https://github.com/alvarolara2005-boop/PRACTICASCALSO/commit/75f9031b1819a70f60b89be523bf6086ce19817e) / [Action de GitHub](https://github.com/alvarolara2005-boop/PRACTICASCALSO/actions/runs/42516579834)
 
-**Enlace al vídeo externo (oculto/no listado):** *completar*
+**Enlace al vídeo externo (oculto/no listado):** [https://youtu.be/k0XIechRA9o](https://youtu.be/k0XIechRA9o)
