@@ -587,9 +587,11 @@ Se corrigen dos errores en el método `calculateBestDiscount` de la clase `Reser
 
 # Actividad 2 - Caja negra con Selenium
 
-## 1. Identificación de clases de equivalencia
+## Álvaro Lara Lara (Alumno 1) (`/dojos`)
 
-### 1.1 Factores de entrada
+### 1. Identificación de clases de equivalencia
+
+#### 1.1 Factores de entrada
 
 | Factor | Descripción | Dominio |
 | --- | --- | --- |
@@ -598,7 +600,7 @@ Se corrigen dos errores en el método `calculateBestDiscount` de la clase `Reser
 | F3 | Estado de disponibilidad del dojo | Reserva existente con mismo dojoId y misma fecha |
 | F4 | Compatibilidad de armas | Dojo contiene todas las armas requeridas del equipo |
 
-### 1.2 Tabla de clases de equivalencia
+#### 1.2 Tabla de clases de equivalencia
 
 | Código | Factor / estado | Condición de pertenencia | Válida / inválida | Comportamiento exigido |
 | --- | --- | --- | --- | --- |
@@ -616,7 +618,7 @@ Se corrigen dos errores en el método `calculateBestDiscount` de la clase `Reser
 | CE12 | F3 Ocupación | Reserva con mismo dojoId y misma fecha | Válida | Fila con status-no "Ocupado" |
 | CE13 | F3 Ocupación | Reserva con mismo dojoId pero distinta fecha | Válida | Fila |
 
-### 1.3 Análisis de valores límite
+#### 1.3 Análisis de valores límite
 
 | Factor | Valor inmediatamente inferior | Valor del límite | Valor inmediatamente superior | Casos elegidos y expectativas |
 | --- | --- | --- | --- | --- |
@@ -626,11 +628,11 @@ Se corrigen dos errores en el método `calculateBestDiscount` de la clase `Reser
 | F3 ocupación | reserva D-001 @ 2027-11-20 (CE13, distinta fecha) | reserva D-001 @ 2026-11-20 (CE12, misma fecha) | — | Con EQ-001 y 2026-11-20 -> D-001 ocupado; con EQ-001 y 2026-11-21 -> D-001 libre |
 | F4 compatibilidad | EQ-002 (Bo) contra D-001 (Katana+Bokken, CE11) | EQ-001 (Katana+Bokken) contra D-001 (CE10) |  |  |
 
-### 1.5 Implementación Selenium
+#### 1.5 Implementación Selenium
 
 En `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 
-### 1.6 Cobertura de clases de equivalencia
+#### 1.6 Cobertura de clases de equivalencia
 
 | Clase | Caso(s) | Estado |
 | --- | --- | --- |
@@ -648,7 +650,7 @@ En `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 | CE12 | CN2 | Cubierta |
 | CE13 | CN3 | Cubierta (detecta defecto) |
 
-### 1.7 Trazabilidad clase -> test
+#### 1.7 Trazabilidad clase -> test
 
 | Clase | Test |
 | --- | --- |
@@ -662,7 +664,7 @@ En `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 | CE10, CE11 | testGivenTigerTeam... |
 | CE7 | testGivenMalformedDate... |
 
-### 1.8 Ejecución y resultados
+#### 1.8 Ejecución y resultados
 
 | Test | Resultado | Motivo |
 | --- | --- | --- |
@@ -676,7 +678,7 @@ En `es.um.calso.dojoreservation.infrastructure.e2e.DojoSearchE2ETest.java`
 | CN9 testGivenTigerTeam... | GREEN | D-001 incompatible, D-003 seleccionado |
 | CN10 testGivenMalformedDate... | GREEN | Spring MVC devuelve 400; no hay tabla ni error de dominio |
 
-### 1.9 Defecto detectado (CN3)
+#### 1.9 Defecto detectado (CN3)
 
 Síntoma: al buscar con EQ-001 y 2026-11-21, la fila de D-001 aparece como "Ocupado" y se selecciona D-002, cuando la reserva de D-001 es para 2026-11-20 y 2027-11-20 (fechas distintas).
 
@@ -693,6 +695,156 @@ if (reservation.dojoId().equals(dojo.id())
 ```
 
 Regresión: tras la corrección, CN3 pasa a GREEN; CN1, CN2, CN4–CN7, CN9, CN10 permanecen GREEN. Se repite mvn -Pe2e clean verify y se verifica también la suite unitaria (mvn clean verify).
+
+## Pablo García Pérez (Alumno 2) (`/coste`)
+
+### 2.1 Factores de entrada
+
+| Factor | Descripción | Dominio |
+| --- | --- | --- |
+| F1 | `teamId` | EQ-001..EQ-005, cualquier otra cadena, o cadena en blanco |
+| F2 | `dojoId` | D-001..D-003, cualquier otra cadena, o cadena en blanco |
+| F3 | `trainingDate` | Fecha ISO AAAA-MM-DD frente al reloj fijo 2026-10-20, o formato inválido |
+| F4 | Armas distintas requeridas por el equipo | 1 arma (EQ-002..EQ-005) o 2 armas (EQ-001). 0 armas no existe en el catálogo |
+| F5 | Edad del luchador más joven en la fecha de entrenamiento | < 18 o >= 18 |
+| F6 | Años completos de desempleo del luchador con mayor bonificación | sin paro, < 1, [1,2), [2,3), >= 3 |
+| F7 | Estado de ocupación del dojo | Libre u ocupado en la fecha (no debe influir en el presupuesto) |
+
+### 2.2 Tabla de clases de equivalencia
+
+| Código | Variable | Condición de pertenencia | Válida / inválida | Comportamiento exigido |
+| --- | --- | --- | --- | --- |
+| CE1 | teamId | Existe en el catálogo (EQ-001..EQ-005) | Válida | Se calcula el coste |
+| CE2 | teamId | No vacío pero inexistente (EQ-999) | Inválida | `#error` = Team does not exist |
+| CE3 | teamId | En blanco (`%20`) | Inválida | `#error` = Team id is required |
+| CE4 | dojoId | Existe en el catálogo (D-001..D-003) | Válida | Se calcula el coste |
+| CE5 | dojoId | No vacío pero inexistente (D-999) | Inválida | `#error` = Dojo does not exist |
+| CE6 | dojoId | En blanco (`%20`) | Inválida | `#error` = Dojo id is required |
+| CE7 | trainingDate | Estrictamente posterior a 2026-10-20 | Válida | Se calcula el coste |
+| CE8 | trainingDate | Igual a 2026-10-20 (hoy) | Inválida | `#error` = Training date must be in the future |
+| CE9 | trainingDate | Anterior a 2026-10-20 | Inválida | `#error` = Training date must be in the future |
+| CE10 | trainingDate | Formato no ISO (20/11/2026) | Inválida | Spring MVC responde 400 antes del caso de uso |
+| CE11 | Armas requeridas | 1 arma | Válida | Suplemento 5,00 € |
+| CE12 | Armas requeridas | 2 armas | Válida | Suplemento 10,00 € |
+| CE13 | Más joven | Menos de 18 años en la fecha | Válida | Bonificación juvenil 15 % |
+| CE14 | Más joven | 18 o más años | Válida | Sin bonificación juvenil |
+| CE15 | Desempleo | Sin luchadores en paro | Válida | 0 % |
+| CE16 | Desempleo | < 1 año completo | Válida | 0 % |
+| CE17 | Desempleo | De 1 a < 2 años | Válida | 10 % |
+| CE18 | Desempleo | De 2 a < 3 años | Válida | 20 % |
+| CE19 | Desempleo | 3 años o más | Válida | 30 % |
+| CE20 | Combinación | Juventud (15 %) mayor que desempleo | Válida | Se aplica 15 %, no se suman |
+| CE21 | Combinación | Desempleo mayor que juventud | Válida | Se aplica el porcentaje de paro |
+| CE22 | Ocupación | Dojo con reserva en la misma fecha | Válida | El presupuesto se calcula igualmente |
+
+CE-armas con 0 armas no es alcanzable por interfaz (todos los equipos del catálogo requieren al menos 1 arma); se cubre en la prueba unitaria `ReservationPricingServiceTest`.
+
+### 2.3 Valores límite
+
+| Variable | Valor inmediatamente inferior | Valor del límite | Valor inmediatamente superior | Expectativa |
+| --- | --- | --- | --- | --- |
+| Fecha vs. reloj (2026-10-20) | 2026-10-19 | 2026-10-20 | 2026-10-21 | error / error / cálculo normal |
+| Mayoría de edad (Nora, EQ-003, nace 2009-11-20) | 2027-11-19 | 2027-11-20 | — | 15 % / 0 % |
+| 1 año de paro (Izan, EQ-004, desde 2025-11-20) | 2026-11-19 | 2026-11-20 | — | 0 % / 10 % |
+| 2 años de paro (Izan, EQ-004) | 2027-11-19 | 2027-11-20 | — | 10 % / 20 % |
+| 3 años de paro (Lea, EQ-005, desde 2024-11-20) | 2027-11-19 | 2027-11-20 | — | 20 % / 30 % |
+
+### 2.4 Tabla de casos
+
+Datos de referencia: reloj 2026-10-20; suplemento 5 € por arma distinta; D-001 40 €, D-002 50 €, D-003 35 €. Todos los importes se muestran con dos decimales.
+
+| ID | Clases / límite | Entradas (equipo, dojo, fecha) | Estado previo | Resultado único esperado | Test |
+| --- | --- | --- | --- | --- | --- |
+| CN1 | CE1, CE4, CE7, CE11, CE14, CE15 | EQ-002, D-001, 2026-10-21 | Equipo sin jóvenes ni paro | `#discount` = 0 | testGivenTigerTeamNorthDojoTomorrowWhenCalculateCostThenDiscountIsZero |
+| CN2 | idem | EQ-002, D-001, 2026-10-21 | idem | `#final-price` = 45.00 | testGivenTigerTeamNorthDojoTomorrowWhenCalculateCostThenFinalPriceIs45 |
+| CN3 | idem, CE11 | EQ-002, D-001, 2026-10-21 | idem | `#weapons-price` = 5.00 | testGivenTigerTeamNorthDojoTomorrowWhenCalculateCostThenWeaponsSupplementIs5 |
+| CN4 | CE12 | EQ-001, D-002, 2026-10-21 | Equipo con Katana y Bokken | `#weapons-price` = 10.00 | testGivenDragonTeamCentroDojoTomorrowWhenCalculateCostThenWeaponsSupplementIs10 |
+| CN5 | CE12 | EQ-001, D-002, 2026-10-21 | idem | `#subtotal` = 60.00 | testGivenDragonTeamCentroDojoTomorrowWhenCalculateCostThenSubtotalIs60 |
+| CN6 | CE13, CE17, CE20 | EQ-001, D-002, 2026-10-21 | Hana 16 años, Akira 1 año de paro | `#discount` = 15 | testGivenDragonTeamCentroDojoTomorrowWhenCalculateCostThenDiscountIs15 |
+| CN7 | CE13, CE17, CE20 | EQ-001, D-002, 2026-10-21 | idem | `#final-price` = 51.00 | testGivenDragonTeamCentroDojoTomorrowWhenCalculateCostThenFinalPriceIs51 |
+| CN8 | CE14, CE19, CE21 | EQ-001, D-002, 2027-11-20 | Hana 18 años, Akira 3 años de paro | `#discount` = 30 | testGivenDragonTeamCentroDojoOn20Nov2027WhenCalculateCostThenDiscountIs30 |
+| CN9 | CE14, CE19, CE21 | EQ-001, D-002, 2027-11-20 | idem | `#final-price` = 42.00 | testGivenDragonTeamCentroDojoOn20Nov2027WhenCalculateCostThenFinalPriceIs42 |
+| CN10 | CE22, CE13, CE18, CE21 | EQ-001, D-001, 2026-11-20 | D-001 reservado ese día; Hana 17 años, Akira 2 años de paro | `#final-price` = 40.00 (50 € con 20 %) | testGivenDragonTeamBookedNorthDojoOn20Nov2026WhenCalculateCostThenFinalPriceIs40 |
+| CN11 | Límite edad (antes) | EQ-003, D-003, 2027-11-19 | Nora 17 años | `#discount` = 15 | testGivenAgeBoundaryTeamDayBeforeEighteenthBirthdayWhenCalculateCostThenDiscountIs15 |
+| CN12 | Límite edad (en) | EQ-003, D-003, 2027-11-20 | Nora 18 años | `#discount` = 0 | testGivenAgeBoundaryTeamEighteenthBirthdayWhenCalculateCostThenDiscountIsZero |
+| CN13 | Límite edad (antes) | EQ-003, D-003, 2027-11-19 | Nora 17 años | `#final-price` = 34.00 (40 € con 15 %) | testGivenAgeBoundaryTeamDayBeforeEighteenthBirthdayWhenCalculateCostThenFinalPriceIs34 |
+| CN14 | Límite 1 año (antes), CE16 | EQ-004, D-003, 2026-11-19 | Izan 0 años completos | `#discount` = 0 | testGivenTwoYearTeamDayBeforeFirstAnniversaryWhenCalculateCostThenDiscountIsZero |
+| CN15 | Límite 1 año (en), CE17 | EQ-004, D-003, 2026-11-20 | Izan 1 año | `#discount` = 10 | testGivenTwoYearTeamFirstAnniversaryWhenCalculateCostThenDiscountIs10 |
+| CN16 | Límite 2 años (antes), CE17 | EQ-004, D-003, 2027-11-19 | Izan 1 año | `#discount` = 10 | testGivenTwoYearTeamDayBeforeSecondAnniversaryWhenCalculateCostThenDiscountIs10 |
+| CN17 | Límite 2 años (en), CE18 | EQ-004, D-003, 2027-11-20 | Izan 2 años | `#discount` = 20 | testGivenTwoYearTeamSecondAnniversaryWhenCalculateCostThenDiscountIs20 |
+| CN18 | Límite 3 años (antes), CE18 | EQ-005, D-003, 2027-11-19 | Lea 2 años | `#discount` = 20 | testGivenThreeYearTeamDayBeforeThirdAnniversaryWhenCalculateCostThenDiscountIs20 |
+| CN19 | Límite 3 años (en), CE19 | EQ-005, D-003, 2027-11-20 | Lea 3 años | `#discount` = 30 | testGivenThreeYearTeamThirdAnniversaryWhenCalculateCostThenDiscountIs30 |
+| CN20 | CE8 (límite hoy) | EQ-001, D-001, 2026-10-20 | — | `#error` = Training date must be in the future | testGivenTodayWhenCalculateCostThenTrainingDateMustBeFutureError |
+| CN21 | CE9 | EQ-001, D-001, 2026-10-19 | — | `#error` = Training date must be in the future | testGivenYesterdayWhenCalculateCostThenTrainingDateMustBeFutureError |
+| CN22 | CE2 | `/coste?teamId=EQ-999&dojoId=D-001&trainingDate=2026-11-20` | — | `#error` = Team does not exist | testGivenUnknownTeamWhenCalculateCostThenTeamDoesNotExistError |
+| CN23 | CE5 | `/coste?teamId=EQ-001&dojoId=D-999&trainingDate=2026-11-20` | — | `#error` = Dojo does not exist | testGivenUnknownDojoWhenCalculateCostThenDojoDoesNotExistError |
+| CN24 | CE3 | `/coste?teamId=%20&dojoId=D-001&trainingDate=2026-11-20` | — | `#error` = Team id is required | testGivenBlankTeamIdWhenCalculateCostThenTeamIdRequiredError |
+| CN25 | CE6 | `/coste?teamId=EQ-001&dojoId=%20&trainingDate=2026-11-20` | — | `#error` = Dojo id is required | testGivenBlankDojoIdWhenCalculateCostThenDojoIdRequiredError |
+| CN26 | CE10 | `/coste?teamId=EQ-001&dojoId=D-001&trainingDate=20%2F11%2F2026` | — | HTTP 400 de Spring MVC; no hay desglose ni error de dominio | testGivenMalformedDateWhenCalculateCostThenSpringRejectsWithBadRequest |
+
+Cada caso rompe una sola regla de validación: el servidor valida primero teamId, dojoId y fecha, y después la existencia de equipo y dojo, de modo que combinar varios errores enmascararía los demás.
+
+**Observación:** el controlador usa `@RequestParam(defaultValue=...)`, que sustituye un valor vacío (`teamId=`) por EQ-001 (y `dojoId=` por D-002). Por eso los casos de "identificador requerido" se prueban con un valor en blanco (`%20`) y no con cadena vacía.
+
+### 2.5 Implementación Selenium
+
+En `es.um.calso.dojoreservation.infrastructure.e2e.ReservationCostE2ETest.java` (26 métodos, uno por caso).
+
+### 2.6 Cobertura de clases de equivalencia
+
+| Clase | Caso(s) | Estado |
+| --- | --- | --- |
+| CE1 | CN1–CN21, CN23, CN25, CN26 | Cubierta |
+| CE2 | CN22 | Cubierta |
+| CE3 | CN24 | Cubierta |
+| CE4 | CN1–CN22, CN24 | Cubierta |
+| CE5 | CN23 | Cubierta |
+| CE6 | CN25 | Cubierta |
+| CE7 | CN1–CN19 | Cubierta |
+| CE8 | CN20 | Cubierta |
+| CE9 | CN21 | Cubierta |
+| CE10 | CN26 | Cubierta |
+| CE11 | CN1–CN3, CN11–CN19 | Cubierta |
+| CE12 | CN4–CN10 | Cubierta |
+| CE13 | CN6, CN7, CN10, CN11, CN13 | Cubierta |
+| CE14 | CN1–CN5, CN8, CN9, CN12, CN14–CN19 | Cubierta |
+| CE15 | CN1–CN5, CN11–CN13 | Cubierta |
+| CE16 | CN14 | Cubierta |
+| CE17 | CN6, CN7, CN15, CN16 | Cubierta |
+| CE18 | CN10, CN17, CN18 | Cubierta |
+| CE19 | CN8, CN9, CN19 | Cubierta |
+| CE20 | CN6, CN7 | Cubierta |
+| CE21 | CN8, CN9, CN10 | Cubierta |
+| CE22 | CN10 | Cubierta |
+
+### 2.7 Ejecución y resultados
+
+Comando: `mvn -Pe2e clean verify` (reloj fijo 2026-10-20). Resultados con el código inicial, **antes de corregir** (completa/verifica esta tabla con tu ejecución real):
+
+| Casos | Resultado | Motivo |
+| --- | --- | --- |
+| CN1–CN5, CN8, CN9, CN12, CN14–CN16, CN19–CN26 | GREEN | El comportamiento coincide con la especificación |
+| CN6, CN7, CN11, CN13 | RED | Se esperaba bonificación juvenil del 15 % y no se aplica (o se aplica solo el 10 % de paro): `findYoungestFighter` devuelve al luchador más viejo (`isBefore`) |
+| CN17, CN18 | RED | Con exactamente 2 años completos de paro se aplica 10 % en lugar de 20 %: la condición es `completeYears > 2` |
+| CN10 | RED | Combina ambos defectos: se obtiene 10 % (45.00 €) en lugar de 20 % (40.00 €) |
+
+Tras aplicar las correcciones: **26/26 GREEN** (sustituye por el número real de tu ejecución).
+
+### 2.8 Defectos detectados desde la interfaz
+
+**D-3 · Bonificación juvenil calculada sobre el luchador más viejo**
+- Síntoma: EQ-001 con D-002 el 2026-10-21 muestra 10 % (54.00 €) en vez de 15 % (51.00 €); EQ-003 el 2027-11-19 muestra 0 % en vez de 15 %.
+- Prueba que lo detecta: CN6, CN7, CN11, CN13 (E2E) y `testGivenMultipleFightersWhenFindYoungestThenReturnsYoungest` (unitaria).
+- Causa: `findYoungestFighter` usaba `birthDate().isBefore(...)`, que conserva la fecha de nacimiento más antigua. La especificación pide la fecha de nacimiento más reciente.
+- Corrección: `isBefore` por `isAfter`.
+
+**D-4 · Desempleo de exactamente 2 años no recibe el 20 %**
+- Síntoma: EQ-004 el 2027-11-20 y EQ-005 el 2027-11-19 muestran 10 % en vez de 20 %.
+- Prueba que lo detecta: CN17, CN18 (E2E) y `testGivenTwoYearsUnemploymentWhenCalculateBestDiscountThenTwentyPercent` (unitaria).
+- Causa: la condición `completeYears > 2` excluye el valor 2; la especificación indica de 2 a menos de 3 años → 20 %.
+- Corrección: `completeYears > 2` por `completeYears >= 2`.
+
+Regresión posterior: tras cada corrección se repitió `mvn clean verify` y `mvn -Pe2e clean verify`; CN10 solo pasa a GREEN cuando ambas correcciones están aplicadas. (Completa con los resultados reales.)
 
 ---
 
