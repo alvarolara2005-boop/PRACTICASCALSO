@@ -1,4 +1,4 @@
-# P4 · Entrega de ATDD, TDD y pruebas orientadas a objetos
+# P4 — Entrega de ATDD, TDD y pruebas orientadas a objetos
 
 > **Plantilla de alumnado.** Sustituir los textos `[...]`, eliminar instrucciones auxiliares y conservar enlaces verificables. No copiar ejemplos de commits como si fueran propios. Este README se ubicará en `P4/README_P4.md` dentro del repositorio del grupo. Los enlaces a vídeos serán externos al repositorio.
 
@@ -6,10 +6,10 @@
 
 | Campo | Información |
 |---|---|
-| Integrantes | [Nombre y apellidos, cuenta GitHub de cada participante] |
-| Repositorio | [URL] |
+| Integrantes | Pablo García Pérez ([@pablogp28](https://github.com/pablogp28)) \| Álvaro Lara Lara ([@alvarolara2005-boop](https://github.com/alvarolara2005-boop)) |
+| Repositorio | [URL](https://github.com/alvarolara2005-boop/PRACTICASCALSO) |
 | Rama de integración / commit final | [main o rama / hash / URL permanente] |
-| Ruta de proyecto Maven | `P4/` |
+| Ruta de proyecto Maven | `P4/P4_ALLPGP/` |
 | Fecha y versión de entrega | [Fecha, hash] |
 | Resultados de ejecución final | [Tests JUnit: N; escenarios Cucumber: N; fallos: N; omitidos: N] |
 | Workflow GitHub Actions | [URL de ejecución final] |
