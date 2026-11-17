@@ -7,13 +7,17 @@
 | Campo | Información |
 |---|---|
 | Integrantes | Pablo García Pérez ([@pablogp28](https://github.com/pablogp28)) \| Álvaro Lara Lara ([@alvarolara2005-boop](https://github.com/alvarolara2005-boop)) |
-| Repositorio | [URL](https://github.com/alvarolara2005-boop/PRACTICASCALSO) |
+| Repositorio | [Repositorio en GitHub](https://github.com/alvarolara2005-boop/PRACTICASCALSO) |
 | Rama de integración / commit final | [main o rama / hash / URL permanente] |
 | Ruta de proyecto Maven | `P4/P4_ALLPGP/` |
 | Fecha y versión de entrega | [Fecha, hash] |
 | Resultados de ejecución final | [Tests JUnit: N; escenarios Cucumber: N; fallos: N; omitidos: N] |
 | Workflow GitHub Actions | [URL de ejecución final] |
-| SonarQube / Quality Gate CalSo | [URL, estado, fecha] |
+| SonarQube / Quality Gate CalSo | [Proyecto en SonarQube](https://sast.inf.um.es/dashboard?id=PRACTICASCALSO_ALL_PGP) \| Estado: [![Quality Gate Status](https://sast.inf.um.es/api/project_badges/measure?project=PRACTICASCALSO_ALL_PGP&metric=alert_status&token=sqb_4e9e2d0861d8bf51e367061a3b9218edb52c1d35)](https://sast.inf.um.es/dashboard?id=PRACTICASCALSO_ALL_PGP) \| [fecha] |
+
+**Enlaces a los vídeos:**
+- Vídeo de la HU02: *pendiente*
+- Vídeo de la HU03: *pendiente*
 
 **Resumen de lo entregado (máximo 100 palabras):** [qué historias y escenarios se han realizado, qué limitaciones quedan y qué decisiones son relevantes].
 
@@ -21,17 +25,26 @@
 
 | Incremento / HU / escenario | Responsable | Revisor | Dependencia y condición de inicio | Rama / PR | Estado |
 |---|---|---|---|---|---|
-| **Etapa 1: alumno 1, HU-01 y HU-02 hasta BDD-05d** | [Alumno 1] | [Alumno 2] | Proyecto base compila | [PR de relevo] | [GREEN + UML HU-02] |
-| **Etapa 2: alumno 2, HU-03 BDD-06–09, 10–12 y 13d** | [Alumno 2] | [Alumno 1] | **Commit GREEN integrado de etapa 1** | [PR final] | [GREEN + UML HU-03] |
-| **HU-03: límites 15/15, 12/18, 18/12, 11/19 y 19/11 en JUnit** | [Alumno 2] | [Alumno 1] | Dominio combinado | [tests/commits] | [resultados JUnit] |
+| **Etapa 1: alumno 1, HU-01 y HU-02 hasta BDD-05d** | Pablo García Pérez | Álvaro Lara Lara | Proyecto base compila | [PR de relevo] | [GREEN + UML HU-02] |
+| **Etapa 2: alumno 2, HU-03 BDD-06–09, 10–12 y 13d** | Álvaro Lara Lara | Pablo García Pérez | **Commit GREEN integrado de etapa 1** | [PR final] | [GREEN + UML HU-03] |
+| **HU-03: límites 15/15, 12/18, 18/12, 11/19 y 19/11 en JUnit** | Álvaro Lara Lara | Pablo García Pérez | Dominio combinado | [tests/commits] | [resultados JUnit] |
 
-**Commit obligatorio de relevo de la etapa 1:** [HASH y URL]. **Ejecución de regresión en ese commit:** [URL/reporte]. **UML de HU-02:** [URL]. La etapa 2 comienza después; no se exige alternancia continua ni implementación simultánea. Para grupos de una persona, la misma persona realiza ambas etapas.
+**Commit obligatorio de relevo de la etapa 1:** [HASH y URL].
+**Ejecución de regresión en ese commit:** [URL/reporte].
+**UML de HU-02:** [URL](./docs/uml/hu02.md). La etapa 2 comienza después; no se exige alternancia continua ni implementación simultánea. Para grupos de una persona, la misma persona realiza ambas etapas.
 
 **Incidencias de coordinación:** [bloqueo real, alternativa aplicada, revisión cruzada y resultado. Una frase por incidencia relevante].
 
 ## 3. Política de commits y técnica elegida de auditoría
 
 **Técnica elegida:** [recomendada: historial de hitos por escenario + tabla de hashes; o describir alternativa igualmente auditable].
+
+| HU / escenario | Fase y resultado observado | Mensaje de commit | Hash | Prueba o ejecución vinculada |
+| -- | -- | -- | -- | -- |
+||||||
+||||||
+||||||
+||||||
 
 **Política adoptada antes del trabajo:**
 
@@ -68,7 +81,7 @@ Los commits se realizan **tras ejecutar la prueba y antes de cambiar de fase**. 
 
 ## 5. Auditoría del escenario intermedio de cada participante
 
-**Alumno 1:** seleccionar un escenario significativo de HU-02. **Alumno 2:** seleccionar uno de HU-03, preferentemente BDD-13d, que exige introducir una nueva regla de dominio; ninguno presenta únicamente el laboratorio guiado ni una variante que ya pase sin desarrollo. Cada persona debe aportar commits y vídeo verificables de su etapa. Se evaluará con vídeo individual y commits auténticos.
+**Alumno 1 (Pablo García Pérez):** seleccionar un escenario significativo de HU-02. **Alumno 2 (Álvaro Lara Lara):** seleccionar uno de HU-03, preferentemente BDD-13d, que exige introducir una nueva regla de dominio; ninguno presenta únicamente el laboratorio guiado ni una variante que ya pase sin desarrollo. Cada persona debe aportar commits y vídeo verificables de su etapa. Se evaluará con vídeo individual y commits auténticos.
 
 ### Participante A — [identificación]
 
@@ -114,9 +127,9 @@ Los commits se realizan **tras ejecutar la prueba y antes de cambiar de fase**. 
 
 | Corte UML | Ruta del diagrama | Hash real del estado representado | Nuevas clases y relaciones relevantes | Test/escenario que motivó el cambio |
 |---|---|---|---|---|
-| Tras HU-01 | [enlace] | [...] | [...] | [...] |
-| Tras HU-02 | [enlace] | [...] | [...] | [...] |
-| Tras HU-03 | [enlace] | [...] | [...] | [...] |
+| Tras HU-01 | [enlace](./docs/uml/hu01.md) | [...] | [...] | [...] |
+| Tras HU-02 | [enlace](./docs/uml/hu02.md) | [...] | [...] | [...] |
+| Tras HU-03 | [enlace](./docs/uml/hu03.md) | [...] | [...] | [...] |
 
 **Cambio explicado en el vídeo:** [diagrama antes, diagrama después, hashes, responsabilidad trasladada, razón de la relación UML, pruebas de protección].
 
@@ -164,4 +177,4 @@ mvn -f P4/pom.xml clean verify
 - [ ] CI, JaCoCo y SonarQube enlazados y analizados críticamente.
 - [ ] Incidencias, limitaciones y pendientes declarados.
 
-**Nota:** no se valorará la cantidad de commits ni el número de clases por sí mismos; se evaluará la técnica, su aplicación reproducible, la calidad de las pruebas, la evolución del diseño y el análisis fundamentado de la calidad.
+> **Nota:** no se valorará la cantidad de commits ni el número de clases por sí mismos; se evaluará la técnica, su aplicación reproducible, la calidad de las pruebas, la evolución del diseño y el análisis fundamentado de la calidad.
