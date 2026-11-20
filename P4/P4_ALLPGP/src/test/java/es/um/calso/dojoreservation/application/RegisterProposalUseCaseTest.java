@@ -6,18 +6,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import es.um.calso.dojoreservation.domain.model.Dojo;
+import es.um.calso.dojoreservation.domain.model.TrainingProposal;
 import es.um.calso.dojoreservation.domain.model.TrainingSession;
 import es.um.calso.dojoreservation.domain.port.DojoRepository;
+import es.um.calso.dojoreservation.domain.port.ProposalRepository;
 import es.um.calso.dojoreservation.infrastructure.persistence.InMemoryDojoRepository;
+import es.um.calso.dojoreservation.infrastructure.persistence.InMemoryProposalRepository;
 
 class RegisterProposalUseCaseTest {
 
 	@Test
 	void testGivenScheduledSessionOf60MinutesWhenRegister45MinuteProposalThenAccepted() {
-		DojoRepository repository = new InMemoryDojoRepository();
-		RegisterProposalUseCase useCase = new RegisterProposalUseCase(repository);
+		DojoRepository dojoRepository = new InMemoryDojoRepository();
+		ProposalRepository proposalRepository = new InMemoryProposalRepository();
+		
+		RegisterProposalUseCase useCase = new RegisterProposalUseCase(dojoRepository, proposalRepository);
 
-		Dojo dojo = repository.findById("DOJO-01").orElseThrow();
+		Dojo dojo = dojoRepository.findById("DOJO-01").orElseThrow();
 		TrainingSession session = dojo.findSessionById("SES-001").orElseThrow();
 
 		assertEquals(60, session.maximumDurationMinutes());
