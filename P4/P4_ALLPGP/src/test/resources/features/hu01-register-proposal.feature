@@ -17,3 +17,20 @@ Feature: Register a training proposal for a scheduled session
       | BDD-01b | PROP-004 | 59      |
       | BDD-01c | PROP-005 | 60      |
       | BDD-01d | PROP-006 | 1       |
+
+  Scenario Outline: <id> - Reject a proposal that exceeds the session duration
+    Given dojo "DOJO-01" has the scheduled session "SES-001"
+    When the sensei registers proposal "<proposal>" of <minutes> minutes for session "SES-001"
+    Then the proposal is rejected with reason "PROPOSAL_EXCEEDS_AVAILABLE_DURATION"
+    And proposal "<proposal>" is not registered
+
+    Examples:
+      | id      | proposal | minutes |
+      | BDD-02  | PROP-002 | 75      |
+      | BDD-02b | PROP-007 | 61      |
+
+  Scenario: BDD-03 - Reject a proposal with duration zero
+    Given dojo "DOJO-01" has the scheduled session "SES-001"
+    When the sensei registers proposal "PROP-003" of 0 minutes for session "SES-001"
+    Then the proposal is rejected with reason "INVALID_PROPOSAL_DURATION"
+    And proposal "PROP-003" is not registered
