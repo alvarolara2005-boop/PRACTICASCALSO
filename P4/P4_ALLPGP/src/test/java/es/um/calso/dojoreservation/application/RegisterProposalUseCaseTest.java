@@ -68,5 +68,16 @@ class RegisterProposalUseCaseTest {
 		assertFalse(useCase.register("DOJO-01", "SES-001", "PROP-002", 75));
 		assertTrue(proposalRepository.findById("PROP-002").isEmpty());
 	}
+	
+	@Test
+	void testGivenScheduledSessionOf60MinutesWhenRegister61MinuteProposalThenRejectedAndNotStored() {
+		DojoRepository dojoRepository = new InMemoryDojoRepository();
+		ProposalRepository proposalRepository = new InMemoryProposalRepository();
+
+		RegisterProposalUseCase useCase = new RegisterProposalUseCase(dojoRepository, proposalRepository);
+
+		assertFalse(useCase.register("DOJO-01", "SES-001", "PROP-007", 61));
+		assertTrue(proposalRepository.findById("PROP-007").isEmpty());
+	}
 
 }
