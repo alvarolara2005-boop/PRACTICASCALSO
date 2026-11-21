@@ -68,7 +68,7 @@ class RegisterProposalUseCaseTest {
 		assertFalse(useCase.register("DOJO-01", "SES-001", "PROP-002", 75));
 		assertTrue(proposalRepository.findById("PROP-002").isEmpty());
 	}
-	
+
 	@Test
 	void testGivenScheduledSessionOf60MinutesWhenRegister61MinuteProposalThenRejectedAndNotStored() {
 		DojoRepository dojoRepository = new InMemoryDojoRepository();
@@ -78,6 +78,45 @@ class RegisterProposalUseCaseTest {
 
 		assertFalse(useCase.register("DOJO-01", "SES-001", "PROP-007", 61));
 		assertTrue(proposalRepository.findById("PROP-007").isEmpty());
+	}
+
+	@Test
+	void testGivenScheduledSessionOf60MinutesWhenRegister75MinuteProposalThenRejectedAndReasonProposalExceedsAvailableDuration() {
+		DojoRepository dojoRepository = new InMemoryDojoRepository();
+		ProposalRepository proposalRepository = new InMemoryProposalRepository();
+
+		RegisterProposalUseCase useCase = new RegisterProposalUseCase(dojoRepository, proposalRepository);
+
+		RegistrationResult result = useCase.registerWithOutcome("DOJO-01", "SES-001", "PROP-002", 75);
+
+		assertFalse(result.accepted());
+		assertEquals(RejectionReason.PROPOSAL_EXCEEDS_AVAILABLE_DURATION, result.rejectionReason().orElseThrow());
+	}
+
+	@Test
+	void testGivenScheduledSessionOf60MinutesWhenRegister61MinuteProposalThenRejectedAndReasonProposalExceedsAvailableDuration() {
+		DojoRepository dojoRepository = new InMemoryDojoRepository();
+		ProposalRepository proposalRepository = new InMemoryProposalRepository();
+
+		RegisterProposalUseCase useCase = new RegisterProposalUseCase(dojoRepository, proposalRepository);
+
+		RegistrationResult result = useCase.registerWithOutcome("DOJO-01", "SES-001", "PROP-007", 61);
+
+		assertFalse(result.accepted());
+		assertEquals(RejectionReason.PROPOSAL_EXCEEDS_AVAILABLE_DURATION, result.rejectionReason().orElseThrow());
+	}
+
+	@Test
+	void testGivenScheduledSessionOf60MinutesWhenRegister0MinuteProposalThenRejectedAndReasonInvalidProposalDuration() {
+		DojoRepository dojoRepository = new InMemoryDojoRepository();
+		ProposalRepository proposalRepository = new InMemoryProposalRepository();
+
+		RegisterProposalUseCase useCase = new RegisterProposalUseCase(dojoRepository, proposalRepository);
+
+		RegistrationResult result = useCase.registerWithOutcome("DOJO-01", "SES-001", "PROP-003", 0);
+
+		assertFalse(result.accepted());
+		assertEquals(RejectionReason.INVALID_PROPOSAL_DURATION, result.rejectionReason().orElseThrow());
 	}
 
 }
