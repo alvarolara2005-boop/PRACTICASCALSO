@@ -1,6 +1,7 @@
 package es.um.calso.dojoreservation.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,17 @@ class RegisterProposalUseCaseTest {
 		assertEquals("SES-001", proposal.sessionId());
 		assertEquals("PROP-001", proposal.proposalId());
 		assertEquals(45, proposal.durationMinutes());
+	}
+	
+	@Test
+	void testGivenScheduledSessionOf60MinutesWhenRegister0MinuteProposalThenRejectedAndNotStored() {
+		DojoRepository dojoRepository = new InMemoryDojoRepository();
+		ProposalRepository proposalRepository = new InMemoryProposalRepository();
+		
+		RegisterProposalUseCase useCase = new RegisterProposalUseCase(dojoRepository, proposalRepository);
+
+		assertFalse(useCase.register("DOJO-01", "SES-001", "PROP-003", 0));
+		assertTrue(proposalRepository.findById("PROP-003").isEmpty());
 	}
 
 }
