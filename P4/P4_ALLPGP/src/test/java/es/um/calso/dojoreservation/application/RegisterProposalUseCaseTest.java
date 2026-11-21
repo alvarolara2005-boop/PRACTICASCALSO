@@ -119,5 +119,19 @@ class RegisterProposalUseCaseTest {
 		assertFalse(result.accepted());
 		assertEquals(RejectionReason.INVALID_PROPOSAL_DURATION, result.rejectionReason().orElseThrow());
 	}
+	
+	@Test
+	void testGivenScheduledSessionOf60MinutesWhenRegister45MinuteProposalThenResultIsAcceptedWithoutRejectionReason() {
+		DojoRepository dojoRepository = new InMemoryDojoRepository();
+		ProposalRepository proposalRepository = new InMemoryProposalRepository();
+
+		RegisterProposalUseCase useCase = new RegisterProposalUseCase(dojoRepository, proposalRepository);
+
+		RegistrationResult result = useCase.registerWithOutcome("DOJO-01", "SES-001", "PROP-001", 45);
+
+		assertTrue(result.accepted());
+		assertTrue(result.rejectionReason().isEmpty());
+		assertTrue(proposalRepository.findById("PROP-001").isPresent());
+	}
 
 }
