@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import es.um.calso.dojoreservation.domain.model.Dojo;
+import es.um.calso.dojoreservation.domain.model.RejectionReason;
 import es.um.calso.dojoreservation.domain.model.TrainingProposal;
 import es.um.calso.dojoreservation.domain.model.TrainingSession;
 import es.um.calso.dojoreservation.domain.port.DojoRepository;
