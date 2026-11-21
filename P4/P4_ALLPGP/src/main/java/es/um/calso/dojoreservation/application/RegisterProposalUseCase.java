@@ -19,21 +19,7 @@ public class RegisterProposalUseCase {
 		this.proposalRepository = proposalRepository;
 	}
 
-	public boolean register(String dojoId, String sessionId, String proposalId, int durationMinutes) {
-		Dojo dojo = dojoRepository.findById(dojoId).orElseThrow();
-		TrainingSession session = dojo.findSessionById(sessionId).orElseThrow();
-
-		if ((durationMinutes > 0) && (durationMinutes <= session.maximumDurationMinutes())) {
-			proposalRepository.save(new TrainingProposal(dojoId, sessionId, proposalId, durationMinutes));
-
-			return true;
-		}
-
-		return false;
-	}
-
-	public RegistrationResult registerWithOutcome(String dojoId, String sessionId, String proposalId,
-			int durationMinutes) {
+	public RegistrationResult register(String dojoId, String sessionId, String proposalId, int durationMinutes) {
 		Dojo dojo = dojoRepository.findById(dojoId).orElseThrow();
 		TrainingSession session = dojo.findSessionById(sessionId).orElseThrow();
 

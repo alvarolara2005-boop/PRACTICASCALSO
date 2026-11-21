@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import es.um.calso.dojoreservation.application.RegisterProposalUseCase;
+import es.um.calso.dojoreservation.application.RegistrationResult;
 import es.um.calso.dojoreservation.domain.model.Dojo;
 import es.um.calso.dojoreservation.domain.model.TrainingProposal;
 import es.um.calso.dojoreservation.domain.port.DojoRepository;
@@ -20,7 +21,7 @@ public class Hu01Steps {
 	private final ProposalRepository proposalRepository = new InMemoryProposalRepository();
 	private final RegisterProposalUseCase useCase = new RegisterProposalUseCase(dojoRepository, proposalRepository);
 	private String dojoId;
-	private boolean accepted;
+	RegistrationResult result;
 
 	@Given("dojo {string} has the scheduled session {string}")
 	public void dojo_has_the_scheduled_session(String dojoId, String sessionId) {
@@ -32,12 +33,12 @@ public class Hu01Steps {
 	@When("the sensei registers proposal {string} of {int} minutes for session {string}")
 	public void the_sensei_registers_proposal_of_minutes_for_session(String proposalId, int durationMinutes,
 			String sessionId) {
-		accepted = useCase.register(dojoId, sessionId, proposalId, durationMinutes);
+		result = useCase.register(dojoId, sessionId, proposalId, durationMinutes);
 	}
 
 	@Then("the proposal is accepted")
 	public void the_proposal_is_accepted() {
-		assertTrue(accepted);
+		assertTrue(result.accepted());
 	}
 
 	@Then("proposal {string} can be retrieved with {int} minutes for dojo {string} and session {string}")
