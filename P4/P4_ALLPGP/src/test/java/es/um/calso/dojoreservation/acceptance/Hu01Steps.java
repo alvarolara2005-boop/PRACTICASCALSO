@@ -1,6 +1,7 @@
 package es.um.calso.dojoreservation.acceptance;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import es.um.calso.dojoreservation.application.RegisterProposalUseCase;
@@ -50,6 +51,18 @@ public class Hu01Steps {
 		assertEquals(durationMinutes, proposal.durationMinutes());
 		assertEquals(dojoId, proposal.dojoId());
 		assertEquals(sessionId, proposal.sessionId());
+	}
+
+	@Then("the proposal is rejected with reason {string}")
+	public void the_proposal_is_rejected_with_reason(String rejectionReason) {
+		assertFalse(result.accepted());
+		assertFalse(result.rejectionReason().isEmpty());
+		assertEquals(rejectionReason, result.rejectionReason().orElseThrow().toString());
+	}
+
+	@Then("proposal {string} is not registered")
+	public void proposal_is_not_registered(String proposalId) {
+		assertTrue(proposalRepository.findById(proposalId).isEmpty());
 	}
 
 }
