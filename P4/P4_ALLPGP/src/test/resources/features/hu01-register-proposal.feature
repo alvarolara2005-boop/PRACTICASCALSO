@@ -5,3 +5,15 @@ Feature: Register a training proposal for a scheduled session
     When the sensei registers proposal "PROP-001" of 45 minutes for session "SES-001"
     Then the proposal is accepted
     And proposal "PROP-001" can be retrieved with 45 minutes for dojo "DOJO-01" and session "SES-001"
+
+  Scenario Outline: <id> - Register a proposal within the allowed duration
+    Given dojo "DOJO-01" has the scheduled session "SES-001"
+    When the sensei registers proposal "<proposal>" of <minutes> minutes for session "SES-001"
+    Then the proposal is accepted
+    And proposal "<proposal>" can be retrieved with <minutes> minutes for dojo "DOJO-01" and session "SES-001"
+
+    Examples:
+      | id      | proposal | minutes |
+      | BDD-01b | PROP-004 | 59      |
+      | BDD-01c | PROP-005 | 60      |
+      | BDD-01d | PROP-006 | 1       |
