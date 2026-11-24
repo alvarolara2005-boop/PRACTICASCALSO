@@ -127,7 +127,7 @@ Los commits se realizan **tras ejecutar la prueba y antes de cambiar de fase**. 
 
 | Corte UML | Ruta del diagrama | Hash real del estado representado | Nuevas clases y relaciones relevantes | Test/escenario que motivó el cambio |
 |---|---|---|---|---|
-| Tras HU-01 | [enlace](./docs/uml/hu01.md) | [...] | [...] | [...] |
+| Tras HU-01 | [enlace](./docs/uml/hu01.md) | de77c7e3c5ff4fc61df2d0276b991f2e4e78321d | `TrainingProposal`, `RejectionReason`, `ProposalRepository`, `InMemoryProposalRepository`, `RegistrationResult`, `RegisterProposalUseCase` | [...] |
 | Tras HU-02 | [enlace](./docs/uml/hu02.md) | [...] | [...] | [...] |
 | Tras HU-03 | [enlace](./docs/uml/hu03.md) | [...] | [...] | [...] |
 
