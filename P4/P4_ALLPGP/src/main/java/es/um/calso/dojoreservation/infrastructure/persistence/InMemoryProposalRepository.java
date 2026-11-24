@@ -11,7 +11,7 @@ public final class InMemoryProposalRepository implements ProposalRepository {
 	private final List<TrainingProposal> proposals;
 
 	public InMemoryProposalRepository() {
-		proposals = new LinkedList<TrainingProposal>();
+		proposals = new LinkedList<>();
 	}
 
 	@Override
